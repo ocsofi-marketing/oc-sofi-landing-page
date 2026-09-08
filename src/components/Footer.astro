@@ -1,0 +1,112 @@
+---
+const navigacia = [
+  ['#retail', 'Obchodné priestory'],
+  ['#kancelarie', 'Kancelárie'],
+  ['#standardy', 'Štandardy'],
+  ['#lokalita', 'Lokalita'],
+  ['#dopyt', 'Kontakt'],
+];
+
+const pravne = [
+  ['/zasady-ochrany-osobnych-udajov', 'Zásady ochrany osobných údajov'],
+  ['/cookies', 'Cookies'],
+];
+---
+
+<footer class="relative overflow-hidden bg-navy">
+  <span
+    class="pointer-events-none absolute top-[14%] left-[6%] text-[min(46vw,620px)] leading-[0.8] font-semibold tracking-[0.02em] text-white opacity-[0.03]"
+    >SOFI</span
+  >
+  <div
+    class="relative mx-auto grid max-w-[1280px] grid-cols-2 gap-x-12 gap-y-12 px-[clamp(20px,4vw,40px)] pt-[104px] pb-12 lg:grid-cols-[1.4fr_1fr_1fr_1fr]"
+  >
+    <div class="col-span-2 lg:col-span-1">
+      <div class="flex items-center gap-[14px]">
+        <span
+          class="flex size-[26px] items-center justify-center rounded-[4px] border-[1.5px] border-white text-[12px] text-white"
+          >S</span
+        >
+        <span class="text-[19px] font-semibold tracking-[0.28em] text-white"
+          >SOFI</span
+        >
+      </div>
+      <h2
+        class="mt-16 mb-0 text-[clamp(32px,3.6vw,52px)] leading-[1.15] font-normal tracking-[-0.025em] text-white"
+      >
+        Nový štandard <span class="block font-serif italic"
+          ><span class="text-accent">mestského</span> života<span
+            class="text-accent">.</span
+          ></span
+        >
+      </h2>
+    </div>
+
+    <div>
+      <div class="text-[15px] text-[#7E8FA3]">Navigácia</div>
+      <div class="mt-11 grid gap-5">
+        {
+          navigacia.map(([href, label]) => (
+            <a
+              href={href}
+              class="text-[16px] text-white transition-colors hover:text-accent"
+            >
+              {label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+
+    <div>
+      <div class="text-[15px] text-[#7E8FA3]">Právne informácie</div>
+      <div class="mt-11 grid gap-5">
+        {
+          pravne.map(([href, label]) => (
+            <a
+              href={href}
+              class="text-[16px] text-white transition-colors hover:text-accent"
+            >
+              {label}
+            </a>
+          ))
+        }
+        <button
+          type="button"
+          id="cookie-settings"
+          class="cursor-pointer border-none bg-transparent p-0 text-left text-[16px] text-white transition-colors hover:text-accent"
+          >Nastavenia Cookies</button
+        >
+      </div>
+    </div>
+
+    <div class="col-span-2 text-left lg:col-span-1 lg:text-right">
+      <div class="text-[15px] text-[#7E8FA3]">Kontaktné údaje</div>
+      <div class="mt-11 grid gap-5">
+        <a
+          href="mailto:marketing@ocsofi.sk"
+          class="text-[17px] text-white transition-colors hover:text-accent"
+          >marketing@ocsofi.sk</a
+        >
+        <span class="text-[16px] leading-[1.6] text-[#8FA0B3]"
+          >Bratislavská 74,<br />917 02 Trnava</span
+        >
+        <span class="text-[16px] leading-[1.6] text-[#8FA0B3]"
+          >Verejný prenájom: Q2 2026<br />Odovzdanie: Q4 2027</span
+        >
+      </div>
+    </div>
+  </div>
+  <div class="relative border-t border-white/8">
+    <div
+      class="mx-auto flex max-w-[1280px] flex-wrap justify-between gap-6 px-[clamp(20px,4vw,40px)] py-6"
+    >
+      <span class="text-[14px] text-[#7E8FA3]"
+        >Vizualizácie sú ilustračné, uvedené výmery orientačné.</span
+      >
+      <span class="text-[14px] text-[#7E8FA3]"
+        >OC SOFI All Rights Reserved. © 2026</span
+      >
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,61 @@
+---
+import { Image } from 'astro:assets';
+import logoDeliviet from '../assets/images/logo-deliviet.png';
+import logoCaffeMilano from '../assets/images/logo-caffe-milano.png';
+import logoVrzukac from '../assets/images/logo-vrzukac.png';
+import logoKraj from '../assets/images/logo-kraj.png';
+import logoPhase from '../assets/images/logo-phase.png';
+import logoDrogeria from '../assets/images/logo-drogeria.png';
+import logoVigeo from '../assets/images/logo-vigeo.png';
+
+const loga = [
+  { src: logoDeliviet, alt: 'Deli Viet Reštaurácia', maxH: '52px' },
+  { src: logoCaffeMilano, alt: 'Caffè Milan No2', maxH: '52px' },
+  { src: logoVrzukac, alt: 'Pekáreň Vrzukáč', maxH: '50px' },
+  { src: logoKraj, alt: 'KRAJ Potraviny', maxH: '42px' },
+  { src: logoPhase, alt: 'Phase sedačky', maxH: '42px' },
+  { src: logoDrogeria, alt: '101 Drogéria', maxH: '50px' },
+  { src: logoVigeo, alt: 'Vigeo', maxH: '36px' },
+];
+---
+
+<section id="najomcovia" class="bg-white">
+  <div class="mx-auto max-w-[1280px] px-[clamp(20px,4vw,40px)] py-20">
+    <div class="flex items-center gap-4">
+      <span class="text-[17px] text-heading"
+        >Prevádzky, ktoré sú zapojené do projektu</span
+      >
+      <svg
+        width="52"
+        height="12"
+        viewBox="0 0 52 12"
+        fill="none"
+        stroke="#F4551E"
+        stroke-width="1.4"
+        aria-hidden="true"
+        class="block flex-none"
+      >
+        <path d="M0 6h49"></path>
+        <path d="M44 1.5 49.5 6 44 10.5"></path>
+      </svg>
+    </div>
+
+    <div
+      class="mt-12 flex flex-wrap items-center justify-center gap-[clamp(32px,5vw,72px)]"
+    >
+      {
+        loga.map((logo) => (
+          <div class="flex items-center justify-center">
+            <Image
+              src={logo.src}
+              alt={logo.alt}
+              class="block h-auto w-auto max-w-full object-contain"
+              style={`max-height:${logo.maxH}`}
+              loading="lazy"
+            />
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

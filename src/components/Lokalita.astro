@@ -1,0 +1,81 @@
+---
+const napojenie = [
+  ['Diaľnica D1', '5 min.'],
+  ['Rýchlostná cesta R1', '7 min.'],
+  ['Bratislava', '30 min.'],
+  ['Nitra', '33 min.'],
+];
+
+const okolie = [
+  ['MHD zastávka', '1 min.'],
+  ['Železničná stanica', '5 min.'],
+  ['Historické centrum', '6 min.'],
+  ['Kaufland', '3 min.'],
+];
+---
+
+<section
+  id="lokalita"
+  class="mx-auto max-w-[1280px] px-[clamp(20px,4vw,40px)] pt-28"
+>
+  <div class="text-center">
+    <span class="block text-[12px] tracking-[0.18em] text-accent uppercase"
+      >Lokalita</span
+    >
+    <h2
+      class="mx-auto mt-[22px] mb-0 max-w-[24ch] [text-wrap:balance] text-[clamp(32px,4.2vw,58px)] leading-[1.06] font-normal tracking-[-0.03em] text-heading"
+    >
+      Na dobrej adrese <span class="font-serif italic text-accent">záleží</span>
+    </h2>
+    <p
+      class="mx-auto mt-[26px] mb-0 max-w-[60ch] [text-wrap:pretty] text-[18px] leading-[1.8] text-[#5A6470]"
+    >
+      Vaši zákazníci aj zamestnanci sa k vám dostanú autom, MHD či na bicykli a
+      v okolí majú na dosah všetko, čo tvorí komfortný mestský život.
+    </p>
+  </div>
+
+  <div
+    class="mt-14 grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-6"
+  >
+    <div
+      class="min-h-[520px] overflow-hidden rounded-[20px] border border-[#E2DCD2] bg-[#E7E1D8]"
+    >
+      <iframe
+        title="Mapa — OC SOFI, Bratislavská 74, Trnava"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=17.5230%2C48.3495%2C17.6510%2C48.3795&layer=mapnik&marker=48.36440%2C17.58660"
+        class="block h-full min-h-[520px] w-full border-0"
+        loading="lazy"></iframe>
+    </div>
+    <div class="grid content-start gap-6">
+      <div class="rounded-[20px] bg-navy-card p-9 text-[#FBF9F6]">
+        <span class="text-[12px] tracking-[0.18em] text-[#8A857C] uppercase"
+          >Napojenie</span
+        >
+        <div class="mt-4 grid">
+          {
+            napojenie.map(([label, value]) => (
+              <span class="flex justify-between gap-4 border-t border-[#35332E] py-[13px] text-[15px] text-[#B3AEA4]">
+                {label} <span class="text-[#FBF9F6]">{value}</span>
+              </span>
+            ))
+          }
+        </div>
+      </div>
+      <div class="rounded-[20px] border border-[#E2DCD2] bg-white p-9">
+        <span class="text-[12px] tracking-[0.18em] text-[#8A857C] uppercase"
+          >V okolí</span
+        >
+        <div class="mt-4 grid">
+          {
+            okolie.map(([label, value]) => (
+              <span class="flex justify-between gap-4 border-t border-[#E2DCD2] py-[13px] text-[15px] text-[#6B6863]">
+                {label} <span class="text-ink">{value}</span>
+              </span>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

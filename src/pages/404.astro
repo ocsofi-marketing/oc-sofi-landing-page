@@ -1,0 +1,76 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CtaButton from '../components/CtaButton.astro';
+---
+
+<Layout
+  title="404 — Stránka sa nenašla | OC SOFI Trnava"
+  description="Stránka, ktorú hľadáte, neexistuje. Vráťte sa na hlavnú stránku OC SOFI Trnava."
+>
+  <div class="flex min-h-screen flex-col bg-navy">
+    <header
+      class="flex items-center justify-center px-[clamp(20px,4vw,56px)] py-[30px]"
+    >
+      <a href="/" class="flex items-center gap-3" aria-label="OC SOFI">
+        <svg
+          width="30"
+          height="30"
+          viewBox="0 0 46 46"
+          fill="none"
+          aria-hidden="true"
+          class="block flex-none"
+        >
+          <rect
+            x="2.4"
+            y="2.4"
+            width="41.2"
+            height="41.2"
+            rx="6"
+            stroke="#FFFFFF"
+            stroke-width="4.8"></rect>
+          <rect x="11" y="12.6" width="24" height="4.2" fill="#FFFFFF"></rect>
+          <rect x="11" y="20.9" width="24" height="4.2" fill="#FFFFFF"></rect>
+          <rect x="11" y="29.2" width="24" height="4.2" fill="#FFFFFF"></rect>
+        </svg>
+        <span
+          class="pl-[0.08em] text-[22px] leading-none font-normal tracking-[0.3em] text-white"
+          >SOFI</span
+        >
+      </a>
+    </header>
+
+    <div
+      class="relative flex flex-1 flex-col items-center justify-center overflow-hidden px-[clamp(20px,4vw,56px)] pt-14 pb-24 text-center"
+    >
+      <span
+        class="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[min(46vw,620px)] leading-[0.8] font-semibold tracking-[0.02em] text-white opacity-[0.03]"
+        aria-hidden="true">404</span
+      >
+
+      <span
+        class="relative text-[13px] tracking-[0.18em] text-[#8FA0B3] uppercase"
+        >Chyba 404</span
+      >
+      <h1
+        class="relative mt-6 max-w-[22ch] [text-wrap:balance] text-[clamp(38px,5.6vw,88px)] leading-[1.04] font-normal tracking-[-0.03em] text-[#FBF9F6]"
+      >
+        Táto stránka sa <span class="font-serif italic text-accent"
+          >nenašla</span
+        >
+      </h1>
+      <p
+        class="relative mt-[30px] max-w-[52ch] [text-wrap:pretty] text-[19px] leading-[1.75] text-[#8FA0B3]"
+      >
+        Stránka, ktorú hľadáte, neexistuje alebo bola presunutá. Vráťte sa na
+        hlavnú stránku a pozrite si dostupné priestory.
+      </p>
+      <CtaButton href="/" class="relative mt-[38px]"
+        >Späť na hlavnú stránku</CtaButton
+      >
+      <span
+        class="relative mt-[34px] text-[15px] tracking-[0.14em] text-[#7E8FA3] uppercase"
+        >BRATISLAVSKÁ 74, TRNAVA</span
+      >
+    </div>
+  </div>
+</Layout>

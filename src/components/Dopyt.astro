@@ -1,0 +1,281 @@
+---
+import { Image } from 'astro:assets';
+import dopytBg from '../assets/images/dopyt-bg.jpg';
+
+const inputClass =
+  'w-full rounded-[10px] border border-[#E3DED4] bg-white px-5 py-[18px] text-[16px] text-ink outline-none focus:border-accent';
+
+const typy = [
+  { value: 'Obchodný priestor', label: 'Obchodný priestor' },
+  { value: 'Kancelársky priestor', label: 'Kancelársky priestor' },
+];
+
+const vymery = ['do 100 m²', '100–200 m²', '200+ m²', 'Zatiaľ neviem'];
+---
+
+<section id="dopyt" class="relative bg-navy">
+  <Image
+    src={dopytBg}
+    widths={[768, 1280, 1920]}
+    sizes="100vw"
+    alt="Vizualizácia OC SOFI"
+    class="absolute inset-0 block h-full w-full object-cover"
+    loading="lazy"
+  />
+  <div
+    class="absolute inset-0 bg-[linear-gradient(90deg,rgba(11,24,38,0.9)_0%,rgba(11,24,38,0.64)_55%,rgba(11,24,38,0.52)_100%)]"
+  >
+  </div>
+
+  <div
+    class="relative mx-auto grid max-w-[1280px] grid-cols-[repeat(auto-fit,minmax(340px,1fr))] items-center gap-[clamp(32px,5vw,72px)] px-[clamp(20px,4vw,40px)] py-[104px]"
+  >
+    <div>
+      <span class="text-[15px] text-[#C8D3DE]">Kontaktujte nás</span>
+      <h2
+        class="mt-7 mb-0 text-[clamp(34px,4.4vw,60px)] leading-[1.08] font-normal tracking-[-0.03em] text-white"
+      >
+        Máte <span class="font-serif italic">záujem</span>
+        <span class="block"
+          >o <span class="font-serif italic text-accent">priestory</span> v projekte?</span
+        >
+      </h2>
+      <p class="mt-7 mb-0 max-w-[44ch] text-[18px] leading-[1.8] text-[#FDFDFD]">
+        Získajte ponuku priestorov na mieru <b>priamo od developera</b>. Stačí
+        vyplniť krátky formulár a <b>do 24 hodín</b> vám zašleme aktuálne
+        pôdorysy a nájomné podmienky.
+      </p>
+    </div>
+
+    <div class="rounded-[20px] bg-cream-light p-[clamp(24px,3vw,44px)]">
+      <div id="lead-success" class="hidden flex-col items-start gap-[14px] py-6">
+        <span
+          class="flex size-11 items-center justify-center rounded-full bg-accent text-[18px] text-white"
+          >✓</span
+        >
+        <h3 class="m-0 text-[26px] font-normal tracking-[-0.02em]">
+          Dopyt máme, ďakujeme
+        </h3>
+        <p class="m-0 max-w-[44ch] text-[16px] leading-[1.75] text-[#6B6863]">
+          Do 24 hodín sa vám ozve priamo developer s prehľadom voľných
+          jednotiek, pôdorysmi a podmienkami, ktoré zodpovedajú vášmu zadaniu.
+        </p>
+        <button
+          type="button"
+          id="lead-reset"
+          class="mt-2 cursor-pointer rounded-full border border-[#CFC7BA] bg-transparent px-[22px] py-3 text-[14px] font-medium text-ink hover:border-ink"
+          >Odoslať ďalší dopyt</button
+        >
+      </div>
+
+      <form
+        id="lead-form"
+        name="dopyt"
+        method="POST"
+        action="/"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        class="grid gap-4"
+        novalidate
+      >
+        <input type="hidden" name="form-name" value="dopyt" />
+        <p class="hidden">
+          <label>Nevypĺňajte: <input name="bot-field" /></label>
+        </p>
+
+        <input
+          type="text"
+          name="name"
+          placeholder="Meno a priezvisko*"
+          class={inputClass}
+        />
+        <div class="grid grid-cols-2 gap-4 max-sm:grid-cols-1">
+          <input
+            type="email"
+            name="email"
+            placeholder="E-mail*"
+            class={inputClass}
+          />
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Telefón*"
+            class={inputClass}
+          />
+        </div>
+        <input
+          type="text"
+          name="company"
+          placeholder="Spoločnosť"
+          class={inputClass}
+        />
+
+        <div class="mt-[10px]">
+          <span class="text-[14px] text-[#8A857C]">Mám záujem o*</span>
+          <input type="hidden" name="typ-priestoru" id="lead-type" />
+          <div class="mt-3 flex flex-wrap gap-[10px]">
+            {
+              typy.map((t) => (
+                <button
+                  type="button"
+                  data-chip="type"
+                  data-value={t.value}
+                  class="cursor-pointer rounded-full border border-[#CFC7BA] bg-transparent px-5 py-3 text-[14px] font-medium text-ink"
+                >
+                  {t.label}
+                </button>
+              ))
+            }
+          </div>
+        </div>
+
+        <div class="mt-[6px]">
+          <span class="text-[14px] text-[#8A857C]">Približná výmera</span>
+          <input type="hidden" name="vymera" id="lead-area" />
+          <div class="mt-3 flex flex-wrap gap-[10px]">
+            {
+              vymery.map((v) => (
+                <button
+                  type="button"
+                  data-chip="area"
+                  data-value={v}
+                  class="cursor-pointer rounded-full border border-[#CFC7BA] bg-transparent px-5 py-3 text-[14px] font-medium text-ink"
+                >
+                  {v}
+                </button>
+              ))
+            }
+          </div>
+        </div>
+
+        <textarea
+          name="message"
+          rows="4"
+          placeholder="Správa — typ prevádzky, termín otvorenia, špecifické nároky…"
+          class:list={[inputClass, 'mt-[10px] resize-y']}></textarea>
+
+        <div id="lead-error" class="hidden text-[14px] text-[#B4453B]">
+          Vyplňte prosím meno, e-mail, telefón, typ priestoru a súhlas so
+          spracovaním údajov.
+        </div>
+
+        <div class="mt-3 flex flex-wrap items-center justify-between gap-8">
+          <label
+            class="flex max-w-[42ch] cursor-pointer items-start gap-3"
+            for="lead-gdpr"
+          >
+            <input type="checkbox" name="gdpr" id="lead-gdpr" class="peer sr-only" />
+            <span
+              class="mt-[2px] flex size-5 flex-none items-center justify-center rounded-[4px] border border-[#CFC7BA] bg-transparent text-[13px] text-white peer-checked:border-accent peer-checked:bg-accent peer-checked:[&>span]:opacity-100"
+              ><span class="opacity-0">✓</span></span
+            >
+            <span class="text-[14px] leading-[1.6] text-[#6B6863]"
+              >Súhlasím so spracovaním osobných údajov na účely spracovania
+              dopytu.</span
+            >
+          </label>
+          <button
+            type="submit"
+            class="inline-flex cursor-pointer items-center gap-[6px] rounded-full border-none bg-accent py-2 pr-2 pl-[34px] text-[16px] font-semibold text-white hover:bg-accent-hover"
+            >Odoslať dopyt <span
+              class="ml-[14px] inline-flex size-12 items-center justify-center rounded-full bg-accent-dark text-[17px] text-white"
+              >↗</span
+            ></button
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('lead-form') as HTMLFormElement;
+  const success = document.getElementById('lead-success')!;
+  const errorEl = document.getElementById('lead-error')!;
+  const resetBtn = document.getElementById('lead-reset')!;
+  const typeInput = document.getElementById('lead-type') as HTMLInputElement;
+  const areaInput = document.getElementById('lead-area') as HTMLInputElement;
+  const gdprInput = document.getElementById('lead-gdpr') as HTMLInputElement;
+
+  const CHIP_ACTIVE = ['border-ink', 'bg-ink', 'text-[#FBF9F6]'];
+  const CHIP_INACTIVE = ['border-[#CFC7BA]', 'bg-transparent', 'text-ink'];
+
+  function bindChips(group: string, input: HTMLInputElement) {
+    const chips = form.querySelectorAll<HTMLButtonElement>(
+      `[data-chip="${group}"]`,
+    );
+    chips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        input.value = chip.dataset.value!;
+        errorEl.classList.add('hidden');
+        chips.forEach((c) => {
+          const active = c === chip;
+          c.classList.remove(...(active ? CHIP_INACTIVE : CHIP_ACTIVE));
+          c.classList.add(...(active ? CHIP_ACTIVE : CHIP_INACTIVE));
+        });
+      });
+    });
+  }
+
+  function resetChips() {
+    form.querySelectorAll<HTMLButtonElement>('[data-chip]').forEach((c) => {
+      c.classList.remove(...CHIP_ACTIVE);
+      c.classList.add(...CHIP_INACTIVE);
+    });
+  }
+
+  bindChips('type', typeInput);
+  bindChips('area', areaInput);
+
+  form.querySelectorAll('input, textarea').forEach((el) => {
+    el.addEventListener('input', () => errorEl.classList.add('hidden'));
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const data = new FormData(form);
+    const name = String(data.get('name') ?? '').trim();
+    const email = String(data.get('email') ?? '');
+    const phone = String(data.get('phone') ?? '').trim();
+    const ok =
+      name &&
+      /\S+@\S+\.\S+/.test(email) &&
+      phone &&
+      typeInput.value &&
+      gdprInput.checked;
+
+    if (!ok) {
+      errorEl.classList.remove('hidden');
+      return;
+    }
+
+    data.set('gdpr', 'áno');
+    try {
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(data as unknown as Record<string, string>).toString(),
+      });
+      if (!res.ok) throw new Error(`Netlify form POST failed: ${res.status}`);
+      form.classList.add('hidden');
+      success.classList.remove('hidden');
+      success.classList.add('flex', 'animate-rise');
+    } catch {
+      errorEl.textContent =
+        'Dopyt sa nepodarilo odoslať. Skúste to prosím znova alebo nám napíšte na marketing@ocsofi.sk.';
+      errorEl.classList.remove('hidden');
+    }
+  });
+
+  resetBtn.addEventListener('click', () => {
+    form.reset();
+    typeInput.value = '';
+    areaInput.value = '';
+    resetChips();
+    errorEl.classList.add('hidden');
+    success.classList.add('hidden');
+    success.classList.remove('flex', 'animate-rise');
+    form.classList.remove('hidden');
+  });
+</script>

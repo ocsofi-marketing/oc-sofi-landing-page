@@ -1,0 +1,67 @@
+---
+const typy = [
+  {
+    num: '01',
+    title: 'Obchod a showroom',
+    text: 'Presklený výklad na Bratislavskú ulicu, vlastný vstup a zásobovanie zo zadnej strany objektu.',
+  },
+  {
+    num: '02',
+    title: 'Služby a prevádzky',
+    text: 'Pripravené prípojky pre gastro, zdravie či wellness a individuálne riadené vetranie a chladenie.',
+  },
+  {
+    num: '03',
+    title: 'Kancelárie a zázemie',
+    text: 'Variabilná dispozícia na 2. podlaží Budovy B, prístup na loggiu a inteligentná správa budovy.',
+  },
+];
+---
+
+<section id="priestory" class="bg-white">
+  <div class="mx-auto max-w-[1280px] px-[clamp(20px,4vw,40px)] py-28">
+    <div
+      class="grid grid-cols-[repeat(auto-fit,minmax(340px,1fr))] items-start gap-[clamp(32px,5vw,72px)]"
+    >
+      <div>
+        <h2
+          class="m-0 max-w-[22ch] [text-wrap:balance] text-[clamp(34px,4.6vw,64px)] leading-[1.06] font-normal tracking-[-0.03em] text-heading"
+        >
+          Vyberte si miesto pre <span class="font-serif italic text-accent"
+            >svoje podnikanie</span
+          >
+        </h2>
+        <p
+          class="mt-[26px] mb-0 max-w-[56ch] [text-wrap:pretty] text-[18px] leading-[1.8] text-[#5A6470]"
+        >
+          Na prenájom ponúkame flexibilné obchodné priestory na prízemí a
+          kancelárie na vyšších podlažiach, vhodné aj pre služby — od
+          zdravotníckych po beauty a špecializované prevádzky.
+        </p>
+      </div>
+      <div class="grid gap-[14px]">
+        <span
+          class="block text-[12px] tracking-[0.18em] text-[#8A857C] uppercase"
+          >Typy priestorov</span
+        >
+        {
+          typy.map((t) => (
+            <div class="flex items-start gap-5 rounded-2xl bg-cream-light px-7 py-[26px]">
+              <span class="flex-none pt-[5px] text-[13px] tracking-[0.14em] text-accent">
+                {t.num}
+              </span>
+              <div>
+                <h3 class="m-0 text-[19px] font-medium tracking-[-0.01em]">
+                  {t.title}
+                </h3>
+                <p class="mt-2 mb-0 text-[15px] leading-[1.7] text-[#6B6863]">
+                  {t.text}
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

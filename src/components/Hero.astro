@@ -1,0 +1,78 @@
+---
+import { Image } from 'astro:assets';
+import CtaButton from './CtaButton.astro';
+import heroImg from '../assets/images/hero.jpg';
+---
+
+<section class="relative flex min-h-screen flex-col bg-ink">
+  <Image
+    src={heroImg}
+    widths={[768, 1280, 1920]}
+    sizes="100vw"
+    alt="Vizualizácia OC SOFI, Bratislavská 74, Trnava"
+    class="absolute inset-0 block h-full w-full object-cover"
+    loading="eager"
+    fetchpriority="high"
+  />
+  <div
+    class="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,19,17,0.52)_0%,rgba(20,19,17,0.34)_34%,rgba(20,19,17,0.76)_100%)]"
+  >
+  </div>
+
+  <header
+    class="relative z-10 flex items-center justify-center px-[clamp(20px,4vw,56px)] py-[30px]"
+  >
+    <a href="#dopyt" class="flex items-center gap-3" aria-label="OC SOFI">
+      <svg
+        width="30"
+        height="30"
+        viewBox="0 0 46 46"
+        fill="none"
+        aria-hidden="true"
+        class="block flex-none"
+      >
+        <rect
+          x="2.4"
+          y="2.4"
+          width="41.2"
+          height="41.2"
+          rx="6"
+          stroke="#FFFFFF"
+          stroke-width="4.8"></rect>
+        <rect x="11" y="12.6" width="24" height="4.2" fill="#FFFFFF"></rect>
+        <rect x="11" y="20.9" width="24" height="4.2" fill="#FFFFFF"></rect>
+        <rect x="11" y="29.2" width="24" height="4.2" fill="#FFFFFF"></rect>
+      </svg>
+      <span
+        class="pl-[0.08em] text-[22px] leading-none font-normal tracking-[0.3em] text-white"
+        >SOFI</span
+      >
+    </a>
+  </header>
+
+  <div
+    class="relative z-5 flex flex-1 flex-col items-center justify-center px-[clamp(20px,4vw,56px)] pt-14 pb-24 text-center"
+  >
+    <span class="text-[13px] tracking-[0.18em] text-white uppercase"
+      >Priestory pre váš biznis na správnom mieste</span
+    >
+    <h1
+      class="mt-6 max-w-[26ch] [text-wrap:balance] text-[clamp(38px,5.6vw,88px)] leading-none font-normal tracking-[-0.03em] text-[#FBF9F6]"
+    >
+      Obchodné a kancelárske priestory na prenájom <span
+        class="font-serif italic tracking-[-0.01em]">v Trnave</span
+      >
+    </h1>
+    <p
+      class="mt-[30px] max-w-[60ch] [text-wrap:pretty] text-[19px] leading-[1.75] text-[#DDD8D0]"
+    >
+      Nájdite priestor, ktorý sadne vášmu podnikaniu - na adrese s výbornou
+      dostupnosťou a vlastným parkovaním.
+    </p>
+    <CtaButton href="#dopyt" class="mt-[38px]">Zistiť dostupné priestory</CtaButton>
+    <span
+      class="mt-[34px] text-[15px] tracking-[0.14em] text-[#A9A39A] uppercase"
+      >BRATISLAVSKÁ 74, TRNAVA</span
+    >
+  </div>
+</section>

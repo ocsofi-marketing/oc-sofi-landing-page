@@ -1,0 +1,60 @@
+---
+import CtaButton from './CtaButton.astro';
+
+const kroky = [
+  {
+    num: '01',
+    title: 'Prehľad voľných jednotiek',
+    text: 'Výmery, dispozície a cenové podmienky jednotiek, ktoré sú voľné v čase vášho dopytu.',
+  },
+  {
+    num: '02',
+    title: 'Pôdorysy a možnosti úprav',
+    text: 'Uvidíte, ako je priestor členený a čo sa v ňom dá zmeniť pre váš typ prevádzky.',
+  },
+  {
+    num: '03',
+    title: 'Hovor priamo s developerom',
+    text: 'Nezáväzne a bez sprostredkovateľa — prejdeme spolu, či priestor vašej prevádzke vyhovuje.',
+  },
+  {
+    num: '04',
+    title: 'Návrh dispozície na mieru',
+    text: 'Rozvrhneme priestor podľa vášho zadania a doplníme orientačný rozpočet nákladov.',
+  },
+];
+---
+
+<section id="prednostny-vyber" class="bg-cream">
+  <div class="mx-auto max-w-[1280px] px-[clamp(20px,4vw,40px)] pt-[104px] pb-24">
+    <div class="flex flex-wrap items-end justify-between gap-14">
+      <h2
+        class="mt-[22px] mb-0 [text-wrap:balance] text-[clamp(32px,4.2vw,58px)] leading-[1.06] font-normal tracking-[-0.03em] text-heading lg:whitespace-nowrap"
+      >
+        Radi vám pripravíme&nbsp;<span class="font-serif italic text-accent"
+          >podklady na mieru</span
+        >
+      </h2>
+    </div>
+
+    <div
+      class="mt-14 grid auto-rows-fr grid-cols-[repeat(auto-fit,minmax(min(100%,440px),1fr))] gap-6"
+    >
+      {
+        kroky.map((k) => (
+          <div class="rounded-[18px] border border-[#E2DCD2] bg-white p-9">
+            <span class="text-[13px] tracking-[0.14em] text-accent">{k.num}</span>
+            <h3 class="mt-[18px] mb-0 text-[21px] font-medium tracking-[-0.01em]">
+              {k.title}
+            </h3>
+            <p class="mt-[10px] mb-0 text-[15px] leading-[1.75] text-[#6B6863]">
+              {k.text}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+
+    <CtaButton href="#dopyt" class="mt-11">Zistiť dostupné priestory</CtaButton>
+  </div>
+</section>

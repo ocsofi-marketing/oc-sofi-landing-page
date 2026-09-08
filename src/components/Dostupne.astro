@@ -1,0 +1,88 @@
+---
+import { Image } from 'astro:assets';
+import planRetail from '../assets/images/plan-retail.png';
+import planOffice from '../assets/images/plan-office.png';
+
+const tabActive =
+  'cursor-pointer rounded-full border border-accent bg-accent px-6 py-[14px] text-[15px] font-medium text-white';
+const tabInactive =
+  'cursor-pointer rounded-full border border-[#D8D0C4] bg-transparent px-6 py-[14px] text-[15px] font-medium text-ink';
+---
+
+<section id="dostupne" class="bg-white">
+  <div class="mx-auto max-w-[1280px] px-10 py-24">
+    <div class="flex flex-wrap items-end justify-between gap-12">
+      <div>
+        <h2
+          class="m-0 max-w-[24ch] [text-wrap:balance] text-[clamp(32px,4.2vw,58px)] leading-[1.06] font-normal tracking-[-0.03em] text-heading"
+        >
+          Otvorenie druhej etapy je plánované na <span
+            class="font-serif italic text-accent">koniec roka 2027</span
+          >
+        </h2>
+        <p
+          class="mt-6 mb-0 max-w-[58ch] [text-wrap:pretty] text-[18px] leading-[1.75] text-[#5A6470]"
+        >
+          Pozrite si aktuálne dostupné priestory. Voľné jednotky sú v pôdorysoch
+          označené kódom, obsadené menom prevádzky.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-[10px]">
+        <button
+          type="button"
+          data-plan-tab="retail"
+          data-active-class={tabActive}
+          data-inactive-class={tabInactive}
+          class={tabActive}>Obchodné priestory</button
+        >
+        <button
+          type="button"
+          data-plan-tab="office"
+          data-active-class={tabActive}
+          data-inactive-class={tabInactive}
+          class={tabInactive}>Kancelárske priestory</button
+        >
+      </div>
+    </div>
+
+    <div
+      class="mt-8 flex h-[min(72vh,720px)] items-center justify-center"
+    >
+      <Image
+        data-plan="retail"
+        src={planRetail}
+        alt="Situácia obchodných priestorov, 1. podlažie"
+        class="block h-auto max-h-[min(72vh,720px)] w-auto max-w-full object-contain"
+        loading="lazy"
+      />
+      <Image
+        data-plan="office"
+        src={planOffice}
+        alt="Situácia kancelárskych priestorov, 2. podlažie Budovy B"
+        class="hidden h-auto max-h-[min(72vh,720px)] w-auto max-w-full object-contain"
+        loading="lazy"
+      />
+    </div>
+  </div>
+</section>
+
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>('[data-plan-tab]');
+  const plans = document.querySelectorAll<HTMLImageElement>('[data-plan]');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const selected = tab.dataset.planTab;
+      tabs.forEach((t) => {
+        t.className =
+          t.dataset.planTab === selected
+            ? t.dataset.activeClass!
+            : t.dataset.inactiveClass!;
+      });
+      plans.forEach((img) => {
+        img.classList.toggle('hidden', img.dataset.plan !== selected);
+        img.classList.toggle('block', img.dataset.plan === selected);
+      });
+    });
+  });
+</script>

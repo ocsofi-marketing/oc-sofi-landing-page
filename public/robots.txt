@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Po nasadení na finálnu doménu doplň sitemap (a `site` v astro.config.mjs):
+# Sitemap: https://www.ocsofi.sk/sitemap-index.xml

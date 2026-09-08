@@ -1,11 +1,61 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Vyhody from '../components/Vyhody.astro';
+import Priestory from '../components/Priestory.astro';
+import Jednotky from '../components/Jednotky.astro';
+import Standardy from '../components/Standardy.astro';
+import PrednostnyVyber from '../components/PrednostnyVyber.astro';
+import Dostupne from '../components/Dostupne.astro';
+import Brozura from '../components/Brozura.astro';
+import Lokalita from '../components/Lokalita.astro';
+import Projekt from '../components/Projekt.astro';
+import Najomcovia from '../components/Najomcovia.astro';
+import Dopyt from '../components/Dopyt.astro';
+import Footer from '../components/Footer.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// Po doplnení `site` do astro.config.mjs doplň aj "url" a "image".
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ShoppingCenter',
+  name: 'OC SOFI',
+  description:
+    'Obchodné a kancelárske priestory na prenájom v Trnave. Prenájom priamo od developera, vlastné parkovanie a výborná dostupnosť.',
+  email: 'marketing@ocsofi.sk',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Bratislavská 74',
+    addressLocality: 'Trnava',
+    postalCode: '917 02',
+    addressCountry: 'SK',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 48.3644,
+    longitude: 17.5866,
+  },
+};
 ---
 
 <Layout>
-	<Welcome />
+  <script
+    type="application/ld+json"
+    slot="head"
+    set:html={JSON.stringify(schema)}
+  />
+  <div class="min-h-screen overflow-x-hidden bg-cream">
+    <Hero />
+    <Vyhody />
+    <Priestory />
+    <Jednotky />
+    <Standardy />
+    <PrednostnyVyber />
+    <Dostupne />
+    <Brozura />
+    <Lokalita />
+    <Projekt />
+    <Najomcovia />
+    <Dopyt />
+    <Footer />
+  </div>
 </Layout>

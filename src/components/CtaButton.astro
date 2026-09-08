@@ -1,0 +1,23 @@
+---
+interface Props {
+  href: string;
+  class?: string;
+  arrow?: string;
+}
+
+const { href, class: className = '', arrow = '→' } = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={[
+    'inline-flex items-center rounded-full bg-accent py-2 pr-2 pl-[34px] text-[16px] font-semibold text-white transition-colors hover:bg-accent-hover',
+    className,
+  ]}
+>
+  <slot />
+  <span
+    class="ml-[14px] inline-flex size-12 items-center justify-center rounded-full bg-accent-dark text-[17px] text-white"
+    >{arrow}</span
+  >
+</a>

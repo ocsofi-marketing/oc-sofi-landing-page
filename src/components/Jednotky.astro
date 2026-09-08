@@ -1,0 +1,109 @@
+---
+import { Image } from 'astro:assets';
+import retailImg from '../assets/images/retail.jpg';
+import officeImg from '../assets/images/office.jpg';
+
+const retailSpecs = [
+  ['Výmera jednotky', '99 – 177 m², jednotky sa dajú spojiť'],
+  ['Svetlá výška', '3,3 m'],
+  ['Zásobovanie', 'samostatný vstup zo zadnej strany'],
+  ['Stav pri prevzatí', 'shell & core s prípojkami, HVAC'],
+];
+
+const officeSpecs = [
+  ['Dispozícia', 'open space alebo delené kancelárie'],
+  ['Vonkajší priestor', 'loggia ku každej jednotke'],
+  ['Povrchy', 'odolné podlahy, akustické stropy'],
+  ['Technológie', 'optika, prístupový systém, smart správa'],
+];
+---
+
+<section id="jednotky" class="bg-cream">
+  <div class="mx-auto max-w-[1280px] px-[clamp(20px,4vw,40px)] py-24">
+    <div
+      id="retail"
+      class="grid grid-cols-[repeat(auto-fit,minmax(360px,1fr))] items-center gap-[clamp(32px,5vw,64px)]"
+    >
+      <div>
+        <h3
+          class="m-0 max-w-[20ch] font-serif text-[clamp(30px,3.4vw,48px)] leading-[1.06] font-normal tracking-[-0.01em]"
+        >
+          <span class="italic">Obchodné priestory</span>
+        </h3>
+        <p
+          class="mt-6 mb-0 max-w-[56ch] [text-wrap:pretty] text-[17px] leading-[1.85] text-[#5A6470]"
+        >
+          Jednotky na 1. podlaží disponujú presklenou fasádou po celej šírke
+          prevádzky, vlastným vstupom z parkoviska a otvoreným pôdorysom bez
+          nosných stien vo vnútri. Samostatné zásobovanie je zo zadnej strany
+          objektu, prípojky a vetranie sú riešené pre každú jednotku zvlášť.
+        </p>
+        <div class="mt-[30px] grid border-t border-[#D8D0C4]">
+          {
+            retailSpecs.map(([label, value]) => (
+              <div class="flex justify-between gap-5 border-b border-[#E2DCD2] py-[15px]">
+                <span class="text-[15px] text-[#6B6863]">{label}</span>
+                <span class="text-[15px] text-ink">{value}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+      <div
+        class="mr-[calc(-1*((100vw-min(1280px,100vw))/2+clamp(20px,4vw,40px)))] aspect-[4/3] overflow-hidden rounded-l-[20px] bg-[#E7E1D8]"
+      >
+        <Image
+          src={retailImg}
+          widths={[640, 1024, 1600]}
+          sizes="(max-width: 800px) 100vw, 55vw"
+          alt="Obchodné priestory OC SOFI"
+          class="block h-full w-full object-cover"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+    <div
+      id="kancelarie"
+      class="mt-24 grid grid-cols-[repeat(auto-fit,minmax(360px,1fr))] items-center gap-[clamp(32px,5vw,64px)]"
+    >
+      <div
+        class="ml-[calc(-1*((100vw-min(1280px,100vw))/2+clamp(20px,4vw,40px)))] aspect-[4/3] overflow-hidden rounded-r-[20px] bg-[#E7E1D8]"
+      >
+        <Image
+          src={officeImg}
+          widths={[640, 1024, 1600]}
+          sizes="(max-width: 800px) 100vw, 55vw"
+          alt="Kancelárske priestory OC SOFI"
+          class="block h-full w-full object-cover"
+          loading="lazy"
+        />
+      </div>
+      <div>
+        <h3
+          class="m-0 max-w-[20ch] font-serif text-[clamp(30px,3.4vw,48px)] leading-[1.06] font-normal tracking-[-0.01em]"
+        >
+          <span class="italic">Kancelárske priestory</span>
+        </h3>
+        <p
+          class="mt-6 mb-0 max-w-[56ch] [text-wrap:pretty] text-[17px] leading-[1.85] text-[#5A6470]"
+        >
+          Jednotky na 2. podlaží Budovy B disponujú variabilnou dispozíciou —
+          dajú sa rozdeliť na samostatné kancelárie alebo nechať ako jeden open
+          space. Každá má prístup na loggiu, denné svetlo z dvoch strán, vlastnú
+          meraciu vetvu na energie a optické pripojenie.
+        </p>
+        <div class="mt-[30px] grid border-t border-[#D8D0C4]">
+          {
+            officeSpecs.map(([label, value]) => (
+              <div class="flex justify-between gap-5 border-b border-[#E2DCD2] py-[15px]">
+                <span class="text-[15px] text-[#6B6863]">{label}</span>
+                <span class="text-[15px] text-ink">{value}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

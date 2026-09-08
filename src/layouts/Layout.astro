@@ -1,23 +1,81 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import { getImage } from 'astro:assets';
+import '../styles/global.css';
+import heroImg from '../assets/images/hero.jpg';
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'OC SOFI Trnava — Obchodné a kancelárske priestory na prenájom',
+  description =
+    'Obchodné a kancelárske priestory na prenájom v Trnave, Bratislavská 74. Prenájom priamo od developera, vlastné parkovanie a výborná dostupnosť.',
+} = Astro.props;
+
+// Po doplnení `site` do astro.config.mjs sa automaticky aktivuje canonical,
+// og:url a absolútna og:image URL.
+const canonical = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site).href
+  : undefined;
+
+const ogImage = await getImage({
+  src: heroImg,
+  width: 1200,
+  height: 630,
+  fit: 'cover',
+  format: 'jpeg',
+});
+const ogImageUrl = Astro.site
+  ? new URL(ogImage.src, Astro.site).href
+  : undefined;
+---
+
+<!doctype html>
+<html lang="sk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="sk_SK" />
+    <meta property="og:site_name" content="OC SOFI" />
+    {canonical && <meta property="og:url" content={canonical} />}
+    {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+    {ogImageUrl && <meta property="og:image:width" content="1200" />}
+    {ogImageUrl && <meta property="og:image:height" content="630" />}
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="preload"
+      href="/fonts/archivo-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/instrument-serif-italic-latin.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <slot name="head" />
+    <!-- Google Tag Manager: vlož GTM snippet sem (a noscript iframe hneď za <body>) -->
+  </head>
+  <body class="m-0 bg-cream text-ink font-sans antialiased">
+    <!-- Google Tag Manager (noscript): vlož GTM noscript iframe sem -->
+    <slot />
+  </body>
+</html>

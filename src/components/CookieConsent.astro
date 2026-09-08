@@ -102,8 +102,10 @@
   });
 
   document
-    .getElementById('cookie-settings')
-    ?.addEventListener('click', () => CookieConsent.showPreferences());
+    .querySelectorAll('.js-cookie-settings')
+    .forEach((el) =>
+      el.addEventListener('click', () => CookieConsent.showPreferences()),
+    );
 </script>
 
 <style is:global>

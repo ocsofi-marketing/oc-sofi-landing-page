@@ -79,6 +79,7 @@ const vymery = ['do 100 m²', '100–200 m²', '200+ m²', 'Zatiaľ neviem'];
         novalidate
       >
         <input type="hidden" name="form-name" value="dopyt" />
+        <input type="hidden" name="utm" value="" />
         <p class="hidden">
           <label>Nevypĺňajte: <input name="bot-field" /></label>
         </p>
@@ -226,6 +227,12 @@ const vymery = ['do 100 m²', '100–200 m²', '200+ m²', 'Zatiaľ neviem'];
 
   bindChips('type', typeInput);
   bindChips('area', areaInput);
+
+  // Skryté pole "utm" — celý query string z URL za "?" (napr. utm_source=facebook&utm_medium=cpc).
+  const utmInput = form.querySelector<HTMLInputElement>('input[name="utm"]');
+  if (utmInput && location.search.length > 1) {
+    utmInput.value = location.search.slice(1);
+  }
 
   form.querySelectorAll('input, textarea').forEach((el) => {
     el.addEventListener('input', () => errorEl.classList.add('hidden'));

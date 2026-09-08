@@ -122,7 +122,8 @@
     --cc-btn-secondary-hover-bg: #f7f4ee;
     --cc-btn-secondary-hover-color: #1a1a18;
     --cc-btn-secondary-hover-border-color: #1a1a18;
-    --cc-btn-border-radius: 999px;
+    /* Preberajú ho aj bloky kategórií v nastaveniach — pill tvar majú len tlačidlá nižšie */
+    --cc-btn-border-radius: 12px;
     --cc-modal-border-radius: 20px;
     --cc-separator-border-color: #e2dcd2;
     --cc-toggle-on-bg: #f4551e;
@@ -142,5 +143,10 @@
 
   #cc-main a {
     color: #f4551e;
+  }
+
+  #cc-main .cm__btn,
+  #cc-main .pm__btn {
+    border-radius: 999px;
   }
 </style>

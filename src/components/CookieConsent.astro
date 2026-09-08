@@ -1,0 +1,146 @@
+<script>
+  import 'vanilla-cookieconsent/dist/cookieconsent.css';
+  import * as CookieConsent from 'vanilla-cookieconsent';
+
+  declare global {
+    interface Window {
+      dataLayer: unknown[];
+    }
+  }
+
+  function gtag(...args: unknown[]) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(args);
+  }
+
+  function updateConsent() {
+    const analytics = CookieConsent.acceptedCategory('analytics');
+    const marketing = CookieConsent.acceptedCategory('marketing');
+    gtag('consent', 'update', {
+      analytics_storage: analytics ? 'granted' : 'denied',
+      ad_storage: marketing ? 'granted' : 'denied',
+      ad_user_data: marketing ? 'granted' : 'denied',
+      ad_personalization: marketing ? 'granted' : 'denied',
+    });
+    window.dataLayer.push({ event: 'cc_consent_update' });
+  }
+
+  CookieConsent.run({
+    guiOptions: {
+      consentModal: {
+        layout: 'box',
+        position: 'bottom left',
+        equalWeightButtons: false,
+      },
+      preferencesModal: {
+        layout: 'box',
+        equalWeightButtons: false,
+      },
+    },
+
+    categories: {
+      necessary: {
+        enabled: true,
+        readOnly: true,
+      },
+      analytics: {},
+      marketing: {},
+    },
+
+    onConsent: updateConsent,
+    onChange: updateConsent,
+
+    language: {
+      default: 'sk',
+      translations: {
+        sk: {
+          consentModal: {
+            title: 'Používame cookies',
+            description:
+              'Cookies používame na analýzu návštevnosti a meranie výkonu kampaní. Pomáhajú nám zlepšovať web a zobrazovať relevantný obsah. Svoj výber môžete kedykoľvek zmeniť cez „Nastavenia Cookies“ v pätičke.',
+            acceptAllBtn: 'Prijať všetky',
+            acceptNecessaryBtn: 'Odmietnuť',
+            showPreferencesBtn: 'Spravovať nastavenia',
+            footer:
+              '<a href="https://www.ocsofi.sk/ochrana-osobnych-udajov/" target="_blank" rel="noopener">Zásady ochrany osobných údajov</a>',
+          },
+          preferencesModal: {
+            title: 'Nastavenia cookies',
+            acceptAllBtn: 'Prijať všetky',
+            acceptNecessaryBtn: 'Odmietnuť všetky',
+            savePreferencesBtn: 'Uložiť nastavenia',
+            closeIconLabel: 'Zavrieť',
+            sections: [
+              {
+                title: 'Nevyhnutné cookies',
+                description:
+                  'Zabezpečujú základné fungovanie webu (napr. odoslanie formulára a uloženie vášho súhlasu). Nedajú sa vypnúť.',
+                linkedCategory: 'necessary',
+              },
+              {
+                title: 'Analytické cookies',
+                description:
+                  'Pomáhajú nám pochopiť, ako web používate — ktoré sekcie vás zaujímajú a odkiaľ prichádzate. Dáta sú anonymizované.',
+                linkedCategory: 'analytics',
+              },
+              {
+                title: 'Marketingové cookies',
+                description:
+                  'Slúžia na meranie výkonu reklamných kampaní a zobrazovanie relevantných ponúk na iných platformách.',
+                linkedCategory: 'marketing',
+              },
+              {
+                title: 'Viac informácií',
+                description:
+                  'Podrobnosti o spracovaní údajov nájdete v dokumente <a href="https://www.ocsofi.sk/ochrana-osobnych-udajov/" target="_blank" rel="noopener">Zásady ochrany osobných údajov</a>.',
+              },
+            ],
+          },
+        },
+      },
+    },
+  });
+
+  document
+    .getElementById('cookie-settings')
+    ?.addEventListener('click', () => CookieConsent.showPreferences());
+</script>
+
+<style is:global>
+  #cc-main {
+    --cc-font-family: 'Archivo', system-ui, sans-serif;
+    --cc-bg: #ffffff;
+    --cc-primary-color: #1a1a18;
+    --cc-secondary-color: #6b6863;
+    --cc-btn-primary-bg: #f4551e;
+    --cc-btn-primary-color: #ffffff;
+    --cc-btn-primary-hover-bg: #ff6a36;
+    --cc-btn-primary-hover-color: #ffffff;
+    --cc-btn-secondary-bg: transparent;
+    --cc-btn-secondary-color: #1a1a18;
+    --cc-btn-secondary-border-color: #cfc7ba;
+    --cc-btn-secondary-hover-bg: #f7f4ee;
+    --cc-btn-secondary-hover-color: #1a1a18;
+    --cc-btn-secondary-hover-border-color: #1a1a18;
+    --cc-btn-border-radius: 999px;
+    --cc-modal-border-radius: 20px;
+    --cc-separator-border-color: #e2dcd2;
+    --cc-toggle-on-bg: #f4551e;
+    --cc-toggle-off-bg: #cfc7ba;
+    --cc-toggle-readonly-bg: #e2dcd2;
+    --cc-cookie-category-block-bg: #f7f4ee;
+    --cc-cookie-category-block-border: #e2dcd2;
+    --cc-cookie-category-block-hover-bg: #f5f4ed;
+    --cc-cookie-category-block-hover-border: #d8d0c4;
+    --cc-cookie-category-expanded-block-hover-bg: #f5f4ed;
+    --cc-cookie-category-expanded-block-bg: #f7f4ee;
+    --cc-footer-bg: #f7f4ee;
+    --cc-footer-color: #6b6863;
+    --cc-footer-border-color: #e2dcd2;
+    --cc-overlay-bg: rgba(11, 24, 38, 0.55);
+  }
+
+  #cc-main a {
+    color: #f4551e;
+  }
+</style>

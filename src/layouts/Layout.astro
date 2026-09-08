@@ -1,6 +1,7 @@
 ---
 import { getImage } from 'astro:assets';
 import '../styles/global.css';
+import CookieConsent from '../components/CookieConsent.astro';
 import heroImg from '../assets/images/hero.jpg';
 
 interface Props {
@@ -72,6 +73,20 @@ const ogImageUrl = Astro.site
       crossorigin
     />
     <slot name="head" />
+    <!-- Google Consent Mode v2: default deny, súhlas aktualizuje cookie lišta -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        wait_for_update: 500,
+      });
+    </script>
     <!-- Google Tag Manager -->
     <script is:inline>
       (function (w, d, s, l, i) {
@@ -98,5 +113,6 @@ const ogImageUrl = Astro.site
     >
     <!-- End Google Tag Manager (noscript) -->
     <slot />
+    <CookieConsent />
   </body>
 </html>

@@ -24,14 +24,6 @@
         <span class="plan-label left-[17.2%] top-[52.2%]">Bistro u Mäsiara</span>
 
         <svg class="absolute inset-0 h-full w-full" viewBox="0 0 1920 1306" preserveAspectRatio="none" aria-label="Interaktívny plán druhej etapy OC SOFI">
-          <defs>
-            <clipPath id="office-plan-clip">
-              <path d="M938 247 L811 155 L730 262 L661 263 L658 394 L853 464 Z" />
-            </clipPath>
-            <clipPath id="retail-plan-clip">
-              <path d="M1445 438 L1192 848 L1064 773 L1263 268 L1404 321 C1452 340 1472 401 1445 438 Z" />
-            </clipPath>
-          </defs>
           <a
             href="#kancelarie"
             data-plan-zone
@@ -40,21 +32,15 @@
             data-text="Flexibilné priestory v Objekte B na druhom podlaží."
             aria-label="Kancelárske priestory v Objekte B"
           >
-            <image
-              class="plan-zone-focus"
-              href="/images/plan-retail.png"
-              x="0"
-              y="0"
-              width="1920"
-              height="1306"
-              preserveAspectRatio="none"
-              clip-path="url(#office-plan-clip)"
-            />
             <path
               class="plan-zone"
               d="M938 247 L811 155 L730 262 L661 263 L658 394 L853 464 Z"
             />
           </a>
+          <g class="pointer-events-none" aria-label="Loggia pri kancelárskych priestoroch">
+            <path class="plan-loggia" d="M938 247 L853 464 L867 471 L952 251 Z" />
+            <text class="plan-loggia-label" x="929" y="365" transform="rotate(111 929 365)">LOGGIA</text>
+          </g>
           <a
             href="#retail"
             data-plan-zone
@@ -63,16 +49,6 @@
             data-text="Nové obchodné jednotky v Objekte A v OC SOFI 2."
             aria-label="Obchodné priestory v Objekte A"
           >
-            <image
-              class="plan-zone-focus"
-              href="/images/plan-retail.png"
-              x="0"
-              y="0"
-              width="1920"
-              height="1306"
-              preserveAspectRatio="none"
-              clip-path="url(#retail-plan-clip)"
-            />
             <path class="plan-zone" d="M1445 438 L1192 848 L1064 773 L1263 268 L1404 321 C1452 340 1472 401 1445 438 Z" />
           </a>
         </svg>
@@ -91,7 +67,6 @@
 </section>
 
 <script>
-  const stageMap = document.querySelector<HTMLElement>('[data-stage-map]');
   const planCard = document.querySelector<HTMLElement>('[data-plan-card]');
   const planCardTitle = document.querySelector<HTMLElement>('[data-plan-card-title]');
   const planCardText = document.querySelector<HTMLElement>('[data-plan-card-text]');
@@ -105,18 +80,12 @@
       planCard?.classList.toggle('for-retail', index === 1);
       planCard?.classList.add('is-visible');
       planCard?.setAttribute('aria-hidden', 'false');
-      stageMap?.classList.add('has-active-zone');
-      document.querySelectorAll<SVGAElement>('[data-plan-zone]').forEach((item) => {
-        item.classList.toggle('is-active', item === zone);
-      });
     };
 
     const hideCard = () => {
       if (pinnedZone) return;
       planCard?.classList.remove('is-visible');
       planCard?.setAttribute('aria-hidden', 'true');
-      stageMap?.classList.remove('has-active-zone');
-      zone.classList.remove('is-active');
     };
 
     zone.addEventListener('mouseenter', showCard);
@@ -135,8 +104,6 @@
     pinnedZone = null;
     planCard?.classList.remove('is-visible');
     planCard?.setAttribute('aria-hidden', 'true');
-    stageMap?.classList.remove('has-active-zone');
-    document.querySelectorAll<SVGAElement>('[data-plan-zone]').forEach((zone) => zone.classList.remove('is-active'));
   });
 </script>
 
@@ -162,33 +129,22 @@
     cursor: pointer;
     fill: transparent;
     stroke: transparent;
-    stroke-width: 4.5;
+    stroke-width: 4;
+  }
+
+  .plan-loggia {
+    fill: rgba(255, 79, 32, 0.16);
+    stroke: #ff4f20;
+    stroke-width: 2.5;
     vector-effect: non-scaling-stroke;
-    transition: fill 180ms ease, stroke 180ms ease;
   }
 
-  [data-stage-map] > img {
-    transition: opacity 180ms ease, filter 180ms ease;
-  }
-
-  [data-stage-map].has-active-zone > img {
-    filter: brightness(1.06) saturate(0.8);
-    opacity: 0.45;
-  }
-
-  .plan-zone-focus {
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 180ms ease;
-  }
-
-  [data-plan-zone].is-active .plan-zone-focus {
-    opacity: 1;
-  }
-
-  [data-plan-zone].is-active .plan-zone {
-    fill: rgba(255, 255, 255, 0.025);
-    stroke: rgba(255, 255, 255, 0.9);
+  .plan-loggia-label {
+    fill: #d84421;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-anchor: middle;
   }
 
   [data-plan-card].is-visible {

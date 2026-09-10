@@ -3,22 +3,22 @@ const benefits = [
   {
     icon: '<path d="M12 3 19 6v5c0 4.5-3 7.7-7 10-4-2.3-7-5.5-7-10V6l7-3Z"></path><path d="m8.5 11.8 2.2 2.2 4.8-5"></path>',
     title: 'Overený koncept',
-    text: 'OC SOFI je od roku 2019 stabilnou súčasťou lokality so zavedenými prevádzkami a silnými značkami. SOFI 2 nadväzuje na fungujúci koncept a ďalej ho rozširuje.',
+    text: 'OC SOFI je od roku 2019 stabilnou súčasťou lokality so zavedenými prevádzkami a silnými značkami. SOFI 2 nadväzuje na fungujúci koncept a rozširuje ho o nové obchodné, kancelárske a rezidenčné priestory.',
   },
   {
     icon: '<path d="M1.5 12S5 5.5 12 5.5 22.5 12 22.5 12 19 18.5 12 18.5 1.5 12 1.5 12Z"></path><circle cx="12" cy="12" r="3"></circle>',
     title: 'Viditeľnosť',
-    text: 'Poloha priamo na Bratislavskej ulici, veľkoformátové výklady a možnosť označenia prevádzky nad vstupom aj na pylóne.',
+    text: 'Výborná poloha priamo na Bratislavskej ulici, s veľkoformátovými výkladmi a možnosťou označenia prevádzky nad vstupom aj na pylóne.',
   },
   {
     icon: '<path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="2.5"></circle>',
     title: 'Dostupnosť',
-    text: 'Rýchle napojenie na D1 a R1, MHD minútu chôdze a centrum Trnavy autom do 6 minút.',
+    text: 'Rýchle napojenie na D1 a R1 zabezpečuje pohodlnú dostupnosť z Trnavy aj širšieho regiónu. Zastávka MHD je len minútu chôdze a v centre mesta ste autom do 6 minút.',
   },
   {
     icon: '<circle cx="9" cy="8" r="3"></circle><circle cx="17" cy="9" r="2.5"></circle><path d="M3.5 20c.6-3.4 2.5-5 5.5-5s4.9 1.6 5.5 5"></path><path d="M14.5 20c.3-2.2 1.6-3.5 3.8-3.5 1 0 1.8.3 2.5.8"></path>',
     title: 'Silná spádová oblasť',
-    text: 'Prirodzený pohyb obyvateľov aj tisícok ľudí pracujúcich v okolí. Lokalitu ďalej posilní približne 500 nových bytov oproti OC SOFI.',
+    text: 'Na rozhraní rezidenčnej a priemyselnej zóny s prirodzeným pohybom obyvateľov aj tisícok ľudí pracujúcich v okolí. Lokalita sa ďalej rozvíja a priamo oproti OC SOFI pribudne približne 500 nových bytov.',
   },
   {
     icon: '<rect x="3" y="3" width="18" height="18" rx="4"></rect><path d="M9.5 17V7.5h3.2a3 3 0 0 1 0 6H9.5"></path>',
@@ -28,7 +28,7 @@ const benefits = [
   {
     icon: '<path d="M4 4h7v7H4z"></path><path d="M13 4h7v16h-7z"></path><path d="M4 13h7v7H4z"></path>',
     title: 'Flexibilné priestory',
-    text: 'Obchodné aj kancelárske priestory ponúkajú možnosti prispôsobenia dispozície podľa potrieb vášho podnikania.',
+    text: '',
   },
 ];
 ---
@@ -65,9 +65,13 @@ const benefits = [
             <h3 class="mt-[26px] mb-0 text-[21px] font-medium tracking-[-0.01em] text-[#FBF9F6]">
               {s.title}
             </h3>
-            <p class="mt-[10px] mb-0 text-[15px] leading-[1.75] text-[#8FA0B3]">
-              {s.text}
-            </p>
+            {
+              s.text && (
+                <p class="mt-[10px] mb-0 text-[15px] leading-[1.75] text-[#8FA0B3]">
+                  {s.text}
+                </p>
+              )
+            }
           </div>
         ))
       }

@@ -2,7 +2,7 @@
 const cisla: { value: number; unit?: string; label: string }[] = [
   { value: 5000, unit: 'm²', label: 'obchodných priestorov' },
   { value: 800, unit: 'm²', label: 'kancelárskych priestorov' },
-  { value: 225, label: 'vonkajších a vnútorných parkovacích miest' },
+  { value: 225, label: 'parkovacích miest' },
   { value: 41, label: 'bytov rôznych dispozícií' },
 ];
 ---
@@ -21,18 +21,20 @@ const cisla: { value: number; unit?: string; label: string }[] = [
       cisla.map((c) => (
         <div class="flex flex-1 basis-[200px] flex-col items-center px-[clamp(16px,2vw,28px)] py-2 text-center">
           {c.unit ? (
-            <div class="flex items-baseline gap-3 font-serif leading-[0.9] italic text-accent">
+            <div class="flex h-[clamp(42px,4vw,58px)] items-end gap-3 font-serif leading-[0.9] italic text-accent">
               <span data-count={c.value} class="text-[clamp(38px,3.4vw,52px)] tracking-[-0.01em]">
                 {c.value}
               </span>
               <span class="text-[clamp(16px,1.4vw,20px)]">{c.unit}</span>
             </div>
           ) : (
-            <div data-count={c.value} class="font-serif text-[clamp(38px,3.4vw,52px)] leading-[0.9] tracking-[-0.01em] italic text-accent">
-              {c.value}
+            <div class="flex h-[clamp(42px,4vw,58px)] items-end">
+              <span data-count={c.value} class="font-serif text-[clamp(38px,3.4vw,52px)] leading-[0.9] tracking-[-0.01em] italic text-accent">
+                {c.value}
+              </span>
             </div>
           )}
-          <div class="mt-3 max-w-[18ch] text-[15px] leading-[1.5] text-[#6B6863]">
+          <div class="mt-3 flex min-h-[48px] max-w-[18ch] items-start text-[15px] leading-[1.5] text-[#6B6863]">
             {c.label}
           </div>
         </div>

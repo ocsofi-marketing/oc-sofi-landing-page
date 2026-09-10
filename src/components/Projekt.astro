@@ -1,9 +1,9 @@
 ---
-const cisla: { value: string; unit?: string; label: string }[] = [
-  { value: '5 000', unit: 'm²', label: 'obchodných priestorov' },
-  { value: '800', unit: 'm²', label: 'kancelárskych priestorov' },
-  { value: '225', label: 'vonkajších a vnútorných parkovacích miest' },
-  { value: '41', label: 'bytov rôznych dispozícií' },
+const cisla: { value: number; unit?: string; label: string }[] = [
+  { value: 5000, unit: 'm²', label: 'obchodných priestorov' },
+  { value: 800, unit: 'm²', label: 'kancelárskych priestorov' },
+  { value: 225, label: 'vonkajších a vnútorných parkovacích miest' },
+  { value: 41, label: 'bytov rôznych dispozícií' },
 ];
 ---
 
@@ -16,26 +16,19 @@ const cisla: { value: string; unit?: string; label: string }[] = [
     </h2>
   </div>
 
-  <div
-    class="mt-[clamp(32px,4vw,52px)] flex flex-wrap items-center justify-center border-t border-b border-[#DAD2C5] py-[clamp(24px,2.6vw,32px)]"
-  >
+  <div class="mt-[clamp(32px,4vw,52px)] flex flex-wrap items-center justify-center py-[clamp(24px,2.6vw,32px)]">
     {
-      cisla.map((c, i) => (
-        <div
-          class:list={[
-            'flex flex-1 basis-[200px] flex-col items-center px-[clamp(16px,2vw,28px)] py-2 text-center',
-            i < cisla.length - 1 && 'shadow-[1px_0_0_#E9E3D9]',
-          ]}
-        >
+      cisla.map((c) => (
+        <div class="flex flex-1 basis-[200px] flex-col items-center px-[clamp(16px,2vw,28px)] py-2 text-center">
           {c.unit ? (
             <div class="flex items-baseline gap-3 font-serif leading-[0.9] italic text-accent">
-              <span class="text-[clamp(38px,3.4vw,52px)] tracking-[-0.01em]">
+              <span data-count={c.value} class="text-[clamp(38px,3.4vw,52px)] tracking-[-0.01em]">
                 {c.value}
               </span>
               <span class="text-[clamp(16px,1.4vw,20px)]">{c.unit}</span>
             </div>
           ) : (
-            <div class="font-serif text-[clamp(38px,3.4vw,52px)] leading-[0.9] tracking-[-0.01em] italic text-accent">
+            <div data-count={c.value} class="font-serif text-[clamp(38px,3.4vw,52px)] leading-[0.9] tracking-[-0.01em] italic text-accent">
               {c.value}
             </div>
           )}
@@ -47,3 +40,37 @@ const cisla: { value: string; unit?: string; label: string }[] = [
     }
   </div>
 </section>
+
+<script>
+  const counters = document.querySelectorAll<HTMLElement>('[data-count]');
+  const formatter = new Intl.NumberFormat('sk-SK');
+
+  const animateCounter = (counter: HTMLElement) => {
+    const target = Number(counter.dataset.count || 0);
+    const duration = 1200;
+    const start = performance.now();
+
+    const tick = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      counter.textContent = formatter.format(Math.round(target * eased)).replace(/\u00a0/g, ' ');
+      if (progress < 1) requestAnimationFrame(tick);
+    };
+
+    requestAnimationFrame(tick);
+  };
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        counters.forEach(animateCounter);
+        observer.disconnect();
+      });
+    },
+    { threshold: 0.45 },
+  );
+
+  const projectSection = document.querySelector<HTMLElement>('#projekt');
+  if (projectSection) observer.observe(projectSection);
+</script>

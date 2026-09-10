@@ -1,13 +1,44 @@
 ---
 import { Image } from 'astro:assets';
-import retailImg from '../assets/images/retail.jpg';
 import officeImg from '../assets/images/office.jpg';
 
 const retailSpecs = [
-  ['Výmera jednotky', '99 – 177 m², jednotky sa dajú spojiť'],
-  ['Svetlá výška', '3,3 m'],
+  ['Výmera', '99,70 – 394,64 m²'],
+  ['Možnosti úpravy', 'výmera je prispôsobiteľná'],
+  ['Svetlá výška', '3,8 m'],
   ['Zásobovanie', 'samostatný vstup zo zadnej strany'],
-  ['Stav pri prevzatí', 'shell & core s prípojkami, HVAC'],
+  ['Stav pri prevzatí', 'Holopriestor s prípojkami a samostatným meraním'],
+];
+
+const retailGallery = [
+  {
+    alt: 'Vizualizácia nových obchodných priestorov OC SOFI',
+    desktop: '/images/retail-gallery/retail-facade-desktop.webp',
+    mobile: '/images/retail-gallery/retail-facade-mobile.webp',
+    full: '/images/retail-gallery/retail-facade-full.webp',
+    class: 'absolute top-0 left-0 h-[62%] w-[78%]',
+  },
+  {
+    alt: 'Existujúce obchodné centrum OC SOFI',
+    desktop: '/images/retail-gallery/existing-oc-sofi-desktop.webp',
+    mobile: '/images/retail-gallery/existing-oc-sofi-mobile.webp',
+    full: '/images/retail-gallery/existing-oc-sofi-full.webp',
+    class: 'absolute top-[6%] right-0 h-[34%] w-[42%]',
+  },
+  {
+    alt: 'Vizualizácia areálu s obchodnými priestormi OC SOFI',
+    desktop: '/images/retail-gallery/retail-overview-desktop.webp',
+    mobile: '/images/retail-gallery/retail-overview-mobile.webp',
+    full: '/images/retail-gallery/retail-overview-full.webp',
+    class: 'absolute bottom-0 left-[8%] h-[38%] w-[48%]',
+  },
+  {
+    alt: 'Vizualizácia celého projektu OC SOFI',
+    desktop: '/images/retail-gallery/retail-masterplan-desktop.webp',
+    mobile: '/images/retail-gallery/retail-masterplan-mobile.webp',
+    full: '/images/retail-gallery/retail-masterplan-full.webp',
+    class: 'absolute right-[6%] bottom-[5%] h-[45%] w-[30%]',
+  },
 ];
 
 const officeSpecs = [
@@ -32,10 +63,14 @@ const officeSpecs = [
         <p
           class="mt-6 mb-0 max-w-[56ch] [text-wrap:pretty] text-[17px] leading-[1.85] text-[#5A6470]"
         >
-          Jednotky na 1. podlaží disponujú presklenou fasádou po celej šírke
-          prevádzky, vlastným vstupom z parkoviska a otvoreným pôdorysom bez
-          nosných stien vo vnútri. Samostatné zásobovanie je zo zadnej strany
-          objektu, prípojky a vetranie sú riešené pre každú jednotku zvlášť.
+          Jednotky na prízemí ponúkajú presklenú fasádu po celej šírke
+          prevádzky, vlastný vstup priamo z parkoviska a otvorený pôdorys s
+          možnosťou flexibilného prispôsobenia podľa potrieb nájomcu. Komfortné
+          fungovanie prevádzky zabezpečuje samostatné zásobovanie zo zadnej
+          strany objektu, vlastné prípojky a pripravená technická
+          infraštruktúra pre každú jednotku. Možnosť označenia prevádzky nad
+          vstupom a na spoločnom pylóne zároveň zabezpečuje dobrú viditeľnosť
+          vašej značky.
         </p>
         <div class="mt-[30px] grid border-t border-[#D8D0C4]">
           {
@@ -48,22 +83,111 @@ const officeSpecs = [
           }
         </div>
       </div>
-      <div
-        class="mr-[calc(-1*((100vw-min(1280px,100vw))/2+clamp(20px,4vw,40px)))] aspect-[4/3] overflow-hidden rounded-l-[20px] bg-[#E7E1D8]"
-      >
-        <Image
-          src={retailImg}
-          widths={[640, 1024, 1600]}
-          sizes="(max-width: 800px) 100vw, 55vw"
-          alt="Obchodné priestory OC SOFI"
-          class="block h-full w-full object-cover"
-          loading="lazy"
-        />
+      <div class="relative min-h-[460px] lg:min-h-[580px]">
+        {
+          retailGallery.map((image, index) => (
+            <button
+              type="button"
+              class:list={[
+                'group absolute overflow-hidden rounded-[18px] bg-[#E7E1D8] text-left shadow-[0_14px_32px_rgba(26,26,24,0.16)]',
+                image.class,
+              ]}
+              data-retail-gallery-open={index}
+              aria-label={`Otvoriť fotografiu: ${image.alt}`}
+            >
+              <picture>
+                <source media="(max-width: 640px)" srcset={image.mobile} />
+                <img
+                  src={image.desktop}
+                  alt={image.alt}
+                  width="1000"
+                  height="700"
+                  class="block h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  loading="lazy"
+                />
+              </picture>
+              <span class="absolute right-3 bottom-3 flex size-9 items-center justify-center rounded-full bg-black/60 text-[18px] text-white opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100"
+                aria-hidden="true">↗</span
+              >
+            </button>
+          ))
+        }
       </div>
     </div>
 
   </div>
 </section>
+
+<dialog
+  data-retail-gallery
+  class="fixed inset-0 m-auto h-dvh w-dvw max-h-none max-w-none border-0 bg-black/92 p-5 text-white backdrop:bg-black/70"
+  aria-label="Galéria obchodných priestorov"
+>
+  <div class="relative mx-auto flex h-full max-w-[1600px] items-center justify-center">
+    <button
+      type="button"
+      data-retail-gallery-close
+      class="absolute top-0 right-0 z-10 flex size-11 items-center justify-center rounded-full bg-white/12 text-[26px] transition-colors hover:bg-white/22"
+      aria-label="Zavrieť galériu">×</button
+    >
+    <button
+      type="button"
+      data-retail-gallery-prev
+      class="absolute left-0 z-10 flex size-12 items-center justify-center rounded-full bg-white/12 text-[28px] transition-colors hover:bg-white/22"
+      aria-label="Predchádzajúca fotografia">←</button
+    >
+    <figure class="m-0 flex max-h-full flex-col items-center gap-4 px-14">
+      <img
+        data-retail-gallery-image
+        src=""
+        alt=""
+        class="max-h-[calc(100dvh-120px)] max-w-full object-contain"
+      />
+      <figcaption data-retail-gallery-caption class="text-center text-[15px] text-white/75">
+      </figcaption>
+    </figure>
+    <button
+      type="button"
+      data-retail-gallery-next
+      class="absolute right-0 z-10 flex size-12 items-center justify-center rounded-full bg-white/12 text-[28px] transition-colors hover:bg-white/22"
+      aria-label="Nasledujúca fotografia">→</button
+    >
+  </div>
+</dialog>
+
+<script define:vars={{ retailGallery }}>
+  const dialog = document.querySelector('[data-retail-gallery]');
+  const lightboxImage = dialog?.querySelector('[data-retail-gallery-image]');
+  const caption = dialog?.querySelector('[data-retail-gallery-caption]');
+  let activeImage = 0;
+
+  const showImage = (index) => {
+    activeImage = (index + retailGallery.length) % retailGallery.length;
+    const image = retailGallery[activeImage];
+    if (lightboxImage) {
+      lightboxImage.src = image.full;
+      lightboxImage.alt = image.alt;
+    }
+    if (caption) caption.textContent = image.alt;
+  };
+
+  document.querySelectorAll('[data-retail-gallery-open]').forEach((button) => {
+    button.addEventListener('click', () => {
+      showImage(Number(button.dataset.retailGalleryOpen));
+      dialog?.showModal();
+    });
+  });
+
+  dialog?.querySelector('[data-retail-gallery-close]')?.addEventListener('click', () => dialog.close());
+  dialog?.querySelector('[data-retail-gallery-prev]')?.addEventListener('click', () => showImage(activeImage - 1));
+  dialog?.querySelector('[data-retail-gallery-next]')?.addEventListener('click', () => showImage(activeImage + 1));
+
+  document.addEventListener('keydown', (event) => {
+    if (!dialog?.open) return;
+    if (event.key === 'ArrowLeft') showImage(activeImage - 1);
+    if (event.key === 'ArrowRight') showImage(activeImage + 1);
+  });
+</script>
 
 <section id="kancelarie" class="bg-cream-light">
   <div class="mx-auto max-w-[1280px] px-[clamp(20px,4vw,40px)] py-24">

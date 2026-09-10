@@ -1,67 +1,68 @@
 ---
-const typy = [
+const priestory = [
   {
-    num: '01',
-    title: 'Obchod a showroom',
-    text: 'Presklený výklad na Bratislavskú ulicu, vlastný vstup a zásobovanie zo zadnej strany objektu.',
+    href: '#retail',
+    title: 'Obchodné priestory',
+    text: 'Jednotky na prízemí s presklenou fasádou a samostatným zásobovaním.',
+    icon: '<path d="M3 21h18"></path><path d="M5 21V9l2-5h10l2 5v12"></path><path d="M3 9h18"></path><path d="M8 9v12"></path><path d="M16 9v12"></path><path d="M10 14h4v7h-4z"></path>',
   },
   {
-    num: '02',
-    title: 'Služby a prevádzky',
-    text: 'Pripravené prípojky pre gastro, zdravie či wellness a individuálne riadené vetranie a chladenie.',
-  },
-  {
-    num: '03',
-    title: 'Kancelárie a zázemie',
-    text: 'Variabilná dispozícia na 2. podlaží Budovy B, prístup na loggiu a inteligentná správa budovy.',
+    href: '#kancelarie',
+    title: 'Kancelárske priestory',
+    text: 'Flexibilné kancelárie s dostatkom denného svetla a prístupom na loggiu.',
+    icon: '<path d="M4 19h16"></path><path d="M7 19v-6h10v6"></path><path d="M9 13V8h6v5"></path><path d="M12 8V5"></path><path d="M8 5h8"></path><path d="M5 22v-3"></path><path d="M19 22v-3"></path>',
   },
 ];
 ---
 
 <section id="priestory" class="bg-white">
   <div class="mx-auto max-w-[1280px] px-[clamp(20px,4vw,40px)] py-28">
-    <div
-      class="grid grid-cols-[repeat(auto-fit,minmax(340px,1fr))] items-start gap-[clamp(32px,5vw,72px)]"
-    >
-      <div>
-        <h2
-          class="m-0 max-w-[22ch] [text-wrap:balance] text-[clamp(34px,4.6vw,64px)] leading-[1.06] font-normal tracking-[-0.03em] text-heading"
-        >
-          Vyberte si miesto pre <span class="font-serif italic text-accent"
-            >svoje podnikanie</span
+    <div class="max-w-[760px]">
+      <h2
+        class="m-0 max-w-[22ch] [text-wrap:balance] text-[clamp(34px,4.6vw,64px)] leading-[1.06] font-normal tracking-[-0.03em] text-heading"
+      >
+        Vyberte si miesto pre svoje podnikanie
+      </h2>
+      <p
+        class="mt-[26px] mb-0 max-w-[62ch] [text-wrap:pretty] text-[18px] leading-[1.8] text-[#5A6470]"
+      >
+        Ponúkame obchodné priestory na prízemí a kancelárske priestory na druhom
+        podlaží. Vyberte si typ priestoru a pozrite si detaily.
+      </p>
+    </div>
+
+    <div class="mt-14 grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-5">
+      {
+        priestory.map((priestor) => (
+          <a
+            href={priestor.href}
+            class="group flex min-h-[280px] flex-col rounded-[20px] bg-cream-light p-8 text-ink transition-colors hover:bg-[#EFE9E0]"
           >
-        </h2>
-        <p
-          class="mt-[26px] mb-0 max-w-[56ch] [text-wrap:pretty] text-[18px] leading-[1.8] text-[#5A6470]"
-        >
-          Na prenájom ponúkame flexibilné obchodné priestory na prízemí a
-          kancelárie na vyšších podlažiach, vhodné aj pre služby — od
-          zdravotníckych po beauty a špecializované prevádzky.
-        </p>
-      </div>
-      <div class="grid gap-[14px]">
-        <span
-          class="block text-[12px] tracking-[0.18em] text-[#8A857C] uppercase"
-          >Typy priestorov</span
-        >
-        {
-          typy.map((t) => (
-            <div class="flex items-start gap-5 rounded-2xl bg-cream-light px-7 py-[26px]">
-              <span class="flex-none pt-[5px] text-[13px] tracking-[0.14em] text-accent">
-                {t.num}
-              </span>
-              <div>
-                <h3 class="m-0 text-[19px] font-medium tracking-[-0.01em]">
-                  {t.title}
-                </h3>
-                <p class="mt-2 mb-0 text-[15px] leading-[1.7] text-[#6B6863]">
-                  {t.text}
-                </p>
-              </div>
-            </div>
-          ))
-        }
-      </div>
+            <span class="flex size-[52px] items-center justify-center rounded-full bg-accent/16 text-accent">
+              <svg
+                width="25"
+                height="25"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                set:html={priestor.icon}
+              />
+            </span>
+            <h3 class="mt-8 mb-0 text-[clamp(25px,2.5vw,34px)] leading-[1.1] font-medium tracking-[-0.02em]">
+              {priestor.title}
+            </h3>
+            <p class="mt-4 mb-0 max-w-[38ch] text-[16px] leading-[1.75] text-[#5A6470]">
+              {priestor.text}
+            </p>
+            <span class="mt-auto pt-8 text-[15px] font-semibold text-accent"
+              >Pozrieť priestory <span aria-hidden="true">→</span></span
+            >
+          </a>
+        ))
+      }
     </div>
   </div>
 </section>

@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import CtaButton from '../components/CtaButton.astro';
 import Footer from '../components/Footer.astro';
+import SofiLogo from '../components/SofiLogo.astro';
 ---
 
 <Layout
@@ -12,31 +13,8 @@ import Footer from '../components/Footer.astro';
     <header
       class="flex items-center justify-center px-[clamp(20px,4vw,56px)] py-[30px]"
     >
-      <a href="/" class="flex items-center gap-3" aria-label="OC SOFI">
-        <svg
-          width="30"
-          height="30"
-          viewBox="0 0 46 46"
-          fill="none"
-          aria-hidden="true"
-          class="block flex-none"
-        >
-          <rect
-            x="2.4"
-            y="2.4"
-            width="41.2"
-            height="41.2"
-            rx="6"
-            stroke="#FFFFFF"
-            stroke-width="4.8"></rect>
-          <rect x="11" y="12.6" width="24" height="4.2" fill="#FFFFFF"></rect>
-          <rect x="11" y="20.9" width="24" height="4.2" fill="#FFFFFF"></rect>
-          <rect x="11" y="29.2" width="24" height="4.2" fill="#FFFFFF"></rect>
-        </svg>
-        <span
-          class="pl-[0.08em] text-[22px] leading-none font-normal tracking-[0.3em] text-white"
-          >SOFI</span
-        >
+      <a href="/" class="flex" aria-label="OC SOFI">
+        <SofiLogo class="h-7 w-auto text-white" />
       </a>
     </header>
 

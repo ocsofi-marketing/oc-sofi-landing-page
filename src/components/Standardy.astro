@@ -1,34 +1,34 @@
 ---
-const standardy = [
+const benefits = [
+  {
+    icon: '<path d="M12 3 19 6v5c0 4.5-3 7.7-7 10-4-2.3-7-5.5-7-10V6l7-3Z"></path><path d="m8.5 11.8 2.2 2.2 4.8-5"></path>',
+    title: 'Overený koncept',
+    text: 'OC SOFI je od roku 2019 stabilnou súčasťou lokality so zavedenými prevádzkami a silnými značkami. SOFI 2 nadväzuje na fungujúci koncept a ďalej ho rozširuje.',
+  },
   {
     icon: '<path d="M1.5 12S5 5.5 12 5.5 22.5 12 22.5 12 19 18.5 12 18.5 1.5 12 1.5 12Z"></path><circle cx="12" cy="12" r="3"></circle>',
     title: 'Viditeľnosť',
-    text: 'Výborná poloha priamo na Bratislavskej ulici s veľkoformátovými presklenými výkladmi. Pre maximálnu prezentáciu vašej značky ponúkame umiestnenie loga na pylóne aj nad vstupom.',
+    text: 'Poloha priamo na Bratislavskej ulici, veľkoformátové výklady a možnosť označenia prevádzky nad vstupom aj na pylóne.',
   },
   {
-    icon: '<path d="M3 19 21 5"></path><path d="M3 12h7"></path><path d="M14 19h7"></path>',
+    icon: '<path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="2.5"></circle>',
     title: 'Dostupnosť',
-    text: 'Rýchle napojenie na D1 a R1. Zastávka MHD je vzdialená iba minútu chôdze a v centre mesta ste autom už do 6 minút.',
+    text: 'Rýchle napojenie na D1 a R1, MHD minútu chôdze a centrum Trnavy autom do 6 minút.',
+  },
+  {
+    icon: '<circle cx="9" cy="8" r="3"></circle><circle cx="17" cy="9" r="2.5"></circle><path d="M3.5 20c.6-3.4 2.5-5 5.5-5s4.9 1.6 5.5 5"></path><path d="M14.5 20c.3-2.2 1.6-3.5 3.8-3.5 1 0 1.8.3 2.5.8"></path>',
+    title: 'Silná spádová oblasť',
+    text: 'Prirodzený pohyb obyvateľov aj tisícok ľudí pracujúcich v okolí. Lokalitu ďalej posilní približne 500 nových bytov oproti OC SOFI.',
   },
   {
     icon: '<rect x="3" y="3" width="18" height="18" rx="4"></rect><path d="M9.5 17V7.5h3.2a3 3 0 0 1 0 6H9.5"></path>',
     title: 'Parkovanie',
-    text: 'Bezproblémové parkovanie priamo v areáli. Ponúkame 225 vnútorných a vonkajších miest vrátane nabíjacích staníc pre elektromobily.',
+    text: 'Pohodlné parkovanie priamo v areáli pre návštevníkov aj nájomcov.',
   },
   {
     icon: '<path d="M4 4h7v7H4z"></path><path d="M13 4h7v16h-7z"></path><path d="M4 13h7v7H4z"></path>',
-    title: 'Flexibilita',
-    text: 'Priestor, ktorý sa vám prispôsobí. Jednotky sa dajú flexibilne spájať a deliť — dispozičné riešenie navrhneme presne podľa vašich predstáv ešte pred dokončením budovy.',
-  },
-  {
-    icon: '<path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12L13 2Z"></path>',
-    title: 'Technická pripravenosť',
-    text: 'Moderné technológie v štandarde: autonómne vetranie a chladenie, samostatné meranie energií, vysokorýchlostná optika a 24/7 bezpečnostný monitoring celého objektu.',
-  },
-  {
-    icon: '<path d="M3 21V9l6-4v16"></path><path d="M9 21V11l6-4v14"></path><path d="M15 21V13l6-3v11"></path>',
-    title: 'Nová mestská zóna',
-    text: 'Živá mestská štvrť spájajúca prácu, bývanie, obchody a služby. Profitujte z výbornej synergie moderného uzla a neustále rastúcej komunity v okolí.',
+    title: 'Flexibilné priestory',
+    text: 'Obchodné aj kancelárske priestory ponúkajú možnosti prispôsobenia dispozície podľa potrieb vášho podnikania.',
   },
 ];
 ---
@@ -39,7 +39,7 @@ const standardy = [
       <h2
         class="m-0 max-w-[18ch] text-[clamp(32px,4.2vw,58px)] leading-[1.06] font-normal tracking-[-0.03em] text-[#FBF9F6]"
       >
-        Štandardy <span class="font-serif italic text-accent">priestorov</span>
+        Prečo si vybrať <span class="font-serif italic text-accent">OC SOFI</span>
       </h2>
     </div>
 
@@ -47,7 +47,7 @@ const standardy = [
       class="mt-14 grid auto-rows-fr grid-cols-[repeat(auto-fit,minmax(min(100%,340px),1fr))] place-items-stretch justify-center gap-6 text-center"
     >
       {
-        standardy.map((s) => (
+        benefits.map((s) => (
           <div class="rounded-[18px] border border-white/10 bg-navy-card p-9">
             <span class="mx-auto flex size-[52px] items-center justify-center rounded-full bg-accent/16 text-accent">
               <svg

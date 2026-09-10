@@ -1,7 +1,7 @@
 ---
 
 <section id="dostupne" class="bg-white">
-  <div class="mx-auto max-w-[1720px] px-[clamp(16px,2vw,32px)] py-24">
+  <div class="mx-auto max-w-[1280px] px-[clamp(20px,4vw,40px)] py-24">
     <div>
       <h2
         class="m-0 max-w-[24ch] [text-wrap:balance] text-[clamp(32px,4.2vw,58px)] leading-[1.06] font-normal tracking-[-0.03em] text-heading"
@@ -12,8 +12,8 @@
       </h2>
     </div>
 
-    <div class="mt-8">
-      <div data-stage-map class="relative mx-auto w-full max-w-[1560px]">
+    <div class="mt-10">
+      <div data-stage-map class="relative mx-auto w-full max-w-[1280px]">
         <img
           src="/images/plan-retail.png"
           alt="Situácia OC SOFI 1 a druhej etapy OC SOFI 2"
@@ -24,13 +24,32 @@
         <span class="plan-label left-[17.2%] top-[52.2%]">Bistro u Mäsiara</span>
 
         <svg class="absolute inset-0 h-full w-full" viewBox="0 0 1920 1306" preserveAspectRatio="none" aria-label="Interaktívny plán druhej etapy OC SOFI">
+          <defs>
+            <clipPath id="office-plan-clip">
+              <path d="M938 247 L811 155 L730 262 L661 263 L658 394 L853 464 Z" />
+            </clipPath>
+            <clipPath id="retail-plan-clip">
+              <path d="M1445 438 L1192 848 L1064 773 L1263 268 L1404 321 C1452 340 1472 401 1445 438 Z" />
+            </clipPath>
+          </defs>
           <a
             href="#kancelarie"
             data-plan-zone
+            data-plan-type="office"
             data-title="Kancelárske priestory"
             data-text="Flexibilné priestory v Objekte B na druhom podlaží."
             aria-label="Kancelárske priestory v Objekte B"
           >
+            <image
+              class="plan-zone-focus"
+              href="/images/plan-retail.png"
+              x="0"
+              y="0"
+              width="1920"
+              height="1306"
+              preserveAspectRatio="none"
+              clip-path="url(#office-plan-clip)"
+            />
             <path
               class="plan-zone"
               d="M938 247 L811 155 L730 262 L661 263 L658 394 L853 464 Z"
@@ -39,10 +58,21 @@
           <a
             href="#retail"
             data-plan-zone
+            data-plan-type="retail"
             data-title="Obchodné priestory"
             data-text="Nové obchodné jednotky v Objekte A v OC SOFI 2."
             aria-label="Obchodné priestory v Objekte A"
           >
+            <image
+              class="plan-zone-focus"
+              href="/images/plan-retail.png"
+              x="0"
+              y="0"
+              width="1920"
+              height="1306"
+              preserveAspectRatio="none"
+              clip-path="url(#retail-plan-clip)"
+            />
             <path class="plan-zone" d="M1445 438 L1192 848 L1064 773 L1263 268 L1404 321 C1452 340 1472 401 1445 438 Z" />
           </a>
         </svg>
@@ -61,9 +91,11 @@
 </section>
 
 <script>
+  const stageMap = document.querySelector<HTMLElement>('[data-stage-map]');
   const planCard = document.querySelector<HTMLElement>('[data-plan-card]');
   const planCardTitle = document.querySelector<HTMLElement>('[data-plan-card-title]');
   const planCardText = document.querySelector<HTMLElement>('[data-plan-card-text]');
+  let pinnedZone: SVGAElement | null = null;
 
   document.querySelectorAll<SVGAElement>('[data-plan-zone]').forEach((zone, index) => {
     const showCard = () => {
@@ -73,17 +105,38 @@
       planCard?.classList.toggle('for-retail', index === 1);
       planCard?.classList.add('is-visible');
       planCard?.setAttribute('aria-hidden', 'false');
+      stageMap?.classList.add('has-active-zone');
+      document.querySelectorAll<SVGAElement>('[data-plan-zone]').forEach((item) => {
+        item.classList.toggle('is-active', item === zone);
+      });
     };
 
     const hideCard = () => {
+      if (pinnedZone) return;
       planCard?.classList.remove('is-visible');
       planCard?.setAttribute('aria-hidden', 'true');
+      stageMap?.classList.remove('has-active-zone');
+      zone.classList.remove('is-active');
     };
 
     zone.addEventListener('mouseenter', showCard);
     zone.addEventListener('mouseleave', hideCard);
     zone.addEventListener('focus', showCard);
     zone.addEventListener('blur', hideCard);
+    zone.addEventListener('click', (event) => {
+      event.preventDefault();
+      pinnedZone = zone;
+      showCard();
+    });
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!(event.target instanceof Element) || event.target.closest('[data-plan-zone], [data-plan-card]')) return;
+    pinnedZone = null;
+    planCard?.classList.remove('is-visible');
+    planCard?.setAttribute('aria-hidden', 'true');
+    stageMap?.classList.remove('has-active-zone');
+    document.querySelectorAll<SVGAElement>('[data-plan-zone]').forEach((zone) => zone.classList.remove('is-active'));
   });
 </script>
 
@@ -109,15 +162,33 @@
     cursor: pointer;
     fill: transparent;
     stroke: transparent;
-    stroke-width: 4;
-    transition: fill 180ms ease, stroke 180ms ease, filter 180ms ease;
+    stroke-width: 4.5;
+    vector-effect: non-scaling-stroke;
+    transition: fill 180ms ease, stroke 180ms ease;
   }
 
-  [data-plan-zone]:hover .plan-zone,
-  [data-plan-zone]:focus .plan-zone {
-    fill: rgba(255, 255, 255, 0.12);
-    stroke: #fffdf8;
-    filter: drop-shadow(0 0 7px rgba(255, 205, 142, 0.95)) drop-shadow(0 0 18px rgba(255, 230, 188, 0.75));
+  [data-stage-map] > img {
+    transition: opacity 180ms ease, filter 180ms ease;
+  }
+
+  [data-stage-map].has-active-zone > img {
+    filter: brightness(1.06) saturate(0.8);
+    opacity: 0.45;
+  }
+
+  .plan-zone-focus {
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 180ms ease;
+  }
+
+  [data-plan-zone].is-active .plan-zone-focus {
+    opacity: 1;
+  }
+
+  [data-plan-zone].is-active .plan-zone {
+    fill: rgba(255, 255, 255, 0.025);
+    stroke: rgba(255, 255, 255, 0.9);
   }
 
   [data-plan-card].is-visible {
@@ -126,12 +197,13 @@
   }
 
   [data-plan-card].for-office {
-    left: 24%;
-    top: 25%;
+    left: 2%;
+    top: 27%;
   }
 
   [data-plan-card].for-retail {
-    left: 78%;
+    right: 0;
+    left: auto;
     top: 40%;
   }
 
@@ -145,6 +217,7 @@
     [data-plan-card].for-office,
     [data-plan-card].for-retail {
       left: 50%;
+      right: auto;
       top: auto;
       bottom: 3%;
       transform: translate(-50%, 12px);

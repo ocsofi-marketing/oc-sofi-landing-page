@@ -18,7 +18,6 @@ const retailGallery = [
     full: '/images/retail-gallery/retail-facade-full.webp',
     width: 1000,
     height: 587,
-    class: 'col-start-1 row-span-2 row-start-1',
   },
   {
     alt: 'Vizualizácia areálu s obchodnými priestormi OC SOFI',
@@ -27,7 +26,6 @@ const retailGallery = [
     full: '/images/retail-gallery/retail-overview-full.webp',
     width: 800,
     height: 557,
-    class: 'col-start-2 row-start-1',
   },
   {
     alt: 'Vizualizácia celého projektu OC SOFI',
@@ -36,7 +34,6 @@ const retailGallery = [
     full: '/images/retail-gallery/retail-masterplan-full.webp',
     width: 545,
     height: 700,
-    class: 'col-start-2 row-start-2 w-[58%] justify-self-end',
   },
 ];
 
@@ -82,40 +79,51 @@ const officeSpecs = [
           }
         </div>
       </div>
-      <div
-        class="grid grid-cols-[minmax(0,1.8fr)_minmax(140px,0.7fr)] items-start gap-3 lg:mr-[calc(-1*((100vw-min(1280px,100vw))/2+clamp(20px,4vw,40px)))]"
+      <button
+        type="button"
+        class="group relative overflow-hidden bg-[#E7E1D8] text-left"
+        data-retail-gallery-open="0"
+        aria-label={`Otvoriť fotografiu: ${retailGallery[0].alt}`}
       >
-        {
-          retailGallery.map((image, index) => (
-            <button
-              type="button"
-              class:list={[
-                'group overflow-hidden bg-[#E7E1D8] text-left',
-                image.class,
-              ]}
-              data-retail-gallery-open={index}
-              aria-label={`Otvoriť fotografiu: ${image.alt}`}
-            >
-              <picture class="block h-full w-full">
-                <source media="(max-width: 640px)" srcset={image.mobile} />
-                <img
-                  src={image.desktop}
-                  alt={image.alt}
-                  width={image.width}
-                  height={image.height}
-                  class="block h-auto w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
-                  loading="lazy"
-                />
-              </picture>
-              <span class="absolute right-3 bottom-3 flex size-9 items-center justify-center rounded-full bg-black/60 text-[18px] text-white opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100"
-                aria-hidden="true">↗</span
-              >
-            </button>
-          ))
-        }
-      </div>
+        <picture class="block w-full">
+          <source media="(max-width: 640px)" srcset={retailGallery[0].mobile} />
+          <img
+            src={retailGallery[0].desktop}
+            alt={retailGallery[0].alt}
+            width={retailGallery[0].width}
+            height={retailGallery[0].height}
+            class="block h-auto w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+            loading="lazy"
+          />
+        </picture>
+        <span class="absolute right-3 bottom-3 flex size-9 items-center justify-center rounded-full bg-black/60 text-[18px] text-white opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100" aria-hidden="true">↗</span>
+      </button>
     </div>
-
+    <div class="mt-[clamp(32px,4vw,56px)] grid grid-cols-[minmax(0,3fr)_minmax(0,2fr)] items-start gap-[clamp(20px,2.5vw,32px)]">
+      {
+        retailGallery.slice(1).map((image, index) => (
+          <button
+            type="button"
+            class="group relative overflow-hidden bg-[#E7E1D8] text-left"
+            data-retail-gallery-open={index + 1}
+            aria-label={`Otvoriť fotografiu: ${image.alt}`}
+          >
+            <picture class="block w-full">
+              <source media="(max-width: 640px)" srcset={image.mobile} />
+              <img
+                src={image.desktop}
+                alt={image.alt}
+                width={image.width}
+                height={image.height}
+                class="block h-auto w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+                loading="lazy"
+              />
+            </picture>
+            <span class="absolute right-3 bottom-3 flex size-9 items-center justify-center rounded-full bg-black/60 text-[18px] text-white opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100" aria-hidden="true">↗</span>
+          </button>
+        ))
+      }
+    </div>
   </div>
 </section>
 

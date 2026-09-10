@@ -27,6 +27,8 @@
           <a
             href="#kancelarie"
             data-plan-zone
+            data-title="Kancelárske priestory"
+            data-text="Flexibilné priestory v Objekte B na druhom podlaží."
             aria-label="Kancelárske priestory v Objekte B"
           >
             <polygon
@@ -37,18 +39,54 @@
           <a
             href="#retail"
             data-plan-zone
+            data-title="Obchodné priestory"
+            data-text="Nové obchodné jednotky v Objekte A v OC SOFI 2."
             aria-label="Obchodné priestory v Objekte A"
           >
-            <polygon
+            <path
               class="plan-zone"
-              points="1236,268 1366,266 1487,304 1560,360 1548,490 1470,690 1173,840 1048,765"
+              d="M1237 268 L1390 328 C1442 348 1464 410 1436 462 L1161 848 L1023 773 Z"
             />
           </a>
         </svg>
+        <div
+          data-plan-card
+          class="pointer-events-none absolute bottom-[4%] left-1/2 z-10 w-[min(330px,calc(100%-32px))] -translate-x-1/2 translate-y-3 rounded-xl bg-white px-5 py-4 opacity-0 shadow-[0_12px_34px_rgba(7,35,52,0.18)] transition-[opacity,transform] duration-200 md:px-6 md:py-5"
+          aria-hidden="true"
+        >
+          <span class="inline-flex rounded-md bg-accent px-2.5 py-1 text-xs font-medium text-white">OC SOFI 2</span>
+          <p data-plan-card-title class="mt-3 text-[24px] leading-none font-medium tracking-[-0.03em] text-navy"></p>
+          <p data-plan-card-text class="mt-2 text-sm leading-relaxed text-[#51636F]"></p>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  const planCard = document.querySelector<HTMLElement>('[data-plan-card]');
+  const planCardTitle = document.querySelector<HTMLElement>('[data-plan-card-title]');
+  const planCardText = document.querySelector<HTMLElement>('[data-plan-card-text]');
+
+  document.querySelectorAll<SVGAElement>('[data-plan-zone]').forEach((zone) => {
+    const showCard = () => {
+      if (planCardTitle) planCardTitle.textContent = zone.dataset.title || '';
+      if (planCardText) planCardText.textContent = zone.dataset.text || '';
+      planCard?.classList.add('is-visible');
+      planCard?.setAttribute('aria-hidden', 'false');
+    };
+
+    const hideCard = () => {
+      planCard?.classList.remove('is-visible');
+      planCard?.setAttribute('aria-hidden', 'true');
+    };
+
+    zone.addEventListener('mouseenter', showCard);
+    zone.addEventListener('mouseleave', hideCard);
+    zone.addEventListener('focus', showCard);
+    zone.addEventListener('blur', hideCard);
+  });
+</script>
 
 <style>
   .plan-label {
@@ -80,6 +118,11 @@
   [data-plan-zone]:focus .plan-zone {
     fill: rgba(255, 77, 45, 0.32);
     stroke: #ff4d2d;
+  }
+
+  [data-plan-card].is-visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
   }
 
   @media (max-width: 700px) {

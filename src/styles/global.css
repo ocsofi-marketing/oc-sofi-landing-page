@@ -70,15 +70,15 @@
 @theme {
   --font-sans: "Archivo", system-ui, sans-serif;
   --font-serif: "Instrument Serif", serif;
-  --color-ink: #1a1a18;
-  --color-cream: #f5f4ed;
-  --color-cream-light: #f7f4ee;
-  --color-navy: #0b1826;
-  --color-navy-card: #152a42;
-  --color-heading: #132131;
-  --color-accent: #f4551e;
-  --color-accent-hover: #ff6a36;
-  --color-accent-dark: #2a1712;
+  --color-ink: #17232d;
+  --color-cream: #f6f4ee;
+  --color-cream-light: #faf8f3;
+  --color-navy: #08283a;
+  --color-navy-card: #103247;
+  --color-heading: #102839;
+  --color-accent: #ff5427;
+  --color-accent-hover: #f35a31;
+  --color-accent-dark: #2c1717;
 }
 
 html {
@@ -87,8 +87,8 @@ html {
 
 body {
   margin: 0;
-  background: #f5f4ed;
-  color: #1a1a18;
+  background: #f6f4ee;
+  color: #17232d;
   font-family: "Archivo", system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }

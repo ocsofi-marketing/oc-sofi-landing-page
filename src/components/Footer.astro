@@ -16,18 +16,18 @@ const pravne = [
 ];
 ---
 
-<footer class="relative overflow-hidden bg-navy">
+<footer class="relative min-h-[560px] overflow-hidden bg-navy">
   <div
     class="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"
     aria-hidden="true"
   >
     <span
-      class="text-[min(60vw,740px)] leading-[0.8] font-semibold tracking-[0.02em] whitespace-nowrap text-white opacity-[0.022]"
+      class="text-[min(54vw,680px)] leading-[0.8] font-semibold tracking-[0.02em] whitespace-nowrap text-white opacity-[0.018]"
       >SOFI</span
     >
   </div>
   <div
-    class="relative mx-auto grid max-w-[1280px] grid-cols-2 gap-x-10 gap-y-12 px-[clamp(20px,4vw,40px)] pt-[104px] pb-12 lg:grid-cols-[1.15fr_0.9fr_1.2fr_1.15fr]"
+    class="relative mx-auto grid max-w-[1700px] grid-cols-2 gap-x-8 gap-y-14 px-[clamp(24px,7vw,150px)] pt-[88px] pb-16 lg:grid-cols-[minmax(310px,1.3fr)_minmax(160px,0.65fr)_minmax(205px,0.9fr)_minmax(205px,0.85fr)] lg:gap-x-[clamp(44px,5vw,100px)]"
   >
     <div class="col-span-2 lg:col-span-1">
       <div class="flex items-center gap-3">
@@ -57,7 +57,7 @@ const pravne = [
         >
       </div>
       <h2
-        class="mt-16 mb-0 text-[clamp(32px,3.6vw,52px)] leading-[1.15] font-normal tracking-[-0.025em] text-white"
+        class="mt-14 mb-0 max-w-[440px] text-[clamp(34px,3.3vw,52px)] leading-[1.12] font-normal tracking-[-0.025em] text-white"
       >
         Nový štandard <span class="block font-serif italic"
           ><span class="text-accent">mestského</span> života<span
@@ -67,9 +67,9 @@ const pravne = [
       </h2>
     </div>
 
-    <div>
-      <div class="text-[15px] text-[#7E8FA3]">Navigácia</div>
-      <div class="mt-11 grid gap-5">
+    <div class="lg:pt-1">
+      <div class="text-[14px] text-[#7E8FA3]">Navigácia</div>
+      <div class="mt-10 grid gap-5">
         {
           navigacia.map(([href, label]) => (
             <a
@@ -83,9 +83,9 @@ const pravne = [
       </div>
     </div>
 
-    <div>
-      <div class="text-[15px] text-[#7E8FA3]">Právne informácie</div>
-      <div class="mt-11 grid gap-5">
+    <div class="lg:pt-1">
+      <div class="text-[14px] text-[#7E8FA3]">Právne informácie</div>
+      <div class="mt-10 grid gap-5">
         {
           pravne.map(([href, label]) => (
             <a
@@ -104,9 +104,9 @@ const pravne = [
       </div>
     </div>
 
-    <div class="col-span-2 text-left lg:col-span-1 lg:text-right">
-      <div class="text-[15px] text-[#7E8FA3]">Kontaktné údaje</div>
-      <div class="mt-11 grid gap-5">
+    <div class="col-span-2 text-left lg:col-span-1 lg:pt-1 lg:text-left">
+      <div class="text-[14px] text-[#7E8FA3]">Kontaktné údaje</div>
+      <div class="mt-10 grid gap-5">
         <a
           href="mailto:marketing@ocsofi.sk"
           class="text-[17px] text-white transition-colors hover:text-accent"
@@ -123,7 +123,7 @@ const pravne = [
   </div>
   <div class="relative border-t border-white/8">
     <div
-      class="mx-auto flex max-w-[1280px] flex-wrap justify-between gap-6 px-[clamp(20px,4vw,40px)] py-6"
+      class="mx-auto flex max-w-[1700px] flex-wrap justify-between gap-6 px-[clamp(24px,7vw,150px)] py-6"
     >
       <span class="text-[14px] text-[#7E8FA3]"
         >Vizualizácie sú ilustračné, uvedené výmery orientačné.</span

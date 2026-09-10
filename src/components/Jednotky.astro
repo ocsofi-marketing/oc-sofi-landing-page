@@ -1,7 +1,4 @@
 ---
-import { Image } from 'astro:assets';
-import officeImg from '../assets/images/office.jpg';
-
 const retailSpecs = [
   ['Výmera', '99,70 – 394,64 m²'],
   ['Možnosti úpravy', 'výmera je prispôsobiteľná'],
@@ -42,6 +39,41 @@ const officeSpecs = [
   ['Vonkajší priestor', 'loggia'],
   ['Zázemie', 'zvukovoizolačné steny a stropy'],
   ['Technológie', 'dátové a slaboprúdové rozvody, smart správa'],
+];
+
+const officeGallery = [
+  {
+    alt: 'Interiér kancelárskej chodby so sklenenými priečkami',
+    desktop: '/images/office-gallery/office-corridor-desktop.webp',
+    mobile: '/images/office-gallery/office-corridor-mobile.webp',
+    full: '/images/office-gallery/office-corridor-full.webp',
+    width: 566,
+    height: 366,
+  },
+  {
+    alt: 'Vizualizácia administratívnej budovy OC SOFI',
+    desktop: '/images/office-gallery/office-front-desktop.webp',
+    mobile: '/images/office-gallery/office-front-mobile.webp',
+    full: '/images/office-gallery/office-front-full.webp',
+    width: 1200,
+    height: 675,
+  },
+  {
+    alt: 'Vizualizácia administratívnej budovy v areáli OC SOFI',
+    desktop: '/images/office-gallery/office-building-desktop.webp',
+    mobile: '/images/office-gallery/office-building-mobile.webp',
+    full: '/images/office-gallery/office-building-full.webp',
+    width: 707,
+    height: 900,
+  },
+  {
+    alt: 'Vizualizácia areálu OC SOFI s administratívnou budovou',
+    desktop: '/images/office-gallery/office-sofi-desktop.webp',
+    mobile: '/images/office-gallery/office-sofi-mobile.webp',
+    full: '/images/office-gallery/office-sofi-full.webp',
+    width: 511,
+    height: 700,
+  },
 ];
 ---
 
@@ -201,20 +233,8 @@ const officeSpecs = [
 <section id="kancelarie" class="bg-cream-light">
   <div class="mx-auto max-w-[1280px] px-[clamp(20px,4vw,40px)] py-24">
     <div
-      class="grid grid-cols-[repeat(auto-fit,minmax(360px,1fr))] items-center gap-[clamp(32px,5vw,64px)]"
+      class="grid grid-cols-[repeat(auto-fit,minmax(360px,1fr))] items-center gap-[clamp(32px,4vw,56px)] lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]"
     >
-      <div
-        class="ml-[calc(-1*((100vw-min(1280px,100vw))/2+clamp(20px,4vw,40px)))] aspect-[4/3] overflow-hidden rounded-r-[20px] bg-[#E7E1D8]"
-      >
-        <Image
-          src={officeImg}
-          widths={[640, 1024, 1600]}
-          sizes="(max-width: 800px) 100vw, 55vw"
-          alt="Kancelárske priestory OC SOFI"
-          class="block h-full w-full object-cover"
-          loading="lazy"
-        />
-      </div>
       <div>
         <h2
           class="m-0 max-w-[20ch] font-serif text-[clamp(30px,3.4vw,48px)] leading-[1.06] font-normal tracking-[-0.01em]"
@@ -243,6 +263,100 @@ const officeSpecs = [
           }
         </div>
       </div>
+      <button
+        type="button"
+        class="group relative overflow-hidden bg-[#E7E1D8] text-left"
+        data-office-gallery-open="0"
+        aria-label={`Otvoriť fotografiu: ${officeGallery[0].alt}`}
+      >
+        <picture class="block w-full">
+          <source media="(max-width: 640px)" srcset={officeGallery[0].mobile} />
+          <img
+            src={officeGallery[0].desktop}
+            alt={officeGallery[0].alt}
+            width={officeGallery[0].width}
+            height={officeGallery[0].height}
+            class="block h-auto w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+            loading="lazy"
+          />
+        </picture>
+        <span class="absolute right-3 bottom-3 flex size-9 items-center justify-center rounded-full bg-black/60 text-[18px] text-white opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100" aria-hidden="true">↗</span>
+      </button>
+    </div>
+    <div class="mt-[clamp(32px,4vw,56px)] grid grid-cols-1 items-start gap-[clamp(20px,2.5vw,32px)] sm:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+      {
+        officeGallery.slice(1, 3).map((image, index) => (
+          <button
+            type="button"
+            class="group relative overflow-hidden bg-[#E7E1D8] text-left"
+            data-office-gallery-open={index + 1}
+            aria-label={`Otvoriť fotografiu: ${image.alt}`}
+          >
+            <picture class="block w-full">
+              <source media="(max-width: 640px)" srcset={image.mobile} />
+              <img
+                src={image.desktop}
+                alt={image.alt}
+                width={image.width}
+                height={image.height}
+                class="block h-auto w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+                loading="lazy"
+              />
+            </picture>
+            <span class="absolute right-3 bottom-3 flex size-9 items-center justify-center rounded-full bg-black/60 text-[18px] text-white opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100" aria-hidden="true">↗</span>
+          </button>
+        ))
+      }
     </div>
   </div>
 </section>
+
+<dialog
+  data-office-gallery
+  class="fixed inset-0 m-auto h-dvh w-dvw max-h-none max-w-none border-0 bg-black/92 p-5 text-white backdrop:bg-black/70"
+  aria-label="Galéria kancelárskych priestorov"
+>
+  <div class="relative mx-auto flex h-full max-w-[1600px] items-center justify-center">
+    <button type="button" data-office-gallery-close class="absolute top-0 right-0 z-10 flex size-11 items-center justify-center rounded-full bg-white/12 text-[26px] transition-colors hover:bg-white/22" aria-label="Zavrieť galériu">×</button>
+    <button type="button" data-office-gallery-prev class="absolute left-0 z-10 flex size-12 items-center justify-center rounded-full bg-white/12 text-[28px] transition-colors hover:bg-white/22" aria-label="Predchádzajúca fotografia">←</button>
+    <figure class="m-0 flex max-h-full flex-col items-center gap-4 px-14">
+      <img data-office-gallery-image src="" alt="" class="max-h-[calc(100dvh-120px)] max-w-full object-contain" />
+      <figcaption data-office-gallery-caption class="text-center text-[15px] text-white/75"></figcaption>
+    </figure>
+    <button type="button" data-office-gallery-next class="absolute right-0 z-10 flex size-12 items-center justify-center rounded-full bg-white/12 text-[28px] transition-colors hover:bg-white/22" aria-label="Nasledujúca fotografia">→</button>
+  </div>
+</dialog>
+
+<script define:vars={{ officeGallery }}>
+  const officeDialog = document.querySelector('[data-office-gallery]');
+  const officeLightboxImage = officeDialog?.querySelector('[data-office-gallery-image]');
+  const officeCaption = officeDialog?.querySelector('[data-office-gallery-caption]');
+  let activeOfficeImage = 0;
+
+  const showOfficeImage = (index) => {
+    activeOfficeImage = (index + officeGallery.length) % officeGallery.length;
+    const image = officeGallery[activeOfficeImage];
+    if (officeLightboxImage) {
+      officeLightboxImage.src = image.full;
+      officeLightboxImage.alt = image.alt;
+    }
+    if (officeCaption) officeCaption.textContent = image.alt;
+  };
+
+  document.querySelectorAll('[data-office-gallery-open]').forEach((button) => {
+    button.addEventListener('click', () => {
+      showOfficeImage(Number(button.dataset.officeGalleryOpen));
+      officeDialog?.showModal();
+    });
+  });
+
+  officeDialog?.querySelector('[data-office-gallery-close]')?.addEventListener('click', () => officeDialog.close());
+  officeDialog?.querySelector('[data-office-gallery-prev]')?.addEventListener('click', () => showOfficeImage(activeOfficeImage - 1));
+  officeDialog?.querySelector('[data-office-gallery-next]')?.addEventListener('click', () => showOfficeImage(activeOfficeImage + 1));
+
+  document.addEventListener('keydown', (event) => {
+    if (!officeDialog?.open) return;
+    if (event.key === 'ArrowLeft') showOfficeImage(activeOfficeImage - 1);
+    if (event.key === 'ArrowRight') showOfficeImage(activeOfficeImage + 1);
+  });
+</script>

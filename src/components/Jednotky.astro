@@ -16,28 +16,28 @@ const retailGallery = [
     desktop: '/images/retail-gallery/retail-facade-desktop.webp',
     mobile: '/images/retail-gallery/retail-facade-mobile.webp',
     full: '/images/retail-gallery/retail-facade-full.webp',
-    class: 'absolute top-0 left-0 h-[62%] w-[78%]',
+    class: 'absolute top-0 left-0 h-[68%] w-[78%]',
   },
   {
     alt: 'Existujúce obchodné centrum OC SOFI',
     desktop: '/images/retail-gallery/existing-oc-sofi-desktop.webp',
     mobile: '/images/retail-gallery/existing-oc-sofi-mobile.webp',
     full: '/images/retail-gallery/existing-oc-sofi-full.webp',
-    class: 'absolute top-[6%] right-0 h-[34%] w-[42%]',
+    class: 'absolute top-[7%] right-0 h-[35%] w-[34%] ring-8 ring-cream',
   },
   {
     alt: 'Vizualizácia areálu s obchodnými priestormi OC SOFI',
     desktop: '/images/retail-gallery/retail-overview-desktop.webp',
     mobile: '/images/retail-gallery/retail-overview-mobile.webp',
     full: '/images/retail-gallery/retail-overview-full.webp',
-    class: 'absolute bottom-0 left-[8%] h-[38%] w-[48%]',
+    class: 'absolute bottom-0 left-[10%] h-[38%] w-[52%] ring-8 ring-cream',
   },
   {
     alt: 'Vizualizácia celého projektu OC SOFI',
     desktop: '/images/retail-gallery/retail-masterplan-desktop.webp',
     mobile: '/images/retail-gallery/retail-masterplan-mobile.webp',
     full: '/images/retail-gallery/retail-masterplan-full.webp',
-    class: 'absolute right-[6%] bottom-[5%] h-[45%] w-[30%]',
+    class: 'absolute right-[8%] bottom-[5%] h-[48%] w-[29%] rounded-[6px] ring-8 ring-cream',
   },
 ];
 
@@ -52,9 +52,9 @@ const officeSpecs = [
 <section id="retail" class="bg-cream">
   <div class="mx-auto max-w-[1280px] px-[clamp(20px,4vw,40px)] py-24">
     <div
-      class="grid grid-cols-[repeat(auto-fit,minmax(360px,1fr))] items-center gap-[clamp(32px,5vw,64px)]"
+      class="grid grid-cols-[repeat(auto-fit,minmax(360px,1fr))] items-center gap-[clamp(32px,4vw,56px)] lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1.22fr)]"
     >
-      <div>
+      <div class="max-w-[52ch]">
         <h2
           class="m-0 max-w-[20ch] font-serif text-[clamp(30px,3.4vw,48px)] leading-[1.06] font-normal tracking-[-0.01em]"
         >
@@ -83,13 +83,15 @@ const officeSpecs = [
           }
         </div>
       </div>
-      <div class="relative min-h-[460px] lg:min-h-[580px]">
+      <div
+        class="relative min-h-[540px] lg:mr-[calc(-1*((100vw-min(1280px,100vw))/2+clamp(20px,4vw,40px)))] lg:min-h-[720px]"
+      >
         {
           retailGallery.map((image, index) => (
             <button
               type="button"
               class:list={[
-                'group absolute overflow-hidden rounded-[18px] bg-[#E7E1D8] text-left shadow-[0_14px_32px_rgba(26,26,24,0.16)]',
+                'group absolute overflow-hidden bg-[#E7E1D8] text-left',
                 image.class,
               ]}
               data-retail-gallery-open={index}

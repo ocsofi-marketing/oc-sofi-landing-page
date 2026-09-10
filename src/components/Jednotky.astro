@@ -16,21 +16,27 @@ const retailGallery = [
     desktop: '/images/retail-gallery/retail-facade-desktop.webp',
     mobile: '/images/retail-gallery/retail-facade-mobile.webp',
     full: '/images/retail-gallery/retail-facade-full.webp',
-    class: 'col-span-2 row-span-2',
+    width: 1000,
+    height: 587,
+    class: 'col-start-1 row-span-2 row-start-1',
   },
   {
     alt: 'Vizualizácia areálu s obchodnými priestormi OC SOFI',
     desktop: '/images/retail-gallery/retail-overview-desktop.webp',
     mobile: '/images/retail-gallery/retail-overview-mobile.webp',
     full: '/images/retail-gallery/retail-overview-full.webp',
-    class: 'col-span-1 row-span-1',
+    width: 800,
+    height: 557,
+    class: 'col-start-2 row-start-1',
   },
   {
     alt: 'Vizualizácia celého projektu OC SOFI',
     desktop: '/images/retail-gallery/retail-masterplan-desktop.webp',
     mobile: '/images/retail-gallery/retail-masterplan-mobile.webp',
     full: '/images/retail-gallery/retail-masterplan-full.webp',
-    class: 'col-span-1 row-span-1',
+    width: 545,
+    height: 700,
+    class: 'col-start-2 row-start-2 w-[58%] justify-self-end',
   },
 ];
 
@@ -77,7 +83,7 @@ const officeSpecs = [
         </div>
       </div>
       <div
-        class="grid min-h-[540px] grid-cols-3 grid-rows-[minmax(0,1fr)_minmax(0,0.72fr)] gap-3 lg:mr-[calc(-1*((100vw-min(1280px,100vw))/2+clamp(20px,4vw,40px)))] lg:min-h-[760px]"
+        class="grid grid-cols-[minmax(0,1.8fr)_minmax(140px,0.7fr)] items-start gap-3 lg:mr-[calc(-1*((100vw-min(1280px,100vw))/2+clamp(20px,4vw,40px)))]"
       >
         {
           retailGallery.map((image, index) => (
@@ -95,9 +101,9 @@ const officeSpecs = [
                 <img
                   src={image.desktop}
                   alt={image.alt}
-                  width="1000"
-                  height="700"
-                  class="block h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  width={image.width}
+                  height={image.height}
+                  class="block h-auto w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
                   loading="lazy"
                 />
               </picture>

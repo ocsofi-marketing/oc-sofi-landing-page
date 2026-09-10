@@ -1,29 +1,13 @@
 ---
-import { Image } from 'astro:assets';
-import planOffice from '../assets/images/plan-office.png';
-
 const tabActive =
   'cursor-pointer rounded-full border border-accent bg-accent px-6 py-[14px] text-[15px] font-medium text-white';
 const tabInactive =
   'cursor-pointer rounded-full border border-[#D8D0C4] bg-transparent px-6 py-[14px] text-[15px] font-medium text-ink';
 
-const retailUnits = [
-  { code: '1.01.01', building: 'Budova B', area: 'na vyžiadanie', points: '663,262 733,262 707,406 661,393' },
-  { code: '1.01.02', building: 'Budova B', area: 'na vyžiadanie', points: '733,262 811,293 778,434 707,406' },
-  { code: '1.01.03', building: 'Budova B', area: '99,7 m²', points: '811,293 896,341 850,461 778,434' },
-  { code: '1.01.04', building: 'Budova B', area: 'na vyžiadanie', points: '850,209 938,247 896,341 811,293' },
-  { code: '1.01.05', building: 'Budova B', area: 'na vyžiadanie', points: '810,155 850,209 811,293 733,262' },
-  { code: '1.A6', building: 'Budova A', area: 'na vyžiadanie', points: '1236,268 1366,266 1487,304 1430,400 1365,512 1235,467' },
-  { code: '1.A5', building: 'Budova A', area: 'na vyžiadanie', points: '1300,367 1430,400 1487,304 1366,266' },
-  { code: '1.A4', building: 'Budova A', area: 'na vyžiadanie', points: '1235,467 1365,512 1430,400 1300,367' },
-  { code: '1.A3', building: 'Budova A', area: 'na vyžiadanie', points: '1169,585 1297,625 1365,512 1235,467' },
-  { code: '1.A2', building: 'Budova A', area: 'na vyžiadanie', points: '1102,658 1231,735 1297,625 1169,585' },
-  { code: '1.A1', building: 'Budova A', area: 'na vyžiadanie', points: '1048,765 1173,840 1231,735 1102,658' },
-];
 ---
 
 <section id="dostupne" class="bg-white">
-  <div class="mx-auto max-w-[1440px] px-[clamp(20px,3vw,40px)] py-24">
+  <div class="mx-auto max-w-[1540px] px-[clamp(20px,3vw,40px)] py-24">
     <div class="flex flex-wrap items-end justify-between gap-12">
       <div>
         <h2
@@ -54,54 +38,18 @@ const retailUnits = [
 
     <div class="mt-8">
       <div data-plan="retail" class="relative block w-full">
-      <img
-        src="/images/plan-retail.png"
-        alt="Situácia obchodných priestorov, 1. podlažie"
-        class="block h-auto w-full"
-        loading="lazy"
+        <img
+          src="/images/plan-retail.png"
+          alt="Situácia obchodných priestorov, 1. podlažie"
+          class="block h-auto w-full"
+          loading="lazy"
         />
-        <div class="pointer-events-none absolute top-4 right-4 z-10 rounded-full bg-navy/90 px-4 py-2 text-[13px] font-medium text-white shadow-sm" data-retail-unit-label>
-          Prejdite na voľnú jednotku
-        </div>
-        <div
-          class="pointer-events-none absolute left-1/2 top-1/2 z-20 w-[min(350px,calc(100%-32px))] -translate-x-1/2 -translate-y-1/2 translate-y-3 rounded-2xl bg-white p-6 opacity-0 shadow-[0_18px_44px_rgba(7,35,52,0.22)] transition-[opacity,transform] duration-200 md:p-7"
-          data-retail-unit-card
-          aria-live="polite"
-          aria-hidden="true"
-        >
-          <div class="flex gap-2">
-            <span class="rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-white">Voľný</span>
-            <span class="rounded-md border border-[#E4E7E8] px-3 py-1.5 text-sm text-[#51636F]" data-retail-building>Budova B</span>
-          </div>
-          <p class="mt-4 text-[clamp(36px,4vw,52px)] leading-none font-medium tracking-[-0.04em] text-navy" data-retail-code>1.01.03</p>
-          <p class="mt-2 text-[17px] text-[#7D8B96]">Obchodný priestor</p>
-          <div class="mt-7 flex flex-wrap gap-x-7 gap-y-3 text-[16px] text-[#51636F]">
-            <span class="flex items-center gap-2"><span class="floor-icon" aria-hidden="true"></span>1. podlažie</span>
-            <span class="flex items-center gap-2"><span class="area-icon" aria-hidden="true"></span><span data-retail-area>99,7 m²</span></span>
-          </div>
-        </div>
-        <svg class="absolute inset-0 h-full w-full" viewBox="0 0 1920 1306" preserveAspectRatio="none" aria-label="Interaktívne voľné obchodné jednotky">
-          {
-            retailUnits.map((unit) => (
-              <polygon
-                points={unit.points}
-                class="cursor-pointer fill-transparent stroke-transparent stroke-[3] transition-[fill,stroke] duration-200 hover:fill-accent/25 hover:stroke-accent focus:fill-accent/30 focus:stroke-accent focus:outline-none"
-                data-retail-unit={unit.code}
-                data-retail-building={unit.building}
-                data-retail-area={unit.area}
-                role="button"
-                tabindex="0"
-                aria-label={`Voľná jednotka ${unit.code}`}
-              />
-            ))
-          }
-        </svg>
       </div>
-      <Image
+      <img
         data-plan="office"
-        src={planOffice}
+        src="/images/plan-office-updated.png"
         alt="Situácia kancelárskych priestorov, 2. podlažie Budovy B"
-        class="hidden h-auto w-full"
+        class="mx-auto hidden h-auto w-full max-w-[980px]"
         loading="lazy"
       />
     </div>
@@ -111,11 +59,6 @@ const retailUnits = [
 <script>
   const tabs = document.querySelectorAll<HTMLButtonElement>('[data-plan-tab]');
   const plans = document.querySelectorAll<HTMLElement>('[data-plan]');
-  const retailUnitLabel = document.querySelector<HTMLElement>('[data-retail-unit-label]');
-  const retailUnitCard = document.querySelector<HTMLElement>('[data-retail-unit-card]');
-  const retailBuilding = document.querySelector<HTMLElement>('[data-retail-building]');
-  const retailCode = document.querySelector<HTMLElement>('[data-retail-code]');
-  const retailArea = document.querySelector<HTMLElement>('[data-retail-area]');
 
   tabs.forEach((tab) => {
     tab.addEventListener('click', () => {
@@ -133,57 +76,4 @@ const retailUnits = [
     });
   });
 
-  document.querySelectorAll<SVGElement>('[data-retail-unit]').forEach((unit) => {
-    const showUnit = () => {
-      unit.classList.add('is-active');
-      if (retailUnitLabel) retailUnitLabel.textContent = `Voľná jednotka ${unit.dataset.retailUnit}`;
-      if (retailBuilding) retailBuilding.textContent = unit.dataset.retailBuilding || '';
-      if (retailCode) retailCode.textContent = unit.dataset.retailUnit || '';
-      if (retailArea) retailArea.textContent = unit.dataset.retailArea || '';
-      retailUnitCard?.classList.add('is-visible');
-      retailUnitCard?.setAttribute('aria-hidden', 'false');
-    };
-    const hideUnit = () => {
-      unit.classList.remove('is-active');
-      if (retailUnitLabel) retailUnitLabel.textContent = 'Prejdite na voľnú jednotku';
-      retailUnitCard?.classList.remove('is-visible');
-      retailUnitCard?.setAttribute('aria-hidden', 'true');
-    };
-    unit.addEventListener('mouseenter', showUnit);
-    unit.addEventListener('focus', showUnit);
-    unit.addEventListener('mouseleave', hideUnit);
-    unit.addEventListener('blur', hideUnit);
-  });
 </script>
-
-<style>
-  [data-retail-unit].is-active {
-    fill: #ff4d2d;
-    fill-opacity: 0.82;
-    stroke: #ff4d2d;
-  }
-
-  [data-retail-unit-card].is-visible {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
-
-  .floor-icon,
-  .area-icon {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-  }
-
-  .floor-icon {
-    background: linear-gradient(#ff4d2d 0 0) 0 2px / 20px 2px no-repeat,
-      linear-gradient(#ff4d2d 0 0) 0 9px / 20px 2px no-repeat,
-      linear-gradient(#ff4d2d 0 0) 0 16px / 20px 2px no-repeat;
-    border-left: 2px solid #ff4d2d;
-  }
-
-  .area-icon {
-    border: 1.5px solid #ff4d2d;
-    background: repeating-linear-gradient(135deg, transparent 0 4px, #ff4d2d 4px 5px);
-  }
-</style>

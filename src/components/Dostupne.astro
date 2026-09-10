@@ -31,9 +31,9 @@
             data-text="Flexibilné priestory v Objekte B na druhom podlaží."
             aria-label="Kancelárske priestory v Objekte B"
           >
-            <polygon
+            <path
               class="plan-zone"
-              points="661,393 663,262 733,262 810,155 938,247 850,461 778,434"
+              d="M938 247 L811 155 L730 262 L661 263 L658 394 L853 464 Z"
             />
           </a>
           <a
@@ -43,15 +43,12 @@
             data-text="Nové obchodné jednotky v Objekte A v OC SOFI 2."
             aria-label="Obchodné priestory v Objekte A"
           >
-            <path
-              class="plan-zone"
-              d="M1237 268 L1390 328 C1442 348 1464 410 1436 462 L1161 848 L1023 773 Z"
-            />
+            <path class="plan-zone" d="M1445 438 L1192 848 L1064 773 L1263 268 L1404 321 C1452 340 1472 401 1445 438 Z" />
           </a>
         </svg>
         <div
           data-plan-card
-          class="pointer-events-none absolute bottom-[4%] left-1/2 z-10 w-[min(330px,calc(100%-32px))] -translate-x-1/2 translate-y-3 rounded-xl bg-white px-5 py-4 opacity-0 shadow-[0_12px_34px_rgba(7,35,52,0.18)] transition-[opacity,transform] duration-200 md:px-6 md:py-5"
+          class="pointer-events-none absolute z-10 w-[min(290px,calc(100%-32px))] -translate-y-1/2 translate-x-3 rounded-xl bg-white px-5 py-4 opacity-0 shadow-[0_12px_34px_rgba(7,35,52,0.18)] transition-[opacity,transform] duration-200 md:px-6 md:py-5"
           aria-hidden="true"
         >
           <span class="inline-flex rounded-md bg-accent px-2.5 py-1 text-xs font-medium text-white">OC SOFI 2</span>
@@ -68,10 +65,12 @@
   const planCardTitle = document.querySelector<HTMLElement>('[data-plan-card-title]');
   const planCardText = document.querySelector<HTMLElement>('[data-plan-card-text]');
 
-  document.querySelectorAll<SVGAElement>('[data-plan-zone]').forEach((zone) => {
+  document.querySelectorAll<SVGAElement>('[data-plan-zone]').forEach((zone, index) => {
     const showCard = () => {
       if (planCardTitle) planCardTitle.textContent = zone.dataset.title || '';
       if (planCardText) planCardText.textContent = zone.dataset.text || '';
+      planCard?.classList.toggle('for-office', index === 0);
+      planCard?.classList.toggle('for-retail', index === 1);
       planCard?.classList.add('is-visible');
       planCard?.setAttribute('aria-hidden', 'false');
     };
@@ -110,19 +109,30 @@
     cursor: pointer;
     fill: transparent;
     stroke: transparent;
-    stroke-width: 5;
-    transition: fill 180ms ease, stroke 180ms ease;
+    stroke-width: 4;
+    transition: fill 180ms ease, stroke 180ms ease, filter 180ms ease;
   }
 
   [data-plan-zone]:hover .plan-zone,
   [data-plan-zone]:focus .plan-zone {
-    fill: rgba(255, 77, 45, 0.32);
-    stroke: #ff4d2d;
+    fill: rgba(255, 255, 255, 0.12);
+    stroke: #fffdf8;
+    filter: drop-shadow(0 0 7px rgba(255, 205, 142, 0.95)) drop-shadow(0 0 18px rgba(255, 230, 188, 0.75));
   }
 
   [data-plan-card].is-visible {
     opacity: 1;
-    transform: translate(-50%, 0);
+    transform: translate(0, -50%);
+  }
+
+  [data-plan-card].for-office {
+    left: 24%;
+    top: 25%;
+  }
+
+  [data-plan-card].for-retail {
+    left: 78%;
+    top: 40%;
   }
 
   @media (max-width: 700px) {
@@ -130,6 +140,18 @@
       min-height: 24px;
       padding: 1px;
       font-size: 6px;
+    }
+
+    [data-plan-card].for-office,
+    [data-plan-card].for-retail {
+      left: 50%;
+      top: auto;
+      bottom: 3%;
+      transform: translate(-50%, 12px);
+    }
+
+    [data-plan-card].is-visible {
+      transform: translate(-50%, 0);
     }
   }
 </style>

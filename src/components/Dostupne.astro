@@ -13,7 +13,7 @@
     </div>
 
     <div class="mt-8">
-      <div data-stage-map class="relative w-full">
+      <div data-stage-map class="relative mx-auto w-full max-w-[1560px]">
         <img
           src="/images/plan-retail.png"
           alt="Situácia OC SOFI 1 a druhej etapy OC SOFI 2"
@@ -24,13 +24,9 @@
         <span class="plan-label left-[17.2%] top-[52.2%]">Bistro u Mäsiara</span>
 
         <svg class="absolute inset-0 h-full w-full" viewBox="0 0 1920 1306" preserveAspectRatio="none" aria-label="Interaktívny plán druhej etapy OC SOFI">
-          <rect class="plan-dimmer pointer-events-none opacity-0 transition-opacity duration-200" width="1920" height="1306" />
           <a
             href="#kancelarie"
             data-plan-zone
-            data-title="Kancelárske priestory"
-            data-text="Flexibilné kancelárske priestory v Objekte B."
-            data-link="Pozrieť kancelárske priestory"
             aria-label="Kancelárske priestory v Objekte B"
           >
             <polygon
@@ -41,9 +37,6 @@
           <a
             href="#retail"
             data-plan-zone
-            data-title="Obchodné priestory"
-            data-text="Nové obchodné jednotky v Objekte A v OC SOFI 2."
-            data-link="Pozrieť obchodné priestory"
             aria-label="Obchodné priestory v Objekte A"
           >
             <polygon
@@ -52,52 +45,10 @@
             />
           </a>
         </svg>
-        <div
-          data-plan-card
-          class="pointer-events-none absolute left-1/2 top-1/2 z-10 w-[min(370px,calc(100%-32px))] -translate-x-1/2 -translate-y-1/2 translate-y-3 rounded-2xl bg-white p-6 opacity-0 shadow-[0_18px_44px_rgba(7,35,52,0.22)] transition-[opacity,transform] duration-200 md:p-7"
-          aria-hidden="true"
-        >
-          <span class="inline-flex rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-white">OC SOFI 2</span>
-          <p data-plan-card-title class="mt-4 text-[clamp(30px,3vw,42px)] leading-none font-medium tracking-[-0.04em] text-navy"></p>
-          <p data-plan-card-text class="mt-3 text-[16px] leading-relaxed text-[#51636F]"></p>
-          <span data-plan-card-link class="mt-5 inline-flex items-center gap-2 text-sm font-medium text-accent">Pozrieť priestory <span aria-hidden="true">→</span></span>
-        </div>
       </div>
     </div>
   </div>
 </section>
-
-<script>
-  const stageMap = document.querySelector<HTMLElement>('[data-stage-map]');
-  const planCard = document.querySelector<HTMLElement>('[data-plan-card]');
-  const planCardTitle = document.querySelector<HTMLElement>('[data-plan-card-title]');
-  const planCardText = document.querySelector<HTMLElement>('[data-plan-card-text]');
-  const planCardLink = document.querySelector<HTMLElement>('[data-plan-card-link]');
-
-  document.querySelectorAll<SVGAElement>('[data-plan-zone]').forEach((zone) => {
-    const showZone = () => {
-      stageMap?.classList.add('has-active-zone');
-      zone.classList.add('is-active');
-      if (planCardTitle) planCardTitle.textContent = zone.dataset.title || '';
-      if (planCardText) planCardText.textContent = zone.dataset.text || '';
-      if (planCardLink) planCardLink.firstChild!.textContent = `${zone.dataset.link || ''} `;
-      planCard?.classList.add('is-visible');
-      planCard?.setAttribute('aria-hidden', 'false');
-    };
-
-    const hideZone = () => {
-      stageMap?.classList.remove('has-active-zone');
-      zone.classList.remove('is-active');
-      planCard?.classList.remove('is-visible');
-      planCard?.setAttribute('aria-hidden', 'true');
-    };
-
-    zone.addEventListener('mouseenter', showZone);
-    zone.addEventListener('mouseleave', hideZone);
-    zone.addEventListener('focus', showZone);
-    zone.addEventListener('blur', hideZone);
-  });
-</script>
 
 <style>
   .plan-label {
@@ -117,30 +68,18 @@
     text-align: center;
   }
 
-  .plan-dimmer {
-    fill: rgba(255, 255, 255, 0.68);
-  }
-
   .plan-zone {
     cursor: pointer;
     fill: transparent;
     stroke: transparent;
-    stroke-width: 3;
+    stroke-width: 5;
     transition: fill 180ms ease, stroke 180ms ease;
   }
 
-  [data-stage-map].has-active-zone .plan-dimmer {
-    opacity: 1;
-  }
-
-  [data-plan-zone].is-active .plan-zone {
-    fill: rgba(255, 77, 45, 0.82);
+  [data-plan-zone]:hover .plan-zone,
+  [data-plan-zone]:focus .plan-zone {
+    fill: rgba(255, 77, 45, 0.32);
     stroke: #ff4d2d;
-  }
-
-  [data-plan-card].is-visible {
-    opacity: 1;
-    transform: translate(-50%, -50%);
   }
 
   @media (max-width: 700px) {

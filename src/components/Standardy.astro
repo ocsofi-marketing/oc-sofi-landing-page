@@ -34,21 +34,37 @@ const benefits = [
 ---
 
 <section id="standardy" class="bg-navy">
-  <div class="mx-auto max-w-[1280px] px-10 py-24">
-    <div class="flex flex-wrap items-end justify-between gap-14">
+  <div class="mx-auto max-w-[1280px] px-[clamp(20px,4vw,40px)] py-24">
+    <div class="flex flex-wrap items-end justify-between gap-8">
       <h2
         class="m-0 max-w-[18ch] text-[clamp(32px,4.2vw,58px)] leading-[1.06] font-normal tracking-[-0.03em] text-[#FBF9F6]"
       >
         Prečo si vybrať <span class="font-serif italic text-accent">OC SOFI</span>
       </h2>
+      <div class="flex items-center gap-3" aria-label="Ovládanie carouselu benefitov">
+        <button
+          type="button"
+          data-benefit-prev
+          class="flex size-11 items-center justify-center rounded-full border border-white/20 text-[22px] text-white transition-colors hover:border-accent hover:text-accent disabled:cursor-not-allowed disabled:opacity-35"
+          aria-label="Predchádzajúce benefity"
+        >←</button>
+        <button
+          type="button"
+          data-benefit-next
+          class="flex size-11 items-center justify-center rounded-full border border-white/20 text-[22px] text-white transition-colors hover:border-accent hover:text-accent disabled:cursor-not-allowed disabled:opacity-35"
+          aria-label="Ďalšie benefity"
+        >→</button>
+      </div>
     </div>
 
     <div
-      class="mt-14 grid auto-rows-fr grid-cols-[repeat(auto-fit,minmax(min(100%,340px),1fr))] place-items-stretch justify-center gap-6 text-center"
+      data-benefit-track
+      class="benefit-track mt-14 flex snap-x snap-mandatory items-stretch gap-6 overflow-x-auto pb-2 text-center"
+      aria-label="Benefity OC SOFI"
     >
       {
         benefits.map((s) => (
-          <div class="rounded-[18px] border border-white/10 bg-navy-card p-9">
+          <article class="flex min-h-[360px] w-[min(84vw,340px)] shrink-0 snap-start flex-col rounded-[18px] border border-white/10 bg-navy-card p-9 md:w-[calc((100%-48px)/3)]">
             <span class="mx-auto flex size-[52px] items-center justify-center rounded-full bg-accent/16 text-accent">
               <svg
                 width="24"
@@ -68,9 +84,84 @@ const benefits = [
             <p class="mt-[10px] mb-0 text-[15px] leading-[1.75] text-[#8FA0B3]">
               {s.text}
             </p>
-          </div>
+          </article>
         ))
       }
     </div>
+    <div class="mt-8 h-px w-full overflow-hidden bg-white/15" aria-hidden="true">
+      <span data-benefit-progress class="block h-full w-[33.333%] bg-accent transition-[width,transform] duration-300"></span>
+    </div>
   </div>
 </section>
+
+<script>
+  const benefitTrack = document.querySelector<HTMLElement>('[data-benefit-track]');
+  const benefitPrev = document.querySelector<HTMLButtonElement>('[data-benefit-prev]');
+  const benefitNext = document.querySelector<HTMLButtonElement>('[data-benefit-next]');
+  const benefitProgress = document.querySelector<HTMLElement>('[data-benefit-progress]');
+  let dragStartX = 0;
+  let dragStartScroll = 0;
+  let isDragging = false;
+
+  const updateBenefitControls = () => {
+    if (!benefitTrack) return;
+    const maxScroll = benefitTrack.scrollWidth - benefitTrack.clientWidth;
+    const ratio = maxScroll > 0 ? benefitTrack.scrollLeft / maxScroll : 0;
+    const visibleRatio = benefitTrack.clientWidth / benefitTrack.scrollWidth;
+
+    if (benefitProgress) {
+      benefitProgress.style.width = `${Math.max(visibleRatio * 100, 16.667)}%`;
+      benefitProgress.style.transform = `translateX(${ratio * ((1 / visibleRatio) - 1) * 100}%)`;
+    }
+    if (benefitPrev) benefitPrev.disabled = benefitTrack.scrollLeft <= 2;
+    if (benefitNext) benefitNext.disabled = benefitTrack.scrollLeft >= maxScroll - 2;
+  };
+
+  const moveBenefits = (direction: number) => {
+    if (!benefitTrack) return;
+    const firstCard = benefitTrack.querySelector<HTMLElement>('article');
+    const gap = Number.parseFloat(getComputedStyle(benefitTrack).gap) || 0;
+    const step = (firstCard?.getBoundingClientRect().width || benefitTrack.clientWidth) + gap;
+    benefitTrack.scrollBy({ left: direction * step, behavior: 'smooth' });
+  };
+
+  benefitPrev?.addEventListener('click', () => moveBenefits(-1));
+  benefitNext?.addEventListener('click', () => moveBenefits(1));
+  benefitTrack?.addEventListener('scroll', updateBenefitControls, { passive: true });
+  window.addEventListener('resize', updateBenefitControls);
+
+  benefitTrack?.addEventListener('pointerdown', (event) => {
+    isDragging = true;
+    dragStartX = event.clientX;
+    dragStartScroll = benefitTrack.scrollLeft;
+    benefitTrack.setPointerCapture(event.pointerId);
+  });
+
+  benefitTrack?.addEventListener('pointermove', (event) => {
+    if (!isDragging) return;
+    benefitTrack.scrollLeft = dragStartScroll - (event.clientX - dragStartX);
+  });
+
+  const stopBenefitDrag = () => {
+    isDragging = false;
+  };
+
+  benefitTrack?.addEventListener('pointerup', stopBenefitDrag);
+  benefitTrack?.addEventListener('pointercancel', stopBenefitDrag);
+  updateBenefitControls();
+</script>
+
+<style>
+  .benefit-track {
+    scrollbar-width: none;
+    cursor: grab;
+  }
+
+  .benefit-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .benefit-track:active {
+    cursor: grabbing;
+  }
+</style>

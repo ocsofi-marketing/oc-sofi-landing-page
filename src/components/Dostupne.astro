@@ -1,79 +1,153 @@
 ---
-const tabActive =
-  'cursor-pointer rounded-full border border-accent bg-accent px-6 py-[14px] text-[15px] font-medium text-white';
-const tabInactive =
-  'cursor-pointer rounded-full border border-[#D8D0C4] bg-transparent px-6 py-[14px] text-[15px] font-medium text-ink';
-
----
 
 <section id="dostupne" class="bg-white">
-  <div class="mx-auto max-w-[1540px] px-[clamp(20px,3vw,40px)] py-24">
-    <div class="flex flex-wrap items-end justify-between gap-12">
-      <div>
-        <h2
-          class="m-0 max-w-[24ch] [text-wrap:balance] text-[clamp(32px,4.2vw,58px)] leading-[1.06] font-normal tracking-[-0.03em] text-heading"
+  <div class="mx-auto max-w-[1720px] px-[clamp(16px,2vw,32px)] py-24">
+    <div>
+      <h2
+        class="m-0 max-w-[24ch] [text-wrap:balance] text-[clamp(32px,4.2vw,58px)] leading-[1.06] font-normal tracking-[-0.03em] text-heading"
+      >
+        Otvorenie druhej etapy je plánované na <span
+          class="font-serif italic text-accent">leto 2028</span
         >
-          Otvorenie druhej etapy je plánované na <span
-            class="font-serif italic text-accent">leto 2028</span
-          >
-        </h2>
-      </div>
-      <div class="flex flex-wrap gap-[10px]">
-        <button
-          type="button"
-          data-plan-tab="retail"
-          data-active-class={tabActive}
-          data-inactive-class={tabInactive}
-          class={tabActive}>Obchodné priestory</button
-        >
-        <button
-          type="button"
-          data-plan-tab="office"
-          data-active-class={tabActive}
-          data-inactive-class={tabInactive}
-          class={tabInactive}>Kancelárske priestory</button
-        >
-      </div>
+      </h2>
     </div>
 
     <div class="mt-8">
-      <div data-plan="retail" class="relative block w-full">
+      <div data-stage-map class="relative w-full">
         <img
           src="/images/plan-retail.png"
-          alt="Situácia obchodných priestorov, 1. podlažie"
+          alt="Situácia OC SOFI 1 a druhej etapy OC SOFI 2"
           class="block h-auto w-full"
           loading="lazy"
         />
+        <span class="plan-label left-[5.1%] top-[52.2%]">JAC Motors</span>
+        <span class="plan-label left-[17.2%] top-[52.2%]">Bistro u Mäsiara</span>
+
+        <svg class="absolute inset-0 h-full w-full" viewBox="0 0 1920 1306" preserveAspectRatio="none" aria-label="Interaktívny plán druhej etapy OC SOFI">
+          <rect class="plan-dimmer pointer-events-none opacity-0 transition-opacity duration-200" width="1920" height="1306" />
+          <a
+            href="#kancelarie"
+            data-plan-zone
+            data-title="Kancelárske priestory"
+            data-text="Flexibilné kancelárske priestory v Objekte B."
+            data-link="Pozrieť kancelárske priestory"
+            aria-label="Kancelárske priestory v Objekte B"
+          >
+            <polygon
+              class="plan-zone"
+              points="661,393 663,262 733,262 810,155 938,247 850,461 778,434"
+            />
+          </a>
+          <a
+            href="#retail"
+            data-plan-zone
+            data-title="Obchodné priestory"
+            data-text="Nové obchodné jednotky v Objekte A v OC SOFI 2."
+            data-link="Pozrieť obchodné priestory"
+            aria-label="Obchodné priestory v Objekte A"
+          >
+            <polygon
+              class="plan-zone"
+              points="1236,268 1366,266 1487,304 1560,360 1548,490 1470,690 1173,840 1048,765"
+            />
+          </a>
+        </svg>
+        <div
+          data-plan-card
+          class="pointer-events-none absolute left-1/2 top-1/2 z-10 w-[min(370px,calc(100%-32px))] -translate-x-1/2 -translate-y-1/2 translate-y-3 rounded-2xl bg-white p-6 opacity-0 shadow-[0_18px_44px_rgba(7,35,52,0.22)] transition-[opacity,transform] duration-200 md:p-7"
+          aria-hidden="true"
+        >
+          <span class="inline-flex rounded-md bg-accent px-3 py-1.5 text-sm font-medium text-white">OC SOFI 2</span>
+          <p data-plan-card-title class="mt-4 text-[clamp(30px,3vw,42px)] leading-none font-medium tracking-[-0.04em] text-navy"></p>
+          <p data-plan-card-text class="mt-3 text-[16px] leading-relaxed text-[#51636F]"></p>
+          <span data-plan-card-link class="mt-5 inline-flex items-center gap-2 text-sm font-medium text-accent">Pozrieť priestory <span aria-hidden="true">→</span></span>
+        </div>
       </div>
-      <img
-        data-plan="office"
-        src="/images/plan-office-updated.png"
-        alt="Situácia kancelárskych priestorov, 2. podlažie Budovy B"
-        class="mx-auto hidden h-auto w-full max-w-[980px]"
-        loading="lazy"
-      />
     </div>
   </div>
 </section>
 
 <script>
-  const tabs = document.querySelectorAll<HTMLButtonElement>('[data-plan-tab]');
-  const plans = document.querySelectorAll<HTMLElement>('[data-plan]');
+  const stageMap = document.querySelector<HTMLElement>('[data-stage-map]');
+  const planCard = document.querySelector<HTMLElement>('[data-plan-card]');
+  const planCardTitle = document.querySelector<HTMLElement>('[data-plan-card-title]');
+  const planCardText = document.querySelector<HTMLElement>('[data-plan-card-text]');
+  const planCardLink = document.querySelector<HTMLElement>('[data-plan-card-link]');
 
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      const selected = tab.dataset.planTab;
-      tabs.forEach((t) => {
-        t.className =
-          t.dataset.planTab === selected
-            ? t.dataset.activeClass!
-            : t.dataset.inactiveClass!;
-      });
-      plans.forEach((img) => {
-        img.classList.toggle('hidden', img.dataset.plan !== selected);
-        img.classList.toggle('block', img.dataset.plan === selected);
-      });
-    });
+  document.querySelectorAll<SVGAElement>('[data-plan-zone]').forEach((zone) => {
+    const showZone = () => {
+      stageMap?.classList.add('has-active-zone');
+      zone.classList.add('is-active');
+      if (planCardTitle) planCardTitle.textContent = zone.dataset.title || '';
+      if (planCardText) planCardText.textContent = zone.dataset.text || '';
+      if (planCardLink) planCardLink.firstChild!.textContent = `${zone.dataset.link || ''} `;
+      planCard?.classList.add('is-visible');
+      planCard?.setAttribute('aria-hidden', 'false');
+    };
+
+    const hideZone = () => {
+      stageMap?.classList.remove('has-active-zone');
+      zone.classList.remove('is-active');
+      planCard?.classList.remove('is-visible');
+      planCard?.setAttribute('aria-hidden', 'true');
+    };
+
+    zone.addEventListener('mouseenter', showZone);
+    zone.addEventListener('mouseleave', hideZone);
+    zone.addEventListener('focus', showZone);
+    zone.addEventListener('blur', hideZone);
   });
-
 </script>
+
+<style>
+  .plan-label {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    min-height: 34px;
+    width: 4.3%;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 4px;
+    background: rgba(238, 236, 230, 0.94);
+    color: #51636f;
+    font-size: clamp(7px, 0.82vw, 13px);
+    font-weight: 600;
+    line-height: 1.12;
+    text-align: center;
+  }
+
+  .plan-dimmer {
+    fill: rgba(255, 255, 255, 0.68);
+  }
+
+  .plan-zone {
+    cursor: pointer;
+    fill: transparent;
+    stroke: transparent;
+    stroke-width: 3;
+    transition: fill 180ms ease, stroke 180ms ease;
+  }
+
+  [data-stage-map].has-active-zone .plan-dimmer {
+    opacity: 1;
+  }
+
+  [data-plan-zone].is-active .plan-zone {
+    fill: rgba(255, 77, 45, 0.82);
+    stroke: #ff4d2d;
+  }
+
+  [data-plan-card].is-visible {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+
+  @media (max-width: 700px) {
+    .plan-label {
+      min-height: 24px;
+      padding: 1px;
+      font-size: 6px;
+    }
+  }
+</style>

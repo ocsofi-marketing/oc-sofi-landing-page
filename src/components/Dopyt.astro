@@ -107,8 +107,9 @@ const vymery = ['do 100 m²', '100–200 m²', '200+ m²', 'Zatiaľ neviem'];
         <input
           type="text"
           name="company"
-          placeholder="Spoločnosť"
+          placeholder="Spoločnosť*"
           class={inputClass}
+          required
         />
 
         <div class="mt-[10px]">
@@ -131,8 +132,8 @@ const vymery = ['do 100 m²', '100–200 m²', '200+ m²', 'Zatiaľ neviem'];
         </div>
 
         <div class="mt-[6px]">
-          <span class="text-[14px] text-[#8A857C]">Približná výmera</span>
-          <input type="hidden" name="vymera" id="lead-area" />
+          <span class="text-[14px] text-[#8A857C]">Približná výmera*</span>
+          <input type="hidden" name="vymera" id="lead-area" required />
           <div class="mt-3 flex flex-wrap gap-[10px]">
             {
               vymery.map((v) => (
@@ -156,8 +157,8 @@ const vymery = ['do 100 m²', '100–200 m²', '200+ m²', 'Zatiaľ neviem'];
           class:list={[inputClass, 'mt-[10px] resize-y']}></textarea>
 
         <div id="lead-error" class="hidden text-[14px] text-[#B4453B]">
-          Vyplňte prosím meno, e-mail, telefón, typ priestoru a súhlas so
-          spracovaním údajov.
+          Vyplňte prosím meno, e-mail, telefón, spoločnosť, typ priestoru,
+          približnú výmeru a súhlas so spracovaním údajov.
         </div>
 
         <div class="mt-3 flex flex-wrap items-center justify-between gap-8">
@@ -250,11 +251,14 @@ const vymery = ['do 100 m²', '100–200 m²', '200+ m²', 'Zatiaľ neviem'];
     const name = String(data.get('name') ?? '').trim();
     const email = String(data.get('email') ?? '');
     const phone = String(data.get('phone') ?? '').trim();
+    const company = String(data.get('company') ?? '').trim();
     const ok =
       name &&
       /\S+@\S+\.\S+/.test(email) &&
       phone &&
+      company &&
       typeInput.value &&
+      areaInput.value &&
       gdprInput.checked;
 
     if (!ok) {

@@ -16,19 +16,19 @@ const benefits = [
     text: 'Rýchle napojenie na D1 a R1 zabezpečuje pohodlnú dostupnosť z Trnavy aj širšieho regiónu. Zastávka MHD je len minútu chôdze a v centre mesta ste autom do 6 minút.',
   },
   {
-    icon: '<circle cx="9" cy="8" r="3"></circle><circle cx="17" cy="9" r="2.5"></circle><path d="M3.5 20c.6-3.4 2.5-5 5.5-5s4.9 1.6 5.5 5"></path><path d="M14.5 20c.3-2.2 1.6-3.5 3.8-3.5 1 0 1.8.3 2.5.8"></path>',
-    title: 'Silná spádová oblasť',
-    text: 'Na rozhraní rezidenčnej a priemyselnej zóny s prirodzeným pohybom obyvateľov aj tisícok ľudí pracujúcich v okolí. Lokalita sa ďalej rozvíja a priamo oproti OC SOFI pribudne približne 500 nových bytov.',
-  },
-  {
     icon: '<rect x="3" y="3" width="18" height="18" rx="4"></rect><path d="M9.5 17V7.5h3.2a3 3 0 0 1 0 6H9.5"></path>',
     title: 'Parkovanie',
-    text: 'Pohodlné parkovanie priamo v areáli pre návštevníkov aj nájomcov.',
+    text: 'Bezproblémové parkovanie priamo v areáli. Ponúkame 225 vnútorných a vonkajších miest vrátane nabíjacích staníc pre elektromobily.',
   },
   {
     icon: '<path d="M4 4h7v7H4z"></path><path d="M13 4h7v16h-7z"></path><path d="M4 13h7v7H4z"></path>',
-    title: 'Flexibilné priestory',
-    text: '',
+    title: 'Flexibilita',
+    text: 'Priestor, ktorý sa vám prispôsobí. Jednotky sa dajú flexibilne spájať a deliť — dispozičné riešenie navrhneme presne podľa vašich predstáv ešte pred dokončením budovy.',
+  },
+  {
+    icon: '<circle cx="9" cy="8" r="3"></circle><circle cx="17" cy="9" r="2.5"></circle><path d="M3.5 20c.6-3.4 2.5-5 5.5-5s4.9 1.6 5.5 5"></path><path d="M14.5 20c.3-2.2 1.6-3.5 3.8-3.5 1 0 1.8.3 2.5.8"></path>',
+    title: 'Silná spádová oblasť',
+    text: 'Na rozhraní rezidenčnej a priemyselnej zóny s prirodzeným pohybom obyvateľov aj tisícok ľudí pracujúcich v okolí. Lokalita sa ďalej rozvíja a priamo oproti OC SOFI pribudne približne 500 nových bytov.',
   },
 ];
 ---
@@ -65,13 +65,9 @@ const benefits = [
             <h3 class="mt-[26px] mb-0 text-[21px] font-medium tracking-[-0.01em] text-[#FBF9F6]">
               {s.title}
             </h3>
-            {
-              s.text && (
-                <p class="mt-[10px] mb-0 text-[15px] leading-[1.75] text-[#8FA0B3]">
-                  {s.text}
-                </p>
-              )
-            }
+            <p class="mt-[10px] mb-0 text-[15px] leading-[1.75] text-[#8FA0B3]">
+              {s.text}
+            </p>
           </div>
         ))
       }

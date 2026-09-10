@@ -1,6 +1,5 @@
 ---
 import { Image } from 'astro:assets';
-import planRetail from '../assets/images/plan-retail.png';
 import planOffice from '../assets/images/plan-office.png';
 
 const tabActive =
@@ -17,15 +16,9 @@ const tabInactive =
           class="m-0 max-w-[24ch] [text-wrap:balance] text-[clamp(32px,4.2vw,58px)] leading-[1.06] font-normal tracking-[-0.03em] text-heading"
         >
           Otvorenie druhej etapy je plánované na <span
-            class="font-serif italic text-accent">koniec roka 2027</span
+            class="font-serif italic text-accent">leto 2028</span
           >
         </h2>
-        <p
-          class="mt-6 mb-0 max-w-[58ch] [text-wrap:pretty] text-[18px] leading-[1.75] text-[#5A6470]"
-        >
-          Pozrite si aktuálne dostupné priestory. Voľné jednotky sú v pôdorysoch
-          označené kódom, obsadené menom prevádzky.
-        </p>
       </div>
       <div class="flex flex-wrap gap-[10px]">
         <button
@@ -48,9 +41,9 @@ const tabInactive =
     <div
       class="mt-8 flex h-[min(72vh,720px)] items-center justify-center"
     >
-      <Image
+      <img
         data-plan="retail"
-        src={planRetail}
+        src="/images/plan-retail-official.svg"
         alt="Situácia obchodných priestorov, 1. podlažie"
         class="block h-auto max-h-[min(72vh,720px)] w-auto max-w-full object-contain"
         loading="lazy"

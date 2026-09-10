@@ -16,28 +16,21 @@ const retailGallery = [
     desktop: '/images/retail-gallery/retail-facade-desktop.webp',
     mobile: '/images/retail-gallery/retail-facade-mobile.webp',
     full: '/images/retail-gallery/retail-facade-full.webp',
-    class: 'absolute top-0 left-0 h-[68%] w-[78%]',
-  },
-  {
-    alt: 'Existujúce obchodné centrum OC SOFI',
-    desktop: '/images/retail-gallery/existing-oc-sofi-desktop.webp',
-    mobile: '/images/retail-gallery/existing-oc-sofi-mobile.webp',
-    full: '/images/retail-gallery/existing-oc-sofi-full.webp',
-    class: 'absolute top-[7%] right-0 h-[35%] w-[34%] ring-8 ring-cream',
+    class: 'col-span-2 row-span-2',
   },
   {
     alt: 'Vizualizácia areálu s obchodnými priestormi OC SOFI',
     desktop: '/images/retail-gallery/retail-overview-desktop.webp',
     mobile: '/images/retail-gallery/retail-overview-mobile.webp',
     full: '/images/retail-gallery/retail-overview-full.webp',
-    class: 'absolute bottom-0 left-[10%] h-[38%] w-[52%] ring-8 ring-cream',
+    class: 'col-span-1 row-span-1',
   },
   {
     alt: 'Vizualizácia celého projektu OC SOFI',
     desktop: '/images/retail-gallery/retail-masterplan-desktop.webp',
     mobile: '/images/retail-gallery/retail-masterplan-mobile.webp',
     full: '/images/retail-gallery/retail-masterplan-full.webp',
-    class: 'absolute right-[8%] bottom-[5%] h-[48%] w-[29%] rounded-[6px] ring-8 ring-cream',
+    class: 'col-span-1 row-span-1',
   },
 ];
 
@@ -84,20 +77,20 @@ const officeSpecs = [
         </div>
       </div>
       <div
-        class="relative min-h-[540px] lg:mr-[calc(-1*((100vw-min(1280px,100vw))/2+clamp(20px,4vw,40px)))] lg:min-h-[720px]"
+        class="grid min-h-[540px] grid-cols-3 grid-rows-[minmax(0,1fr)_minmax(0,0.72fr)] gap-3 lg:mr-[calc(-1*((100vw-min(1280px,100vw))/2+clamp(20px,4vw,40px)))] lg:min-h-[760px]"
       >
         {
           retailGallery.map((image, index) => (
             <button
               type="button"
               class:list={[
-                'group absolute overflow-hidden bg-[#E7E1D8] text-left',
+                'group overflow-hidden bg-[#E7E1D8] text-left',
                 image.class,
               ]}
               data-retail-gallery-open={index}
               aria-label={`Otvoriť fotografiu: ${image.alt}`}
             >
-              <picture>
+              <picture class="block h-full w-full">
                 <source media="(max-width: 640px)" srcset={image.mobile} />
                 <img
                   src={image.desktop}

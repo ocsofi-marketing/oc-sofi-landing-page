@@ -68,8 +68,8 @@
 }
 
 @theme {
-  --font-sans: "Archivo", system-ui, sans-serif;
-  --font-serif: "Instrument Serif", serif;
+  --font-sans: "helvetica-neue-lt-pro", "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "ivypresto-headline", Georgia, serif;
   --color-ink: #17232d;
   --color-cream: #f6f4ee;
   --color-cream-light: #faf8f3;
@@ -89,7 +89,7 @@ body {
   margin: 0;
   background: #f6f4ee;
   color: #17232d;
-  font-family: "Archivo", system-ui, sans-serif;
+  font-family: "helvetica-neue-lt-pro", "Helvetica Neue", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 

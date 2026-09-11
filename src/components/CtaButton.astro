@@ -2,17 +2,16 @@
 interface Props {
   href: string;
   class?: string;
-  arrow?: string;
   variant?: 'accent' | 'light';
 }
 
-const { href, class: className = '', arrow = '↗', variant = 'accent' } = Astro.props;
+const { href, class: className = '', variant = 'accent' } = Astro.props;
 ---
 
 <a
   href={href}
   class:list={[
-    'group inline-flex items-center rounded-full py-[6px] pr-[6px] pl-7 text-[15px] font-semibold tracking-[-0.01em] shadow-[0_8px_20px_rgba(44,23,23,0.16)] transition-all duration-200 hover:-translate-y-px',
+    'inline-flex items-center rounded-full px-7 py-[15px] text-[15px] font-semibold tracking-[-0.01em] shadow-[0_8px_20px_rgba(44,23,23,0.16)] transition-all duration-200 hover:-translate-y-px',
     variant === 'light'
       ? 'bg-white text-navy hover:bg-cream-light'
       : 'bg-accent text-white hover:bg-accent-hover',
@@ -20,8 +19,4 @@ const { href, class: className = '', arrow = '↗', variant = 'accent' } = Astro
   ]}
 >
   <slot />
-  <span
-    class="ml-3 inline-flex size-11 items-center justify-center rounded-full bg-accent-dark text-[18px] text-accent transition-transform duration-200 group-hover:-translate-y-px group-hover:translate-x-px"
-    >{arrow}</span
-  >
 </a>

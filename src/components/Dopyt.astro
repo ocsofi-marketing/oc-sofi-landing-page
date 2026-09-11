@@ -193,6 +193,12 @@ const vymery = ['do 100 m²', '100–200 m²', '200+ m²', 'Zatiaľ neviem'];
 </section>
 
 <script>
+  declare global {
+    interface Window {
+      dataLayer: unknown[];
+    }
+  }
+
   const form = document.getElementById('lead-form') as HTMLFormElement;
   const success = document.getElementById('lead-success')!;
   const errorEl = document.getElementById('lead-error')!;
@@ -271,6 +277,13 @@ const vymery = ['do 100 m²', '100–200 m²', '200+ m²', 'Zatiaľ neviem'];
         body: new URLSearchParams(data as unknown as Record<string, string>).toString(),
       });
       if (!res.ok) throw new Error(`Netlify form POST failed: ${res.status}`);
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'form_submit',
+        form_name: 'dopyt',
+        typ_priestoru: typeInput.value,
+        vymera: areaInput.value,
+      });
       form.classList.add('hidden');
       success.classList.remove('hidden');
       success.classList.add('flex', 'animate-rise');

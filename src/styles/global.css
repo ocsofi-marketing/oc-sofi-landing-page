@@ -93,6 +93,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Kurzívne akcenty brožúry používajú ľahký, nie tučný rez. */
+.font-serif.italic {
+  font-weight: 300;
+}
+
 @keyframes sofiRise {
   from {
     opacity: 0;

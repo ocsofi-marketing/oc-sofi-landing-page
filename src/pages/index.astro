@@ -13,6 +13,7 @@ import Projekt from '../components/Projekt.astro';
 import Najomcovia from '../components/Najomcovia.astro';
 import Dopyt from '../components/Dopyt.astro';
 import Footer from '../components/Footer.astro';
+import SectionArrow from '../components/SectionArrow.astro';
 
 // Po doplnení `site` do astro.config.mjs doplň aj "url" a "image".
 const schema = {
@@ -45,14 +46,18 @@ const schema = {
   />
   <div class="min-h-screen overflow-x-hidden bg-cream">
     <Hero />
+    <SectionArrow />
     <Vyhody />
     <Priestory />
     <Jednotky />
+    <SectionArrow />
     <Standardy />
+    <SectionArrow />
     <PrednostnyVyber />
     <Dostupne />
     <Brozura />
     <Lokalita />
+    <SectionArrow />
     <Projekt />
     <Najomcovia />
     <Dopyt />

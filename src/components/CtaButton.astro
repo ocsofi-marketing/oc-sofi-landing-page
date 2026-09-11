@@ -3,15 +3,19 @@ interface Props {
   href: string;
   class?: string;
   arrow?: string;
+  variant?: 'accent' | 'light';
 }
 
-const { href, class: className = '', arrow = '↗' } = Astro.props;
+const { href, class: className = '', arrow = '↗', variant = 'accent' } = Astro.props;
 ---
 
 <a
   href={href}
   class:list={[
-    'group inline-flex items-center rounded-full bg-accent py-[6px] pr-[6px] pl-7 text-[15px] font-semibold tracking-[-0.01em] text-white shadow-[0_8px_20px_rgba(44,23,23,0.16)] transition-all duration-200 hover:-translate-y-px hover:bg-accent-hover',
+    'group inline-flex items-center rounded-full py-[6px] pr-[6px] pl-7 text-[15px] font-semibold tracking-[-0.01em] shadow-[0_8px_20px_rgba(44,23,23,0.16)] transition-all duration-200 hover:-translate-y-px',
+    variant === 'light'
+      ? 'bg-white text-navy hover:bg-cream-light'
+      : 'bg-accent text-white hover:bg-accent-hover',
     className,
   ]}
 >

@@ -21,11 +21,21 @@ import heroImg from '../assets/images/hero.jpg';
   </div>
 
   <header
-    class="relative z-10 flex items-center justify-center px-[clamp(20px,4vw,56px)] py-[30px]"
+    class="relative z-10 grid grid-cols-[1fr_auto_1fr] items-center gap-4 px-[clamp(20px,4vw,56px)] py-[30px]"
   >
-    <a href="#dopyt" class="flex" aria-label="OC SOFI">
+    <nav aria-label="Hlavná navigácia" class="hidden items-center gap-8 text-[14px] font-medium text-white/90 lg:flex">
+      <a href="#retail" class="transition-colors hover:text-accent">Obchodné priestory</a>
+      <a href="#kancelarie" class="transition-colors hover:text-accent">Kancelárie</a>
+      <a href="#lokalita" class="transition-colors hover:text-accent">Lokalita</a>
+    </nav>
+    <a href="#dopyt" class="flex justify-center" aria-label="OC SOFI">
       <SofiLogo class="h-7 w-auto text-white" />
     </a>
+    <a
+      href="#dopyt"
+      class="justify-self-end rounded-full bg-white px-5 py-3 text-[14px] font-semibold text-navy transition-colors hover:bg-cream-light"
+      >Spojte sa s nami <span class="ml-2 text-accent">↗</span></a
+    >
   </header>
 
   <div
@@ -47,7 +57,7 @@ import heroImg from '../assets/images/hero.jpg';
       Objavte moderné priestory s výbornou dostupnosťou, vysokou viditeľnosťou
       a bezproblémovým vlastným parkovaním.
     </p>
-    <CtaButton href="#dopyt" class="mt-[38px]">Zistiť dostupné priestory</CtaButton>
+    <CtaButton href="#dopyt" variant="light" class="mt-[38px]">Zistiť dostupné priestory</CtaButton>
     <span
       class="mt-12 inline-flex max-w-full items-center gap-2 border border-white/10 bg-navy/45 px-3 py-2 text-left backdrop-blur-sm"
     >

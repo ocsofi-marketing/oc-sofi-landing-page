@@ -10,76 +10,58 @@
       </h2>
     </div>
 
-    <div data-floorplan-switcher class="mt-12">
-      <div
-        class="inline-flex w-full flex-col gap-2 rounded-[18px] bg-cream-light p-2 sm:w-auto sm:flex-row"
-        role="tablist"
-        aria-label="Typ pôdorysu"
-      >
-        <button
-          id="floorplan-tab-retail"
-          type="button"
-          role="tab"
-          aria-selected="true"
-          aria-controls="floorplan-retail"
-          data-floorplan-tab="retail"
-          class="rounded-xl bg-navy px-5 py-3 text-[15px] font-medium text-white transition-colors"
-        >
-          Obchodné priestory
-        </button>
-        <button
-          id="floorplan-tab-office"
-          type="button"
-          role="tab"
-          aria-selected="false"
-          aria-controls="floorplan-office"
-          data-floorplan-tab="office"
-          class="rounded-xl px-5 py-3 text-[15px] font-medium text-[#5A6470] transition-colors hover:text-navy"
-        >
-          Kancelárske priestory
-        </button>
-      </div>
+    <div class="mt-10">
+      <div data-stage-map class="relative left-1/2 mx-auto w-full max-w-[1500px] -translate-x-1/2 md:w-[min(88vw,1500px)]">
+        <img
+          src="/images/plan-retail.png"
+          alt="Situácia OC SOFI 1 a druhej etapy OC SOFI 2"
+          class="block h-auto w-full"
+          loading="lazy"
+        />
+        <span class="plan-label left-[5.1%] top-[52.2%]">JAC Motors</span>
+        <span class="plan-label left-[17.2%] top-[52.2%]">Bistro u Mäsiara</span>
 
-      <div class="mt-8">
-        <div
-          id="floorplan-retail"
-          role="tabpanel"
-          aria-labelledby="floorplan-tab-retail"
-          data-floorplan-panel="retail"
-          class="animate-rise"
-        >
-          <p class="mb-5 text-[15px] text-[#6B6863]">Pôdorys obchodných priestorov</p>
-          <div class="flex min-h-[260px] items-center justify-center overflow-hidden bg-cream-light px-4 py-8 sm:min-h-[380px] sm:px-8 md:min-h-[520px]">
-            <img
-              src="/images/floorplans/retail-floorplan.png"
-              alt="Pôdorys obchodných priestorov OC SOFI"
-              width="1672"
-              height="941"
-              class="block h-auto w-full max-w-[1120px] object-contain"
-              loading="lazy"
+        <svg class="absolute inset-0 h-full w-full" viewBox="0 0 1920 1306" preserveAspectRatio="none" aria-label="Interaktívny plán druhej etapy OC SOFI">
+          <a
+            href="#kancelarie"
+            data-plan-zone
+            data-plan-type="office"
+            data-title="Kancelárske priestory"
+            data-text="Flexibilné priestory v Objekte B na druhom podlaží."
+            aria-label="Kancelárske priestory v Objekte B"
+          >
+            <path
+              class="plan-zone"
+              d="M938 247 L811 155 L730 262 L661 263 L658 394 L853 464 Z"
             />
-          </div>
-        </div>
-
+          </a>
+          <g class="pointer-events-none" aria-label="Loggia pri kancelárskych priestoroch">
+            <path class="plan-loggia" d="M938 247 L853 464 L867 471 L952 251 Z" />
+            <text class="plan-loggia-label" x="929" y="365" transform="rotate(111 929 365)">LOGGIA</text>
+          </g>
+          <g class="pointer-events-none" aria-label="Označenie Objekt B">
+            <rect class="plan-object-label" x="888" y="292" width="161" height="50" />
+            <text class="plan-object-label-text" x="968.5" y="323">OBJEKT B</text>
+          </g>
+          <a
+            href="#retail"
+            data-plan-zone
+            data-plan-type="retail"
+            data-title="Obchodné priestory"
+            data-text="Nové obchodné jednotky v Objekte A v OC SOFI 2."
+            aria-label="Obchodné priestory v Objekte A"
+          >
+            <path class="plan-zone" d="M1445 438 L1192 848 L1064 773 L1263 268 L1404 321 C1452 340 1472 401 1445 438 Z" />
+          </a>
+        </svg>
         <div
-          id="floorplan-office"
-          role="tabpanel"
-          aria-labelledby="floorplan-tab-office"
-          data-floorplan-panel="office"
-          class="hidden animate-rise"
-          hidden
+          data-plan-card
+          class="pointer-events-none absolute z-10 w-[min(290px,calc(100%-32px))] -translate-y-1/2 translate-x-3 rounded-xl bg-white px-5 py-4 opacity-0 shadow-[0_12px_34px_rgba(7,35,52,0.18)] transition-[opacity,transform] duration-200 md:px-6 md:py-5"
+          aria-hidden="true"
         >
-          <p class="mb-5 text-[15px] text-[#6B6863]">Pôdorys kancelárskych priestorov</p>
-          <div class="flex min-h-[260px] items-center justify-center overflow-hidden bg-cream-light px-4 py-8 sm:min-h-[380px] sm:px-8 md:min-h-[520px]">
-            <img
-              src="/images/floorplans/office-floorplan.png"
-              alt="Pôdorys kancelárskych priestorov OC SOFI"
-              width="1448"
-              height="1086"
-              class="block h-auto w-full max-w-[760px] object-contain"
-              loading="lazy"
-            />
-          </div>
+          <span class="inline-flex rounded-md bg-accent px-2.5 py-1 text-xs font-medium text-white">OC SOFI 2</span>
+          <p data-plan-card-title class="mt-3 text-[24px] leading-none font-medium tracking-[-0.03em] text-navy"></p>
+          <p data-plan-card-text class="mt-2 text-sm leading-relaxed text-[#51636F]"></p>
         </div>
       </div>
     </div>
@@ -87,28 +69,132 @@
 </section>
 
 <script>
-  document.querySelectorAll<HTMLElement>('[data-floorplan-switcher]').forEach((switcher) => {
-    const tabs = Array.from(switcher.querySelectorAll<HTMLButtonElement>('[data-floorplan-tab]'));
-    const panels = Array.from(switcher.querySelectorAll<HTMLElement>('[data-floorplan-panel]'));
+  const planCard = document.querySelector<HTMLElement>('[data-plan-card]');
+  const planCardTitle = document.querySelector<HTMLElement>('[data-plan-card-title]');
+  const planCardText = document.querySelector<HTMLElement>('[data-plan-card-text]');
+  let pinnedZone: SVGAElement | null = null;
 
-    const showFloorplan = (type: string) => {
-      tabs.forEach((tab) => {
-        const isActive = tab.dataset.floorplanTab === type;
-        tab.setAttribute('aria-selected', String(isActive));
-        tab.classList.toggle('bg-navy', isActive);
-        tab.classList.toggle('text-white', isActive);
-        tab.classList.toggle('text-[#5A6470]', !isActive);
-      });
-
-      panels.forEach((panel) => {
-        const isActive = panel.dataset.floorplanPanel === type;
-        panel.hidden = !isActive;
-        panel.classList.toggle('hidden', !isActive);
-      });
+  document.querySelectorAll<SVGAElement>('[data-plan-zone]').forEach((zone, index) => {
+    const showCard = () => {
+      if (planCardTitle) planCardTitle.textContent = zone.dataset.title || '';
+      if (planCardText) planCardText.textContent = zone.dataset.text || '';
+      planCard?.classList.toggle('for-office', index === 0);
+      planCard?.classList.toggle('for-retail', index === 1);
+      planCard?.classList.add('is-visible');
+      planCard?.setAttribute('aria-hidden', 'false');
     };
 
-    tabs.forEach((tab) => {
-      tab.addEventListener('click', () => showFloorplan(tab.dataset.floorplanTab || 'retail'));
+    const hideCard = () => {
+      if (pinnedZone) return;
+      planCard?.classList.remove('is-visible');
+      planCard?.setAttribute('aria-hidden', 'true');
+    };
+
+    zone.addEventListener('mouseenter', showCard);
+    zone.addEventListener('mouseleave', hideCard);
+    zone.addEventListener('focus', showCard);
+    zone.addEventListener('blur', hideCard);
+    zone.addEventListener('click', (event) => {
+      event.preventDefault();
+      pinnedZone = zone;
+      showCard();
     });
   });
+
+  document.addEventListener('click', (event) => {
+    if (!(event.target instanceof Element) || event.target.closest('[data-plan-zone], [data-plan-card]')) return;
+    pinnedZone = null;
+    planCard?.classList.remove('is-visible');
+    planCard?.setAttribute('aria-hidden', 'true');
+  });
 </script>
+
+<style>
+  .plan-label {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    min-height: 34px;
+    width: 4.3%;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 4px;
+    background: rgba(238, 236, 230, 0.94);
+    color: #51636f;
+    font-size: clamp(5px, 0.55vw, 9px);
+    font-weight: 500;
+    line-height: 1.12;
+    text-align: center;
+  }
+
+  .plan-zone {
+    cursor: pointer;
+    fill: transparent;
+    stroke: transparent;
+    stroke-width: 4;
+  }
+
+  .plan-loggia {
+    fill: rgba(120, 128, 130, 0.04);
+    stroke: #aeb5b7;
+    stroke-width: 1.25;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .plan-loggia-label {
+    fill: #8e9799;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-anchor: middle;
+  }
+
+  .plan-object-label {
+    fill: #092638;
+  }
+
+  .plan-object-label-text {
+    fill: #fff;
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-anchor: middle;
+  }
+
+  [data-plan-card].is-visible {
+    opacity: 1;
+    transform: translate(0, -50%);
+  }
+
+  [data-plan-card].for-office {
+    left: 54%;
+    top: 31%;
+  }
+
+  [data-plan-card].for-retail {
+    right: 0;
+    left: auto;
+    top: 40%;
+  }
+
+  @media (max-width: 700px) {
+    .plan-label {
+      min-height: 24px;
+      padding: 1px;
+      font-size: 6px;
+    }
+
+    [data-plan-card].for-office,
+    [data-plan-card].for-retail {
+      left: 50%;
+      right: auto;
+      top: auto;
+      bottom: 3%;
+      transform: translate(-50%, 12px);
+    }
+
+    [data-plan-card].is-visible {
+      transform: translate(-50%, 0);
+    }
+  }
+</style>

@@ -48,21 +48,32 @@
           data-floorplan-panel="retail"
           class="animate-rise"
         >
-          <p class="mb-5 text-[15px] text-[#6B6863]">Pôdorys obchodných priestorov</p>
-          <div class="flex min-h-[260px] items-center justify-center overflow-hidden bg-cream-light px-4 py-8 sm:min-h-[380px] sm:px-8 md:min-h-[520px]">
-            <div class="relative w-full max-w-[1120px]">
-              <img
-                src="/images/floorplans/retail-floorplan.png"
-                alt="Pôdorys obchodných priestorov OC SOFI"
-                width="1672"
-                height="941"
-                class="block h-auto w-full object-contain"
-                loading="lazy"
-              />
-              <span class="retail-unit-tint retail-unit-tint--jac" aria-hidden="true"></span>
-              <span class="retail-unit-tint retail-unit-tint--tabak" aria-hidden="true"></span>
-              <span class="retail-unit-tint retail-unit-tint--bistro" aria-hidden="true"></span>
-            </div>
+          <p class="mb-5 text-[15px] text-[#6B6863]">Pôdorysy obchodných priestorov</p>
+          <div class="grid items-end gap-4 md:grid-cols-[minmax(0,1.12fr)_minmax(0,0.72fr)_minmax(0,0.8fr)] md:gap-6">
+            <img
+              src="/images/floorplans/retail-sofi-1.png"
+              alt="Pôdorys obchodných priestorov v OC SOFI 1"
+              width="866"
+              height="912"
+              class="block h-auto w-full"
+              loading="lazy"
+            />
+            <img
+              src="/images/floorplans/retail-object-b.png"
+              alt="Pôdorys obchodných priestorov v Objekte B"
+              width="504"
+              height="546"
+              class="block h-auto w-full"
+              loading="lazy"
+            />
+            <img
+              src="/images/floorplans/retail-object-a.png"
+              alt="Pôdorys obchodných priestorov v Objekte A"
+              width="622"
+              height="922"
+              class="block h-auto w-full"
+              loading="lazy"
+            />
           </div>
         </div>
 
@@ -75,13 +86,13 @@
           hidden
         >
           <p class="mb-5 text-[15px] text-[#6B6863]">Pôdorys kancelárskych priestorov</p>
-          <div class="flex min-h-[260px] items-center justify-center overflow-hidden bg-cream-light px-4 py-8 sm:min-h-[380px] sm:px-8 md:min-h-[520px]">
+          <div class="mx-auto max-w-[880px]">
             <img
-              src="/images/floorplans/office-floorplan.png"
+              src="/images/floorplans/office-floorplan-reference.png"
               alt="Pôdorys kancelárskych priestorov OC SOFI"
-              width="1448"
-              height="1086"
-              class="block h-auto w-full max-w-[760px] object-contain"
+              width="1118"
+              height="1182"
+              class="block h-auto w-full"
               loading="lazy"
             />
           </div>
@@ -117,35 +128,3 @@
     });
   });
 </script>
-
-<style>
-  .retail-unit-tint {
-    position: absolute;
-    z-index: 1;
-    pointer-events: none;
-    background: #f6f4ee;
-    mix-blend-mode: multiply;
-    opacity: 0.62;
-  }
-
-  .retail-unit-tint--jac {
-    top: 63.8%;
-    left: 3.7%;
-    width: 4.8%;
-    height: 26.5%;
-  }
-
-  .retail-unit-tint--tabak {
-    top: 83.4%;
-    left: 17.6%;
-    width: 4%;
-    height: 6.9%;
-  }
-
-  .retail-unit-tint--bistro {
-    top: 63.8%;
-    left: 21.8%;
-    width: 5.4%;
-    height: 26.5%;
-  }
-</style>

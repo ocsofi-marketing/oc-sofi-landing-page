@@ -50,18 +50,14 @@
         >
           <p class="mb-5 text-[15px] text-[#6B6863]">Pôdorys obchodných priestorov</p>
           <div class="flex min-h-[260px] items-center justify-center overflow-hidden bg-cream-light px-4 py-8 sm:min-h-[380px] sm:px-8 md:min-h-[520px]">
-            <div class="relative w-full max-w-[1120px]">
-              <img
-                src="/images/floorplans/retail-floorplan.png"
-                alt="Pôdorys obchodných priestorov OC SOFI"
-                width="1672"
-                height="941"
-                class="block h-auto w-full object-contain"
-                loading="lazy"
-              />
-              <span class="retail-unit-tint retail-unit-tint--jac" aria-hidden="true"></span>
-              <span class="retail-unit-tint retail-unit-tint--tabak" aria-hidden="true"></span>
-            </div>
+            <img
+              src="/images/floorplans/retail-floorplan.png"
+              alt="Pôdorys obchodných priestorov OC SOFI"
+              width="1672"
+              height="941"
+              class="block h-auto w-full max-w-[1120px] object-contain"
+              loading="lazy"
+            />
           </div>
         </div>
 
@@ -116,28 +112,3 @@
     });
   });
 </script>
-
-<style>
-  .retail-unit-tint {
-    position: absolute;
-    z-index: 1;
-    pointer-events: none;
-    background: #f6f4ee;
-    mix-blend-mode: multiply;
-    opacity: 0.62;
-  }
-
-  .retail-unit-tint--jac {
-    top: 63.8%;
-    left: 3.7%;
-    width: 4.8%;
-    height: 26.5%;
-  }
-
-  .retail-unit-tint--tabak {
-    top: 83.4%;
-    left: 17.6%;
-    width: 4%;
-    height: 6.9%;
-  }
-</style>

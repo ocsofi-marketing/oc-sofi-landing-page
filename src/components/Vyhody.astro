@@ -6,7 +6,7 @@ const vyhody = [
     text: 'Ponúkame priestory s flexibilnou výmerou a dispozíciou, ktoré je možné prispôsobiť potrebám vašej prevádzky ešte pred dokončením výstavby.',
   },
   {
-    icon: '<path d="m11 17 2 2a1 1 0 1 0 3-3"></path><path d="m14 14 2 2a1 1 0 1 0 3-3"></path><path d="m17 11 1 1a1 1 0 1 0 3-3l-4-4"></path><path d="m14 8-1.5-1.5a2.12 2.12 0 0 0-3 0l-2.2 2.2a1.5 1.5 0 0 0 0 2.1l2.2 2.2"></path><path d="m5 14-1.5-1.5a1 1 0 0 1 0-1.4l4-4a1 1 0 0 1 1.4 0l1.5 1.5"></path>',
+    icon: 'handshake',
     iconSize: 26,
     iconStroke: 1.9,
     title: 'Prenájom priamo od developera',
@@ -23,17 +23,39 @@ const vyhody = [
       vyhody.map((v) => (
         <div class="flex items-start gap-5">
           <span class="flex size-[46px] flex-none items-center justify-center rounded-full bg-accent/16 text-accent">
-            <svg
-              width={v.iconSize ?? 22}
-              height={v.iconSize ?? 22}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width={v.iconStroke ?? 1.6}
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              set:html={v.icon}
-            />
+            {
+              v.icon === 'handshake' ? (
+                <svg
+                  width="26"
+                  height="26"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.9"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-label="Dohoda"
+                >
+                  <path d="m11 17 2 2a1 1 0 1 0 3-3" />
+                  <path d="m14 14 2 2a1 1 0 1 0 3-3" />
+                  <path d="m17 11 1 1a1 1 0 1 0 3-3l-4-4" />
+                  <path d="m14 8-1.5-1.5a2.12 2.12 0 0 0-3 0l-2.2 2.2a1.5 1.5 0 0 0 0 2.1l2.2 2.2" />
+                  <path d="m5 14-1.5-1.5a1 1 0 0 1 0-1.4l4-4a1 1 0 0 1 1.4 0l1.5 1.5" />
+                </svg>
+              ) : (
+                <svg
+                  width={v.iconSize ?? 22}
+                  height={v.iconSize ?? 22}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width={v.iconStroke ?? 1.6}
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  set:html={v.icon}
+                />
+              )
+            }
           </span>
           <div>
             <h2 class="m-0 text-[21px] font-medium tracking-[-0.01em] text-black">

@@ -247,6 +247,17 @@ const vymery = ['do 100 m²', '100–200 m²', '200+ m²', 'Zatiaľ neviem'];
     el.addEventListener('input', () => errorEl.classList.add('hidden'));
   });
 
+  // GTM event form_start — raz za nacitanie stranky, pri prvej interakcii s formularom.
+  let formStarted = false;
+  const markFormStart = () => {
+    if (formStarted) return;
+    formStarted = true;
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'form_start', form_name: 'dopyt' });
+  };
+  form.addEventListener('focusin', markFormStart);
+  form.addEventListener('input', markFormStart);
+
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 

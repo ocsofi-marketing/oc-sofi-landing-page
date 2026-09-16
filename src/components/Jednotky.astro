@@ -124,9 +124,9 @@ const officeGallery = [
         <div class="mt-[30px] grid border-t border-[#D8D0C4]">
           {
             retailSpecs.map(([label, value]) => (
-              <div class="grid grid-cols-[minmax(105px,0.8fr)_minmax(0,1.2fr)] items-start gap-x-4 border-b border-[#E2DCD2] py-[15px] md:grid-cols-[minmax(112px,0.6fr)_minmax(0,1.4fr)] md:items-center">
+              <div class="grid grid-cols-[minmax(105px,0.8fr)_minmax(0,1.2fr)] items-start gap-x-8 border-b border-[#E2DCD2] py-[15px] md:grid-cols-[minmax(112px,0.6fr)_minmax(0,1.4fr)] md:items-center">
                 <span class="text-[15px] leading-[1.4] text-[#6B6863] md:leading-normal">{label}</span>
-                <span class="min-w-0 text-right text-[13px] leading-[1.45] text-ink md:text-[clamp(13px,1vw,15px)] md:leading-normal md:whitespace-nowrap">{value}</span>
+                <span class="min-w-0 text-right text-[13px] leading-[1.45] text-ink md:text-[clamp(13px,1vw,15px)] md:leading-normal">{value}</span>
               </div>
             ))
           }

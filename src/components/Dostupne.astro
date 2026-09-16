@@ -47,15 +47,31 @@
         data-floorplan-panel="retail"
         class="mt-10"
       >
-      <div data-stage-map class="relative left-1/2 w-screen max-w-none -translate-x-1/2 overflow-x-auto md:mx-auto md:w-[min(88vw,1500px)] md:max-w-[1500px] md:overflow-x-visible">
-        <div class="w-max px-5 md:w-full md:px-0">
-          <img
-            src="/images/plan-retail-v5.webp"
-            alt="Situácia OC SOFI 1 a druhej etapy OC SOFI 2"
-            class="block h-auto w-[1300px] max-w-none md:w-full"
-            loading="lazy"
-          />
-        </div>
+      <div class="md:mx-auto md:w-[min(88vw,1500px)] md:max-w-[1500px]">
+        <button
+          type="button"
+          class="group relative block w-full cursor-zoom-in text-left"
+          data-floorplan-open="retail"
+          aria-label="Otvoriť pôdorys obchodných priestorov na celú obrazovku"
+        >
+          <picture class="block w-full">
+            <source
+              media="(max-width: 767px)"
+              srcset="/images/podorysy/OC%20SOFI-podorys-mobil-SK.svg"
+              width="1080"
+              height="1080"
+            />
+            <img
+              src="/images/podorysy/OC%20SOFI-podorys-SK.svg"
+              alt="Pôdorys obchodných priestorov OC SOFI"
+              width="1604"
+              height="1080"
+              class="block h-auto w-full"
+              loading="lazy"
+            />
+          </picture>
+          <span class="absolute right-3 bottom-3 flex size-9 items-center justify-center rounded-full bg-black/60 text-[18px] text-white opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100" aria-hidden="true">↗</span>
+        </button>
       </div>
       </div>
 
@@ -67,22 +83,57 @@
         class="mt-10 hidden"
         hidden
       >
-        <div data-center-scroll class="relative left-1/2 w-screen max-w-none -translate-x-1/2 overflow-x-auto py-8 md:left-0 md:flex md:w-full md:translate-x-0 md:items-center md:justify-center md:overflow-x-visible md:px-8">
-          <div class="w-max px-5 md:w-auto md:px-0">
-            <img
-              src="/images/plan-office-v2.webp"
-              alt="Pôdorys kancelárskych priestorov OC SOFI"
-              width="3288"
-              height="1635"
-              class="block h-auto w-[1300px] max-w-none md:w-full md:max-w-[1120px]"
-              loading="lazy"
-            />
-          </div>
+        <div class="md:mx-auto md:w-[min(88vw,1500px)] md:max-w-[1500px]">
+          <button
+            type="button"
+            class="group relative block w-full cursor-zoom-in text-left"
+            data-floorplan-open="office"
+            aria-label="Otvoriť pôdorys kancelárskych priestorov na celú obrazovku"
+          >
+            <picture class="block w-full">
+              <source
+                media="(max-width: 767px)"
+                srcset="/images/podorysy/OC%20SOFI-kancelarie-mobil-SK.svg"
+                width="1080"
+                height="1080"
+              />
+              <img
+                src="/images/podorysy/OC%20SOFI-kancelarie-SK.svg"
+                alt="Pôdorys kancelárskych priestorov OC SOFI"
+                width="1604"
+                height="1080"
+                class="block h-auto w-full"
+                loading="lazy"
+              />
+            </picture>
+            <span class="absolute right-3 bottom-3 flex size-9 items-center justify-center rounded-full bg-black/60 text-[18px] text-white opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100" aria-hidden="true">↗</span>
+          </button>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<dialog
+  data-floorplan-lightbox
+  class="fixed inset-0 m-auto h-dvh w-dvw max-h-none max-w-none border-0 bg-black/92 p-5 text-white backdrop:bg-black/70"
+  aria-label="Pôdorys na celú obrazovku"
+>
+  <div class="relative mx-auto flex h-full max-w-[1600px] items-center justify-center">
+    <button
+      type="button"
+      data-floorplan-lightbox-close
+      class="absolute top-0 right-0 z-10 flex size-11 items-center justify-center rounded-full bg-white/12 text-[26px] transition-colors hover:bg-white/22"
+      aria-label="Zavrieť pôdorys">×</button
+    >
+    <img
+      data-floorplan-lightbox-image
+      src=""
+      alt=""
+      class="max-h-[calc(100dvh-80px)] max-w-full bg-white object-contain"
+    />
+  </div>
+</dialog>
 
 <script>
   document.querySelectorAll<HTMLElement>('[data-floorplan-switcher]').forEach((switcher) => {
@@ -102,11 +153,6 @@
         const isActive = panel.dataset.floorplanPanel === type;
         panel.hidden = !isActive;
         panel.classList.toggle('hidden', !isActive);
-        if (isActive) {
-          panel.querySelectorAll<HTMLElement>('[data-center-scroll]').forEach((el) => {
-            el.scrollLeft = (el.scrollWidth - el.clientWidth) / 2;
-          });
-        }
       });
     };
 
@@ -114,5 +160,36 @@
       tab.addEventListener('click', () => showFloorplan(tab.dataset.floorplanTab || 'retail'));
     });
   });
+
+  const floorplans: Record<string, { desktop: string; mobile: string; alt: string }> = {
+    retail: {
+      desktop: '/images/podorysy/OC%20SOFI-podorys-SK.svg',
+      mobile: '/images/podorysy/OC%20SOFI-podorys-mobil-SK.svg',
+      alt: 'Pôdorys obchodných priestorov OC SOFI',
+    },
+    office: {
+      desktop: '/images/podorysy/OC%20SOFI-kancelarie-SK.svg',
+      mobile: '/images/podorysy/OC%20SOFI-kancelarie-mobil-SK.svg',
+      alt: 'Pôdorys kancelárskych priestorov OC SOFI',
+    },
+  };
+
+  const floorplanLightbox = document.querySelector<HTMLDialogElement>('[data-floorplan-lightbox]');
+  const floorplanLightboxImage = floorplanLightbox?.querySelector<HTMLImageElement>('[data-floorplan-lightbox-image]');
+
+  document.querySelectorAll<HTMLButtonElement>('[data-floorplan-open]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const plan = floorplans[button.dataset.floorplanOpen || 'retail'];
+      if (!plan || !floorplanLightbox || !floorplanLightboxImage) return;
+      const isMobile = window.matchMedia('(max-width: 767px)').matches;
+      floorplanLightboxImage.src = isMobile ? plan.mobile : plan.desktop;
+      floorplanLightboxImage.alt = plan.alt;
+      floorplanLightbox.showModal();
+    });
+  });
+
+  floorplanLightbox
+    ?.querySelector('[data-floorplan-lightbox-close]')
+    ?.addEventListener('click', () => floorplanLightbox.close());
 </script>
 

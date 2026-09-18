@@ -28,8 +28,8 @@
   CookieConsent.run({
     guiOptions: {
       consentModal: {
-        layout: 'box',
-        position: 'bottom left',
+        layout: 'box inline',
+        position: 'bottom center',
         equalWeightButtons: false,
       },
       preferencesModal: {
@@ -57,7 +57,7 @@
           consentModal: {
             title: 'Používame cookies',
             description:
-              'Cookies používame na analýzu návštevnosti a meranie výkonu kampaní. Pomáhajú nám zlepšovať web a zobrazovať relevantný obsah. Svoj výber môžete kedykoľvek zmeniť cez „Nastavenia Cookies“ v pätičke.',
+              'Cookies používame na analýzu návštevnosti a meranie výkonu kampaní. Pomáhajú nám zlepšovať web a zobrazovať relevantný obsah. Svoj výber môžete kedykoľvek zmeniť cez „Nastavenia Cookies“ v pätičke.',
             acceptAllBtn: 'Prijať všetky',
             acceptNecessaryBtn: 'Odmietnuť',
             showPreferencesBtn: 'Spravovať nastavenia',
@@ -150,5 +150,32 @@
   #cc-main .cm__btn,
   #cc-main .pm__btn {
     border-radius: 999px;
+  }
+
+  /* Desktop: všetky tri tlačidlá consent modalu v jednom riadku */
+  @media screen and (min-width: 641px) {
+    #cc-main .cm {
+      max-width: 44rem !important;
+      width: min(44rem, calc(100vw - 2em)) !important;
+    }
+
+    #cc-main .cm__btns {
+      flex-direction: row !important;
+      max-width: none;
+    }
+
+    /* Prvá skupina má dve tlačidlá, druhá jedno — pomer 2:1 dá všetkým trom rovnakú šírku */
+    #cc-main .cm__btn-group {
+      flex: 2;
+    }
+
+    #cc-main .cm__btn-group + .cm__btn-group {
+      flex: 1;
+      margin: 0 0 0 0.375rem !important;
+    }
+
+    #cc-main .cm__btn {
+      white-space: nowrap;
+    }
   }
 </style>

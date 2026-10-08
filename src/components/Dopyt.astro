@@ -290,7 +290,7 @@ const vymery = ['do 100 m²', '100–200 m²', '200+ m²', 'Zatiaľ neviem'];
       if (!res.ok) throw new Error(`Netlify form POST failed: ${res.status}`);
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
-        event: 'form_submit',
+        event: 'generate_lead',
         form_name: 'dopyt',
         typ_priestoru: typeInput.value,
         vymera: areaInput.value,

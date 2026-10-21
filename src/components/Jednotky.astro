@@ -43,12 +43,13 @@ const officeSpecs = [
 
 const officeGallery = [
   {
-    alt: 'Vizualizácia interiéru kancelárskej chodby so sklenenými priečkami',
+    alt: 'Interiér kancelárskej chodby so sklenenými priečkami',
     desktop: '/images/office-gallery/office-corridor-desktop.webp',
     mobile: '/images/office-gallery/office-corridor-mobile.webp',
     full: '/images/office-gallery/office-corridor-full.webp',
     width: 566,
     height: 366,
+    isVisualization: false,
   },
   {
     alt: 'Vizualizácia administratívnej budovy OC SOFI',
@@ -57,6 +58,7 @@ const officeGallery = [
     full: '/images/office-gallery/office-front-full.webp',
     width: 1200,
     height: 675,
+    isVisualization: true,
   },
   {
     alt: 'Vizualizácia administratívnej budovy v areáli OC SOFI',
@@ -65,6 +67,7 @@ const officeGallery = [
     full: '/images/office-gallery/office-building-full.webp',
     width: 707,
     height: 900,
+    isVisualization: true,
   },
   {
     alt: 'Vizualizácia areálu OC SOFI s administratívnou budovou',
@@ -73,6 +76,7 @@ const officeGallery = [
     full: '/images/office-gallery/office-sofi-full.webp',
     width: 511,
     height: 700,
+    isVisualization: true,
   },
 ];
 ---
@@ -270,7 +274,7 @@ const officeGallery = [
         type="button"
         class="group relative overflow-hidden bg-[#E7E1D8] text-left"
         data-office-gallery-open="0"
-        aria-label={`Otvoriť vizualizáciu: ${officeGallery[0].alt}`}
+        aria-label={`Otvoriť fotografiu: ${officeGallery[0].alt}`}
       >
         <picture class="block w-full">
           <source media="(max-width: 640px)" srcset={officeGallery[0].mobile} />
@@ -283,9 +287,6 @@ const officeGallery = [
             loading="lazy"
           />
         </picture>
-        <span class="absolute top-3 left-3 z-10 rounded-full bg-navy/90 px-3 py-1.5 text-[11px] font-semibold tracking-[0.12em] text-white uppercase backdrop-blur-sm">
-          Vizualizácia
-        </span>
         <span class="absolute right-3 bottom-3 flex size-9 items-center justify-center rounded-full bg-black/60 text-[18px] text-white opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100" aria-hidden="true">↗</span>
       </button>
       <div>
@@ -357,7 +358,7 @@ const officeGallery = [
     <button type="button" data-office-gallery-close class="absolute top-0 right-0 z-10 flex size-11 items-center justify-center rounded-full bg-white/12 text-[26px] transition-colors hover:bg-white/22" aria-label="Zavrieť galériu">×</button>
     <button type="button" data-office-gallery-prev class="absolute left-0 z-10 flex size-12 items-center justify-center rounded-full bg-white/12 text-[28px] transition-colors hover:bg-white/22" aria-label="Predchádzajúca vizualizácia">←</button>
     <figure class="m-0 flex max-h-full flex-col items-center gap-4 px-14">
-      <span class="rounded-full bg-white/15 px-3 py-1.5 text-[11px] font-semibold tracking-[0.12em] text-white uppercase backdrop-blur-sm">
+      <span data-office-gallery-label hidden class="rounded-full bg-white/15 px-3 py-1.5 text-[11px] font-semibold tracking-[0.12em] text-white uppercase backdrop-blur-sm">
         Vizualizácia
       </span>
       <img data-office-gallery-image src="" alt="" class="max-h-[calc(100dvh-120px)] max-w-full object-contain" />
@@ -371,6 +372,7 @@ const officeGallery = [
   const officeDialog = document.querySelector('[data-office-gallery]');
   const officeLightboxImage = officeDialog?.querySelector('[data-office-gallery-image]');
   const officeCaption = officeDialog?.querySelector('[data-office-gallery-caption]');
+  const officeVisualizationLabel = officeDialog?.querySelector('[data-office-gallery-label]');
   let activeOfficeImage = 0;
 
   const showOfficeImage = (index) => {
@@ -379,6 +381,9 @@ const officeGallery = [
     if (officeLightboxImage) {
       officeLightboxImage.src = image.full;
       officeLightboxImage.alt = image.alt;
+    }
+    if (officeVisualizationLabel) {
+      officeVisualizationLabel.hidden = !image.isVisualization;
     }
     if (officeCaption) officeCaption.textContent = image.alt;
   };

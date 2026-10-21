@@ -43,7 +43,7 @@ const officeSpecs = [
 
 const officeGallery = [
   {
-    alt: 'Interiér kancelárskej chodby so sklenenými priečkami',
+    alt: 'Vizualizácia interiéru kancelárskej chodby so sklenenými priečkami',
     desktop: '/images/office-gallery/office-corridor-desktop.webp',
     mobile: '/images/office-gallery/office-corridor-mobile.webp',
     full: '/images/office-gallery/office-corridor-full.webp',
@@ -94,7 +94,9 @@ const officeGallery = [
       <p
         class="mx-auto mt-[30px] mb-0 max-w-[58ch] [text-wrap:pretty] text-[18px] leading-[1.8] text-[#5A6470]"
       >
-        Priestory ponúkame výhradne na prenájom.
+        Ponúkame obchodné priestory na prízemí a kancelárske priestory na druhom
+        podlaží <strong class="font-semibold text-ink">na prenájom</strong>. Vyberte si
+        typ priestoru a pozrite si detaily.
       </p>
     </div>
 
@@ -106,18 +108,18 @@ const officeGallery = [
         <h2
           class="m-0 max-w-[20ch] font-serif text-[clamp(30px,3.4vw,48px)] leading-[1.06] font-normal tracking-[-0.01em]"
         >
-          <span class="italic font-light">Obchodné priestory</span>
+          <span class="italic font-light">Pripravované obchodné priestory</span>
         </h2>
         <p
           class="mt-6 mb-0 max-w-[56ch] [text-wrap:pretty] text-[17px] leading-[1.85] text-[#5A6470]"
         >
-          Jednotky na prízemí ponúkajú presklenú fasádu po celej šírke
-          prevádzky, vlastný vstup priamo z parkoviska a otvorený pôdorys s
+          Pripravované jednotky na prízemí budú mať presklenú fasádu po celej
+          šírke prevádzky, vlastný vstup priamo z parkoviska a otvorený pôdorys s
           možnosťou flexibilného prispôsobenia podľa potrieb nájomcu. Komfortné
-          fungovanie prevádzky zabezpečuje samostatné zásobovanie zo zadnej
+          fungovanie prevádzky zabezpečí samostatné zásobovanie zo zadnej
           strany objektu, vlastné prípojky a pripravená technická
           infraštruktúra pre každú jednotku. Možnosť označenia prevádzky nad
-          vstupom a na spoločnom pylóne zároveň zabezpečuje dobrú viditeľnosť
+          vstupom a na spoločnom pylóne zároveň zabezpečí dobrú viditeľnosť
           vašej značky.
         </p>
         <div class="mt-[30px] grid border-t border-[#D8D0C4]">
@@ -135,7 +137,7 @@ const officeGallery = [
         type="button"
         class="group relative overflow-hidden bg-[#E7E1D8] text-left"
         data-retail-gallery-open="0"
-        aria-label={`Otvoriť fotografiu: ${retailGallery[0].alt}`}
+        aria-label={`Otvoriť vizualizáciu: ${retailGallery[0].alt}`}
       >
         <picture class="block w-full">
           <source media="(max-width: 640px)" srcset={retailGallery[0].mobile} />
@@ -148,6 +150,9 @@ const officeGallery = [
             loading="lazy"
           />
         </picture>
+        <span class="absolute top-3 left-3 z-10 rounded-full bg-navy/90 px-3 py-1.5 text-[11px] font-semibold tracking-[0.12em] text-white uppercase backdrop-blur-sm">
+          Vizualizácia
+        </span>
         <span class="absolute right-3 bottom-3 flex size-9 items-center justify-center rounded-full bg-black/60 text-[18px] text-white opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100" aria-hidden="true">↗</span>
       </button>
     </div>
@@ -158,7 +163,7 @@ const officeGallery = [
             type="button"
             class="group relative overflow-hidden bg-[#E7E1D8] text-left"
             data-retail-gallery-open={index + 1}
-            aria-label={`Otvoriť fotografiu: ${image.alt}`}
+            aria-label={`Otvoriť vizualizáciu: ${image.alt}`}
           >
             <picture class="block w-full">
               <source media="(max-width: 640px)" srcset={image.mobile} />
@@ -171,6 +176,9 @@ const officeGallery = [
                 loading="lazy"
               />
             </picture>
+            <span class="absolute top-3 left-3 z-10 rounded-full bg-navy/90 px-3 py-1.5 text-[11px] font-semibold tracking-[0.12em] text-white uppercase backdrop-blur-sm">
+              Vizualizácia
+            </span>
             <span class="absolute right-3 bottom-3 flex size-9 items-center justify-center rounded-full bg-black/60 text-[18px] text-white opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100" aria-hidden="true">↗</span>
           </button>
         ))
@@ -183,7 +191,7 @@ const officeGallery = [
 <dialog
   data-retail-gallery
   class="fixed inset-0 m-auto h-dvh w-dvw max-h-none max-w-none border-0 bg-black/92 p-5 text-white backdrop:bg-black/70"
-  aria-label="Galéria obchodných priestorov"
+  aria-label="Galéria vizualizácií obchodných priestorov"
 >
   <div class="relative mx-auto flex h-full max-w-[1600px] items-center justify-center">
     <button
@@ -196,9 +204,12 @@ const officeGallery = [
       type="button"
       data-retail-gallery-prev
       class="absolute left-0 z-10 flex size-12 items-center justify-center rounded-full bg-white/12 text-[28px] transition-colors hover:bg-white/22"
-      aria-label="Predchádzajúca fotografia">←</button
+      aria-label="Predchádzajúca vizualizácia">←</button
     >
     <figure class="m-0 flex max-h-full flex-col items-center gap-4 px-14">
+      <span class="rounded-full bg-white/15 px-3 py-1.5 text-[11px] font-semibold tracking-[0.12em] text-white uppercase backdrop-blur-sm">
+        Vizualizácia
+      </span>
       <img
         data-retail-gallery-image
         src=""
@@ -212,7 +223,7 @@ const officeGallery = [
       type="button"
       data-retail-gallery-next
       class="absolute right-0 z-10 flex size-12 items-center justify-center rounded-full bg-white/12 text-[28px] transition-colors hover:bg-white/22"
-      aria-label="Nasledujúca fotografia">→</button
+      aria-label="Nasledujúca vizualizácia">→</button
     >
   </div>
 </dialog>
@@ -260,7 +271,7 @@ const officeGallery = [
         type="button"
         class="group relative overflow-hidden bg-[#E7E1D8] text-left"
         data-office-gallery-open="0"
-        aria-label={`Otvoriť fotografiu: ${officeGallery[0].alt}`}
+        aria-label={`Otvoriť vizualizáciu: ${officeGallery[0].alt}`}
       >
         <picture class="block w-full">
           <source media="(max-width: 640px)" srcset={officeGallery[0].mobile} />
@@ -273,24 +284,27 @@ const officeGallery = [
             loading="lazy"
           />
         </picture>
+        <span class="absolute top-3 left-3 z-10 rounded-full bg-navy/90 px-3 py-1.5 text-[11px] font-semibold tracking-[0.12em] text-white uppercase backdrop-blur-sm">
+          Vizualizácia
+        </span>
         <span class="absolute right-3 bottom-3 flex size-9 items-center justify-center rounded-full bg-black/60 text-[18px] text-white opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100" aria-hidden="true">↗</span>
       </button>
       <div>
         <h2
           class="m-0 max-w-[20ch] font-serif text-[clamp(30px,3.4vw,48px)] leading-[1.06] font-normal tracking-[-0.01em]"
         >
-          <span class="italic font-light">Kancelárske priestory</span>
+          <span class="italic font-light">Pripravované kancelárske priestory</span>
         </h2>
         <p
           class="mt-6 mb-0 max-w-[56ch] [text-wrap:pretty] text-[17px] leading-[1.85] text-[#5A6470]"
         >
-          Kancelárske priestory na druhom podlaží ponúkajú flexibilnú dispozíciu
-          s možnosťou vytvorenia samostatných kancelárií alebo otvoreného
-          open-space riešenia. Priestory majú dostatok denného svetla, prístup
-          na loggiu a pripravenú kompletnú technickú infraštruktúru vrátane
-          dátových a slaboprúdových rozvodov. Súčasťou zázemia sú kuchynky,
-          toalety a udržiavané spoločné priestory. Parkovanie je k dispozícii v
-          parkovacom dome priamo v areáli.
+          Pripravované kancelárske priestory na druhom podlaží budú ponúkať
+          flexibilnú dispozíciu s možnosťou vytvorenia samostatných kancelárií
+          alebo otvoreného open-space riešenia. Budú mať dostatok denného
+          svetla, prístup na loggiu a pripravenú kompletnú technickú
+          infraštruktúru vrátane dátových a slaboprúdových rozvodov. Súčasťou
+          zázemia budú kuchynky, toalety a udržiavané spoločné priestory.
+          Parkovanie bude k dispozícii v parkovacom dome priamo v areáli.
         </p>
         <div class="mt-[30px] grid border-t border-[#D8D0C4]">
           {
@@ -311,7 +325,7 @@ const officeGallery = [
             type="button"
             class="group relative overflow-hidden bg-[#E7E1D8] text-left"
             data-office-gallery-open={index + 1}
-            aria-label={`Otvoriť fotografiu: ${image.alt}`}
+            aria-label={`Otvoriť vizualizáciu: ${image.alt}`}
           >
             <picture class="block w-full">
               <source media="(max-width: 640px)" srcset={image.mobile} />
@@ -324,6 +338,9 @@ const officeGallery = [
                 loading="lazy"
               />
             </picture>
+            <span class="absolute top-3 left-3 z-10 rounded-full bg-navy/90 px-3 py-1.5 text-[11px] font-semibold tracking-[0.12em] text-white uppercase backdrop-blur-sm">
+              Vizualizácia
+            </span>
             <span class="absolute right-3 bottom-3 flex size-9 items-center justify-center rounded-full bg-black/60 text-[18px] text-white opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100" aria-hidden="true">↗</span>
           </button>
         ))
@@ -335,16 +352,19 @@ const officeGallery = [
 <dialog
   data-office-gallery
   class="fixed inset-0 m-auto h-dvh w-dvw max-h-none max-w-none border-0 bg-black/92 p-5 text-white backdrop:bg-black/70"
-  aria-label="Galéria kancelárskych priestorov"
+  aria-label="Galéria vizualizácií kancelárskych priestorov"
 >
   <div class="relative mx-auto flex h-full max-w-[1600px] items-center justify-center">
     <button type="button" data-office-gallery-close class="absolute top-0 right-0 z-10 flex size-11 items-center justify-center rounded-full bg-white/12 text-[26px] transition-colors hover:bg-white/22" aria-label="Zavrieť galériu">×</button>
-    <button type="button" data-office-gallery-prev class="absolute left-0 z-10 flex size-12 items-center justify-center rounded-full bg-white/12 text-[28px] transition-colors hover:bg-white/22" aria-label="Predchádzajúca fotografia">←</button>
+    <button type="button" data-office-gallery-prev class="absolute left-0 z-10 flex size-12 items-center justify-center rounded-full bg-white/12 text-[28px] transition-colors hover:bg-white/22" aria-label="Predchádzajúca vizualizácia">←</button>
     <figure class="m-0 flex max-h-full flex-col items-center gap-4 px-14">
+      <span class="rounded-full bg-white/15 px-3 py-1.5 text-[11px] font-semibold tracking-[0.12em] text-white uppercase backdrop-blur-sm">
+        Vizualizácia
+      </span>
       <img data-office-gallery-image src="" alt="" class="max-h-[calc(100dvh-120px)] max-w-full object-contain" />
       <figcaption data-office-gallery-caption class="text-center text-[15px] text-white/75"></figcaption>
     </figure>
-    <button type="button" data-office-gallery-next class="absolute right-0 z-10 flex size-12 items-center justify-center rounded-full bg-white/12 text-[28px] transition-colors hover:bg-white/22" aria-label="Nasledujúca fotografia">→</button>
+    <button type="button" data-office-gallery-next class="absolute right-0 z-10 flex size-12 items-center justify-center rounded-full bg-white/12 text-[28px] transition-colors hover:bg-white/22" aria-label="Nasledujúca vizualizácia">→</button>
   </div>
 </dialog>
 

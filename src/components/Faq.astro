@@ -1,0 +1,61 @@
+---
+const questions = [
+  {
+    question: 'Je možné priestory kúpiť?',
+    answer:
+      'Nie. Obchodné a kancelárske priestory ponúkame výhradne na prenájom.',
+  },
+  {
+    question: 'Sú priestory už dokončené?',
+    answer:
+      'Nie. Ide o pripravovanú druhú etapu OC SOFI, ktorá je vo výstavbe.',
+  },
+  {
+    question: 'Kedy budú priestory k dispozícii?',
+    answer: 'Plánované odovzdanie nájomcom je v Q3 2028.',
+  },
+  {
+    question: 'Je možné riešiť prenájom už teraz?',
+    answer:
+      'Áno, výber priestoru a nájomné podmienky je možné riešiť už počas výstavby.',
+  },
+];
+---
+
+<section id="faq" class="bg-cream-light">
+  <div
+    class="mx-auto grid max-w-[1280px] gap-[clamp(44px,7vw,96px)] px-[clamp(20px,4vw,56px)] py-[clamp(96px,11vw,152px)] lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)]"
+  >
+    <div>
+      <span class="text-[13px] font-medium tracking-[0.16em] text-accent uppercase">
+        Časté otázky
+      </span>
+      <h2
+        class="mt-5 mb-0 max-w-[12ch] [text-wrap:balance] text-[clamp(42px,5vw,68px)] leading-[1.02] font-normal tracking-[-0.04em] text-heading"
+      >
+        Čo potrebujete <span class="font-serif italic text-accent">vedieť</span>
+      </h2>
+    </div>
+
+    <div class="border-t border-[#D8D0C4]">
+      {
+        questions.map((item) => (
+          <details class="group border-b border-[#D8D0C4]">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-6 py-7 text-[clamp(19px,2vw,24px)] font-medium tracking-[-0.01em] text-heading marker:content-none">
+              <span>{item.question}</span>
+              <span
+                class="flex size-8 flex-none items-center justify-center rounded-full border border-[#CFC6B9] text-[20px] font-light text-accent transition-transform duration-300 group-open:rotate-45"
+                aria-hidden="true"
+              >
+                +
+              </span>
+            </summary>
+            <p class="mt-0 max-w-[62ch] pb-7 text-[17px] leading-[1.8] text-[#5A6470]">
+              {item.answer}
+            </p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
